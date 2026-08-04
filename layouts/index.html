@@ -1,0 +1,131 @@
+{{ define "main" }}
+
+<!-- Hero Section -->
+<section class="hero" id="hero" style="background-image: url('{{ .Params.hero.banner_image | default "/uploads/hero-bg.svg" }}');">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    {{ with .Params.booking.status_notice }}
+    <div class="status-badge">
+      <span class="status-dot"></span>
+      <span>{{ . }}</span>
+    </div>
+    {{ end }}
+
+    <h1 class="hero-title">{{ .Params.hero.heading | default .Title }}</h1>
+    <p class="hero-tagline">{{ .Params.hero.tagline }}</p>
+
+    <div class="hero-actions">
+      <a href="#booking" class="btn btn-primary">Book Consultation</a>
+    </div>
+  </div>
+</section>
+
+<!-- Portfolio Gallery Section -->
+<section class="portfolio-section" id="gallery">
+  <div class="container">
+    <h2 class="section-title">Selected Works</h2>
+    <p class="section-subtitle">Tattoos, Flash &amp; Fine Art Canvas</p>
+
+    <!-- Category Filter Tabs -->
+    <div class="filter-tabs">
+      <button class="filter-btn active" data-filter="all">All Works</button>
+      <button class="filter-btn" data-filter="Tattoo (Healed)">Healed Tattoos</button>
+      <button class="filter-btn" data-filter="Tattoo (Fresh)">Fresh Tattoos</button>
+      <button class="filter-btn" data-filter="Available Flash">Available Flash</button>
+      <button class="filter-btn" data-filter="Fine Art">Fine Art</button>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="gallery-grid">
+      {{ $portfolio := where .Site.RegularPages "Section" "portfolio" }}
+      {{ range $portfolio }}
+      <div class="gallery-item" 
+           data-category="{{ .Params.category }}"
+           data-title="{{ .Title }}"
+           data-image="{{ .Params.image }}"
+           data-description="{{ .Plain }}">
+        <div class="gallery-img-wrap">
+          <img src="{{ .Params.image }}" alt="{{ .Title }}" loading="lazy">
+          <div class="gallery-overlay">
+            <span class="category-tag">{{ .Params.category }}</span>
+            <h3 class="item-title">{{ .Title }}</h3>
+            <div class="item-tags">
+              {{ range .Params.tags }}
+              <span>#{{ . }}</span>
+              {{ end }}
+            </div>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<!-- Bio Section -->
+{{ with .Params.bio }}
+<section class="bio-section" id="bio">
+  <div class="container">
+    <div class="bio-grid">
+      <div class="bio-img-card">
+        <img src="{{ .photo | default "/uploads/artist-portrait.svg" }}" alt="Artist Photo">
+      </div>
+      <div class="bio-text-content">
+        <p class="section-subtitle" style="text-align: left; margin-bottom: 0.5rem;">ABOUT THE ARTIST</p>
+        <h3>Elara Vance</h3>
+        <p class="bio-description">{{ .description }}</p>
+
+        <h4 class="specialties-title">Core Specialties</h4>
+        <ul class="specialties-list">
+          {{ range .specialties }}
+          <li class="specialty-badge">{{ . }}</li>
+          {{ end }}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+<!-- Booking Section -->
+{{ with .Params.booking }}
+<section class="booking-section" id="booking">
+  <div class="container">
+    <div class="booking-card">
+      <p class="section-subtitle" style="margin-bottom: 0.5rem;">STUDIO &amp; APPOINTMENTS</p>
+      <h2 class="section-title" style="margin-bottom: 1rem;">Reserve Your Piece</h2>
+      <p class="booking-location">📍 {{ .location }}</p>
+      
+      <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem;">
+        Consultations are conducted in-person or via WhatsApp. Please include concept notes, placement ideas, and approximate dimensions in your message.
+      </p>
+
+      <a href="{{ .contact_url }}" target="_blank" rel="noopener" class="btn btn-primary">
+        <span>💬 Contact via WhatsApp</span>
+      </a>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+<!-- Lightbox Modal -->
+<div class="lightbox-modal" id="lightbox-modal">
+  <div class="lightbox-content">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close modal">&times;</button>
+    <div class="lightbox-img-wrap">
+      <img id="lightbox-img" src="" alt="Artwork Preview">
+    </div>
+    <div class="lightbox-details">
+      <div>
+        <span class="category-tag" id="lightbox-category">Category</span>
+        <h2 class="item-title" id="lightbox-title" style="font-size: 2rem; margin: 0.5rem 0 1rem;">Artwork Title</h2>
+        <p id="lightbox-body" style="color: var(--text-secondary); font-size: 1.05rem; line-height: 1.7;">Description</p>
+      </div>
+      <div style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border-color);">
+        <a href="#booking" onclick="document.getElementById('lightbox-modal').classList.remove('active');" class="btn btn-primary" style="width: 100%; font-size: 0.85rem;">Inquire About Similar Piece</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{ end }}

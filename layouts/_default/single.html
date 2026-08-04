@@ -1,0 +1,20 @@
+{{ define "main" }}
+<div class="container" style="padding-top: 10rem; padding-bottom: 6rem; max-width: 800px;">
+  <span class="category-tag">{{ .Params.category }}</span>
+  <h1 class="hero-title" style="font-size: 3rem; margin: 1rem 0;">{{ .Title }}</h1>
+  
+  {{ with .Params.image }}
+  <div style="margin: 2rem 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color);">
+    <img src="{{ . }}" alt="{{ $.Title }}" style="width: 100%;">
+  </div>
+  {{ end }}
+
+  <div style="color: var(--text-secondary); font-size: 1.1rem; line-height: 1.8;">
+    {{ .Content }}
+  </div>
+
+  <div style="margin-top: 3rem;">
+    <a href="/#gallery" class="btn btn-primary">&larr; Back to Gallery</a>
+  </div>
+</div>
+{{ end }}

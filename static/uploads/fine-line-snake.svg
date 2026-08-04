@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="100%" height="100%">
+  <rect width="600" height="800" rx="12" fill="#0f0e14"/>
+  <g fill="none" stroke="#eedfcc" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Dagger center -->
+    <path d="M 300,120 L 300,600" stroke="#d4af37" stroke-width="2.5"/>
+    <path d="M 240,240 L 360,240" stroke="#d4af37" stroke-width="3"/>
+    <path d="M 300,120 L 320,240 L 280,240 Z" fill="#181622" stroke="#d4af37" stroke-width="1.5"/>
+    <!-- Snake coiling around dagger -->
+    <path d="M 240,580 C 180,500 220,420 300,420 C 380,420 420,340 300,320 C 200,300 220,200 300,180 C 340,170 370,190 380,210" stroke-width="2.5"/>
+    <!-- Rose blossoms -->
+    <circle cx="240" cy="460" r="35" fill="#14131a" stroke="#eedfcc"/>
+    <path d="M 225,450 C 235,435 255,435 255,450 C 255,465 225,465 225,480 H 260"/>
+    <circle cx="360" cy="360" r="40" fill="#14131a" stroke="#d4af37"/>
+  </g>
+  <text x="300" y="740" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="20" fill="#d4af37" letter-spacing="3">FINE LINE SNAKE &amp; DAGGER</text>
+</svg>

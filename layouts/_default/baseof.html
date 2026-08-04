@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Locale | default "en-us" }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ .Title }} | {{ .Site.Title }}</title>
+  <meta name="description" content="{{ .Params.hero.tagline | default "Local Artist & Tattoo Portfolio Website" }}">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <!-- Navigation Header -->
+  <header class="navbar">
+    <div class="container">
+      <a href="/" class="logo">ELARA <span>VANCE</span></a>
+      <ul class="nav-links">
+        <li><a href="#gallery">Portfolio</a></li>
+        <li><a href="#bio">Bio &amp; Style</a></li>
+        <li><a href="#booking">Booking</a></li>
+        <li><a href="/admin/" class="nav-cta">Artist CMS</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Page Main Content Block -->
+  <main id="main-content">
+    {{ block "main" . }}{{ end }}
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; {{ now.Format "2006" }} {{ .Site.Title }}. All rights reserved.</p>
+      <p style="margin-top: 0.5rem; font-size: 0.8rem;">
+        Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &amp; 
+        <a href="https://sveltia.dev/cms/" target="_blank" rel="noopener">Sveltia CMS</a> | 
+        <a href="/admin/">Manage Work</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Main Client Script -->
+  <script src="/js/main.js"></script>
+</body>
+</html>

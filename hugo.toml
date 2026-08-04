@@ -1,0 +1,12 @@
+baseURL = 'https://example.org/'
+locale = 'en-us'
+title = 'Artist Name | Tattoo & Fine Art'
+
+[taxonomies]
+  category = 'categories'
+  tag = 'tags'
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

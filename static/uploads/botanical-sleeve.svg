@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="100%" height="100%">
+  <rect width="600" height="800" rx="12" fill="#14131a"/>
+  <!-- Botanical fern and monstera stippling SVG art -->
+  <g fill="none" stroke="#e0d7c6" stroke-width="1.8" stroke-linecap="round">
+    <!-- Fern leaves left -->
+    <path d="M 300,700 Q 280,450 250,200"/>
+    <path d="M 285,600 Q 220,580 180,590"/>
+    <path d="M 280,550 Q 200,520 160,530"/>
+    <path d="M 275,500 Q 190,460 150,470"/>
+    <path d="M 270,450 Q 195,400 160,410"/>
+    <path d="M 265,400 Q 205,340 180,350"/>
+    <!-- Monstera leaf right -->
+    <path d="M 300,650 Q 380,480 440,300" stroke="#d4af37" stroke-width="2"/>
+    <path d="M 340,550 C 440,530 480,480 430,420 C 390,380 330,420 320,490 Z" fill="#1d1b26"/>
+    <path d="M 360,490 L 440,480 M 350,450 L 420,420 M 340,520 L 410,540"/>
+    <!-- Dotwork stippling details -->
+    <circle cx="300" cy="350" r="1.5" fill="#e0d7c6"/>
+    <circle cx="310" cy="340" r="1.5" fill="#e0d7c6"/>
+    <circle cx="290" cy="360" r="1.5" fill="#e0d7c6"/>
+    <circle cx="320" cy="330" r="1" fill="#d4af37"/>
+    <circle cx="280" cy="370" r="1" fill="#d4af37"/>
+  </g>
+  <text x="300" y="750" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="20" fill="#d4af37" letter-spacing="3">BOTANICAL SLEEVE</text>
+</svg>

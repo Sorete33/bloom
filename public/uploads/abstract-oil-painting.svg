@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="100%" height="100%">
+  <rect width="600" height="800" rx="12" fill="#0d0c10"/>
+  <defs>
+    <linearGradient id="paintGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2a2536"/>
+      <stop offset="50%" stop-color="#191724"/>
+      <stop offset="100%" stop-color="#0b0a10"/>
+    </linearGradient>
+    <linearGradient id="goldAcc" x1="0%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%" stop-color="#f0d575"/>
+      <stop offset="50%" stop-color="#aa8c2c"/>
+      <stop offset="100%" stop-color="#544310"/>
+    </linearGradient>
+  </defs>
+  <!-- Canvas texture abstract oil shapes -->
+  <path d="M 50,100 Q 250,20 450,150 T 550,500 L 400,720 L 100,680 Z" fill="url(#paintGrad1)" stroke="#383247" stroke-width="2"/>
+  <path d="M 120,200 C 220,120 380,180 340,380 C 300,580 150,540 180,320 Z" fill="url(#goldAcc)" opacity="0.85"/>
+  <path d="M 280,300 C 380,260 480,340 440,520 C 400,700 220,640 260,460 Z" fill="#e8dfd1" opacity="0.15"/>
+  <!-- Palette knife slash textures -->
+  <line x1="80" y1="400" x2="520" y2="350" stroke="#f0d575" stroke-width="3" opacity="0.7"/>
+  <line x1="120" y1="430" x2="480" y2="390" stroke="#f0d575" stroke-width="1.5" opacity="0.5"/>
+  <text x="300" y="750" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="20" fill="#d4af37" letter-spacing="3">"OBSIDIAN NOCTURNE" (OIL ON CANVAS 100x120CM)</text>
+</svg>

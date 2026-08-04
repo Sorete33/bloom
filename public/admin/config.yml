@@ -1,0 +1,55 @@
+backend:
+  name: github
+  repo: owner/repo-name
+  branch: main
+
+media_folder: "static/uploads"
+public_folder: "/uploads"
+
+collections:
+  # Homepage Settings Editor
+  - name: "homepage"
+    label: "Homepage Settings"
+    files:
+      - file: "content/_index.md"
+        label: "Main Page"
+        name: "index"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - label: "Hero Banner"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Tagline", name: "tagline", widget: "string" }
+              - { label: "Banner Image", name: "banner_image", widget: "image" }
+          - label: "Artist Bio"
+            name: "bio"
+            widget: "object"
+            fields:
+              - { label: "Photo", name: "photo", widget: "image" }
+              - { label: "Specialties", name: "specialties", widget: "list" }
+              - { label: "Description", name: "description", widget: "text" }
+          - label: "Booking Details"
+            name: "booking"
+            widget: "object"
+            fields:
+              - { label: "Location", name: "location", widget: "string" }
+              - { label: "Status Notice", name: "status_notice", widget: "string" }
+              - { label: "Contact URL", name: "contact_url", widget: "string" }
+
+  # Portfolio Entry Editor
+  - name: "portfolio"
+    label: "Portfolio & Flash"
+    folder: "content/portfolio"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Image", name: "image", widget: "image" }
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options: ["Tattoo (Healed)", "Tattoo (Fresh)", "Available Flash", "Fine Art"]
+      - { label: "Description", name: "body", widget: "markdown", required: false }
