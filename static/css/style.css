@@ -109,15 +109,15 @@ h1, h2, h3, h4, .brand-font {
 }
 
 .logo {
-  font-family: var(--font-serif);
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  letter-spacing: 0.1em;
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
 }
 
-.logo span {
-  color: var(--accent-gold);
+.logo-img {
+  height: 48px;
+  width: auto;
+  display: block;
 }
 
 .nav-links {
@@ -578,5 +578,8 @@ h1, h2, h3, h4, .brand-font {
   }
   .nav-links {
     display: none; /* simple mobile stack fallback */
+  }
+  .logo-img {
+    height: 40px;
   }
 }
