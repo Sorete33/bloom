@@ -19,6 +19,6 @@
     <path d="M 240,170 A 20 20 0 0 1 240,200 A 14 14 0 0 0 240,170" fill="#f4ebe1"/>
     <path d="M 360,170 A 20 20 0 0 0 360,200 A 14 14 0 0 1 360,170" fill="#f4ebe1"/>
   </g>
-  <text x="300" y="700" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="22" fill="#d4af37" letter-spacing="3">LUNAR MOTH FLASH #04</text>
-  <text x="300" y="725" text-anchor="middle" font-family="'Inter', sans-serif" font-size="12" fill="#8c8599" letter-spacing="2">AVAILABLE FLASH DESIGN</text>
+  <text x="300" y="700" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="22" fill="#d4af37" letter-spacing="3">POLILLA LUNAR FLASH #04</text>
+  <text x="300" y="725" text-anchor="middle" font-family="'Inter', sans-serif" font-size="12" fill="#8c8599" letter-spacing="2">DISEÑO FLASH DISPONIBLE</text>
 </svg>

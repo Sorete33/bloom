@@ -1,19 +1,17 @@
 ---
-title: "Elara Vance | Custom Tattoo & Fine Art"
+title: "In Bloom"
 hero:
-  heading: "Elara Vance"
-  tagline: "Custom Blackwork & Fine Line Specialist"
-  banner_image: "/uploads/hero-bg.svg"
+  heading: "In Bloom"
+  tagline: "Tatu y Bellas Artes"
+  banner_image: "/uploads/hero-bg.jpg"
 bio:
-  photo: "/uploads/artist-portrait.svg"
+  photo: "/uploads/artist-portrait.jpg"
   specialties:
-    - "Fine Line"
-    - "Botanical Blackwork"
-    - "Custom Flash"
-    - "Sacred Geometry"
-  description: "Tattoo artist and painter with extensive experience in organic botanical line work, delicate stippled shading, and large-scale blackwork compositions. Creating custom wearable art tailored to individual body anatomy."
+    - "Línea Fina"
+    - "Blackwork"
+  description: "Diseños de autor"
 booking:
-  location: "Palermo Studio, Buenos Aires"
-  status_notice: "Books are currently OPEN"
+  location: "Estudio Privado en Calamuchita, Córdoba"
+  status_notice: "Agenda ABIERTA para turnos"
   contact_url: "https://wa.me/5491112345678"
 ---

@@ -12,5 +12,5 @@
     <path d="M 225,450 C 235,435 255,435 255,450 C 255,465 225,465 225,480 H 260"/>
     <circle cx="360" cy="360" r="40" fill="#14131a" stroke="#d4af37"/>
   </g>
-  <text x="300" y="740" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="20" fill="#d4af37" letter-spacing="3">FINE LINE SNAKE &amp; DAGGER</text>
+  <text x="300" y="740" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="20" fill="#d4af37" letter-spacing="3">VÍBORA &amp; DAGA DE LÍNEA FINA</text>
 </svg>

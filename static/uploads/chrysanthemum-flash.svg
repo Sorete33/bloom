@@ -17,6 +17,6 @@
     <path d="M 300,460 Q 250,560 200,640" stroke="#d4af37" stroke-width="2"/>
     <path d="M 300,460 Q 350,560 400,640" stroke="#d4af37" stroke-width="2"/>
   </g>
-  <text x="300" y="730" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="22" fill="#d4af37" letter-spacing="3">CHRYSANTHEMUM FLASH</text>
-  <text x="300" y="755" text-anchor="middle" font-family="'Inter', sans-serif" font-size="12" fill="#8c8599" letter-spacing="2">NEO-TRADITIONAL BLACKWORK</text>
+  <text x="300" y="730" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="22" fill="#d4af37" letter-spacing="3">CRISANTEMO FLASH</text>
+  <text x="300" y="755" text-anchor="middle" font-family="'Inter', sans-serif" font-size="12" fill="#8c8599" letter-spacing="2">NEO-TRADICIONAL BLACKWORK</text>
 </svg>

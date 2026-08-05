@@ -1,55 +1,57 @@
 backend:
   name: github
-  repo: owner/repo-name
+  repo: Sorete33/bloom
   branch: main
 
 media_folder: "static/uploads"
 public_folder: "/uploads"
 
 collections:
-  # Homepage Settings Editor
+  # Configuracion de la Pagina Principal
   - name: "homepage"
-    label: "Homepage Settings"
+    label: "Página Principal"
     files:
       - file: "content/_index.md"
-        label: "Main Page"
+        label: "Página Inicio"
         name: "index"
         fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - label: "Hero Banner"
+          - { label: "Título del Sitio", name: "title", widget: "string" }
+          - label: "Banner Principal (Hero)"
             name: "hero"
             widget: "object"
             fields:
-              - { label: "Heading", name: "heading", widget: "string" }
-              - { label: "Tagline", name: "tagline", widget: "string" }
-              - { label: "Banner Image", name: "banner_image", widget: "image" }
-          - label: "Artist Bio"
+              - { label: "Nombre / Encabezado", name: "heading", widget: "string" }
+              - { label: "Subtítulo / Eslógan", name: "tagline", widget: "string" }
+              - { label: "Imagen de Fondo", name: "banner_image", widget: "image" }
+          - label: "Biografía del Artista"
             name: "bio"
             widget: "object"
             fields:
-              - { label: "Photo", name: "photo", widget: "image" }
-              - { label: "Specialties", name: "specialties", widget: "list" }
-              - { label: "Description", name: "description", widget: "text" }
-          - label: "Booking Details"
+              - { label: "Fotografía de Perfil", name: "photo", widget: "image" }
+              - { label: "Especialidades", name: "specialties", widget: "list" }
+              - { label: "Descripción / Historia", name: "description", widget: "text" }
+          - label: "Datos de Reservas & Turnos"
             name: "booking"
             widget: "object"
             fields:
-              - { label: "Location", name: "location", widget: "string" }
-              - { label: "Status Notice", name: "status_notice", widget: "string" }
-              - { label: "Contact URL", name: "contact_url", widget: "string" }
+              - { label: "Ubicación del Estudio", name: "location", widget: "string" }
+              - { label: "Estado de la Agenda", name: "status_notice", widget: "string" }
+              - { label: "Enlace de Contacto (WhatsApp)", name: "contact_url", widget: "string" }
 
-  # Portfolio Entry Editor
+  # Editor de Portafolio
   - name: "portfolio"
-    label: "Portfolio & Flash"
+    label: "Portafolio & Flash"
     folder: "content/portfolio"
+    format: yaml-frontmatter
+    extension: md
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Image", name: "image", widget: "image" }
-      - label: "Category"
+      - { label: "Título de la Obra", name: "title", widget: "string" }
+      - { label: "Fecha", name: "date", widget: "datetime" }
+      - { label: "Imagen", name: "image", widget: "image" }
+      - label: "Categoría"
         name: "category"
         widget: "select"
-        options: ["Tattoo (Healed)", "Tattoo (Fresh)", "Available Flash", "Fine Art"]
-      - { label: "Description", name: "body", widget: "markdown", required: false }
+        options: ["Tatuaje (Curado)", "Tatuaje (Fresco)", "Diseños", "Bellas Artes"]
+      - { label: "Descripción o Notas", name: "body", widget: "markdown", required: false }

@@ -1,6 +1,6 @@
 baseURL = 'https://example.org/'
-locale = 'en-us'
-title = 'Artist Name | Tattoo & Fine Art'
+locale = 'es-AR'
+title = 'In Bloom | Arte'
 
 [taxonomies]
   category = 'categories'

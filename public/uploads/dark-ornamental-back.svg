@@ -14,5 +14,5 @@
     <!-- Unalome drop line -->
     <path d="M 300,560 L 300,680 M 290,670 Q 300,690 310,670 T 300,710 L 300,730" stroke="#f0e6d2" stroke-width="2"/>
   </g>
-  <text x="300" y="760" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="20" fill="#f0e6d2" letter-spacing="3">ORNAMENTAL SACRED MANDALA</text>
+  <text x="300" y="760" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="20" fill="#f0e6d2" letter-spacing="3">MANDALA SACRO ORNAMENTAL</text>
 </svg>
