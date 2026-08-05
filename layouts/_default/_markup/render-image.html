@@ -1,0 +1,13 @@
+{{- $path := .Destination }}
+{{- $alt := .Text }}
+{{- $title := .Title }}
+{{- if hasPrefix $path "/assets/" }}
+  {{- $webp := partial "img-src.html" (dict "path" $path "site" .Page.Site "resize" "1600x") }}
+  {{- $avif := partial "img-src.html" (dict "path" $path "site" .Page.Site "resize" "1600x" "format" "avif") }}
+  <picture>
+    <source srcset="{{ $avif }}" type="image/avif">
+    <img src="{{ $webp }}" alt="{{ $alt }}"{{ with $title }} title="{{ . }}"{{ end }} loading="lazy" decoding="async">
+  </picture>
+{{- else }}
+  <img src="{{ $path }}" alt="{{ $alt }}"{{ with $title }} title="{{ . }}"{{ end }}>
+{{- end -}}

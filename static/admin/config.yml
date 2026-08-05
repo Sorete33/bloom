@@ -22,12 +22,12 @@ collections:
             fields:
               - { label: "Nombre / Encabezado", name: "heading", widget: "string" }
               - { label: "Subtítulo / Eslógan", name: "tagline", widget: "string" }
-              - { label: "Imagen de Fondo", name: "banner_image", widget: "image" }
+              - { label: "Imagen de Fondo", name: "banner_image", widget: "image", hint: "Usá JPG o PNG (sin HEIC)" }
           - label: "Biografía del Artista"
             name: "bio"
             widget: "object"
             fields:
-              - { label: "Fotografía de Perfil", name: "photo", widget: "image" }
+              - { label: "Fotografía de Perfil", name: "photo", widget: "image", hint: "Usá JPG o PNG (sin HEIC)" }
               - { label: "Especialidades", name: "specialties", widget: "list" }
               - { label: "Descripción / Historia", name: "description", widget: "text" }
           - label: "Datos de Reservas & Turnos"
@@ -49,7 +49,7 @@ collections:
     fields:
       - { label: "Título de la Obra", name: "title", widget: "string" }
       - { label: "Fecha", name: "date", widget: "datetime" }
-      - { label: "Imagen", name: "image", widget: "image" }
+      - { label: "Imagen", name: "image", widget: "image", hint: "Usá JPG o PNG (sin HEIC)" }
       - label: "Categoría"
         name: "category"
         widget: "select"

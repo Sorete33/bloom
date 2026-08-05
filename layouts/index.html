@@ -2,12 +2,16 @@
 
 <!-- Hero Section -->
 {{ $poster := .Params.hero.banner_image | default "/uploads/reel-background-poster.webp" }}
-{{ $posterUrl := partial "asset-url.html" (dict "path" $poster "site" .Site) }}
+{{ $posterWebp := partial "img-src.html" (dict "path" $poster "site" .Site "resize" "1600x") }}
+{{ $posterAvif := partial "img-src.html" (dict "path" $poster "site" .Site "resize" "1600x" "format" "avif") }}
 {{ $videoWebm := partial "asset-url.html" (dict "path" "/uploads/reel-background.webm" "site" .Site) }}
 {{ $videoMp4 := partial "asset-url.html" (dict "path" (.Params.hero.banner_video | default "/uploads/reel-background.mp4") "site" .Site) }}
 <section class="hero" id="hero">
-  <img class="hero-poster" src="{{ $posterUrl }}" alt="" width="1080" height="1920" fetchpriority="high" decoding="async">
-  <video class="hero-bg" muted loop playsinline preload="none" poster="{{ $posterUrl }}"
+  <picture>
+    {{ if hasPrefix $poster "/assets/" }}<source srcset="{{ $posterAvif }}" type="image/avif">{{ end }}
+    <img class="hero-poster" src="{{ $posterWebp }}" alt="" width="1080" height="1920" fetchpriority="high" decoding="async">
+  </picture>
+  <video class="hero-bg" muted loop playsinline preload="none" poster="{{ $posterWebp }}"
     data-src-webm="{{ $videoWebm }}" data-src-mp4="{{ $videoMp4 }}"></video>
   <div class="hero-overlay"></div>
   <div class="hero-content">
