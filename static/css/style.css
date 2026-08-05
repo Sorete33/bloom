@@ -115,7 +115,7 @@ h1, h2, h3, h4, .brand-font {
 }
 
 .logo-img {
-  height: 48px;
+  height: 32px;
   width: auto;
   display: block;
 }
@@ -580,6 +580,6 @@ h1, h2, h3, h4, .brand-font {
     display: none; /* simple mobile stack fallback */
   }
   .logo-img {
-    height: 40px;
+    height: 28px;
   }
 }
