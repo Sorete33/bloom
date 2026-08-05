@@ -5,7 +5,7 @@ Static Hugo site (single-page portfolio) for a tattoo artist in Córdoba, Argent
 ## Commands
 
 - Local dev: `hugo server -D` (site is `es-AR`; `hugo.toml` `baseURL` is `http://localhost/` and `hugo server` appends the port, e.g. `http://localhost:1313/`)
-- Build: `hugo --minify --baseURL https://Sorete33.github.io/bloom` — CI runs the same with `--baseURL` from the Pages URL. Templates use `absURL`, so a production `--baseURL` is **required**: a plain `hugo --minify` emits `http://localhost/...` URLs that 404 in production.
+- Build: `hugo --minify --baseURL https://Sorete33.github.io/bloom` — CI runs the same with `--baseURL` from the Pages URL. Asset URLs are built with the `layouts/partials/asset-url.html` partial, which prefixes `.Site.BaseURL` (e.g. `https://Sorete33.github.io/bloom/`). **Never use `absURL` or `relURL`** for site assets: both resolve against the origin and DROP the `/bloom/` base path (they emit `https://Sorete33.github.io/uploads/...`, which 404s in production). A production `--baseURL` is **required**: a plain `hugo --minify` emits `http://localhost/...` URLs that 404 in production.
 - Hugo version is pinned to **0.164.0+extended** in `.github/workflows/hugo.yml`; use the same locally
 - No tests, linter, or formatter configured.
 
