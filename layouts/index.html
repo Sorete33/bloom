@@ -2,6 +2,9 @@
 
 <!-- Hero Section -->
 <section class="hero" id="hero" style="background-image: url('{{ .Params.hero.banner_image | default "/uploads/hero-bg.svg" }}');">
+  <video class="hero-bg" autoplay muted loop playsinline
+    poster="{{ .Params.hero.banner_image | default "/uploads/hero-bg.svg" }}"
+    src="{{ .Params.hero.banner_video | default "/uploads/reel-background.mp4" }}"></video>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     {{ with .Params.booking.status_notice }}

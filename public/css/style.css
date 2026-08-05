@@ -155,6 +155,7 @@ h1, h2, h3, h4, .brand-font {
 /* Hero Section */
 .hero {
   position: relative;
+  overflow: hidden;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -164,6 +165,16 @@ h1, h2, h3, h4, .brand-font {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
 }
 
 .hero-overlay {

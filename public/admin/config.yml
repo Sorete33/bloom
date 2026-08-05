@@ -23,6 +23,7 @@ collections:
               - { label: "Nombre / Encabezado", name: "heading", widget: "string" }
               - { label: "Subtítulo / Eslógan", name: "tagline", widget: "string" }
               - { label: "Imagen de Fondo", name: "banner_image", widget: "image" }
+              - { label: "Video del Banner (MP4)", name: "banner_video", widget: "file" }
           - label: "Biografía del Artista"
             name: "bio"
             widget: "object"

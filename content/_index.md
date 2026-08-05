@@ -4,6 +4,7 @@ hero:
   heading: "In Bloom"
   tagline: "Tatu y Bellas Artes"
   banner_image: "/uploads/hero-bg.jpg"
+  banner_video: "/uploads/reel-background.mp4"
 bio:
   photo: "/uploads/artist-portrait.jpg"
   specialties:
