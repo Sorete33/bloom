@@ -1,9 +1,10 @@
 ---
 title: "In Bloom"
 hero:
+  banner_image: "/uploads/reel-background-poster.webp"
   banner_video: "/uploads/reel-background.mp4"
 bio:
-  photo: "/uploads/artist-portrait.jpg"
+  photo: "/assets/images/artist-portrait.jpg"
   specialties:
     - "Línea Fina"
     - "Blackwork"

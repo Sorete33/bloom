@@ -1,7 +1,7 @@
 ---
 title: "Tatuaje Fresco II"
 date: 2026-07-27T16:00:00Z
-image: "/uploads/tatu/IMG_20220420_173057.jpg"
+image: "/assets/images/tatu/IMG_20220420_173057.jpg"
 category: "Tatuaje (Fresco)"
 tags:
   - "Tatuaje"

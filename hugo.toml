@@ -1,6 +1,6 @@
 baseURL = 'http://localhost/'
 locale = 'es-AR'
-title = 'In Bloom | Arte'
+title = 'Arte'
 
 [taxonomies]
   category = 'categories'

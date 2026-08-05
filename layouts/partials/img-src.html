@@ -1,0 +1,23 @@
+{{- $path := .path }}
+{{- $site := .site }}
+{{- $resize := .resize | default "" }}
+{{- $fill := .fill | default "" }}
+{{- $format := .format | default "webp" }}
+{{- $fallback := partial "asset-url.html" (dict "path" $path "site" $site) }}
+{{- if hasPrefix $path "/assets/" }}
+  {{- $img := resources.Get (strings.TrimPrefix "/assets/" $path) }}
+  {{- if $img }}
+    {{- if $fill }}
+      {{- ($img.Fill (printf "%s %s" $fill $format)).Permalink }}
+    {{- else if $resize }}
+      {{- ($img.Resize (printf "%s %s" $resize $format)).Permalink }}
+    {{- else }}
+      {{- $img.Permalink }}
+    {{- end }}
+  {{- else }}
+    {{- $fallback }}
+  {{- end }}
+{{- else }}
+  {{- $fallback -}}
+{{- end -}}
+

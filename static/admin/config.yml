@@ -3,8 +3,8 @@ backend:
   repo: Sorete33/bloom
   branch: main
 
-media_folder: "static/uploads"
-public_folder: "/uploads"
+media_folder: "assets/images"
+public_folder: "/assets/images"
 
 collections:
   # Configuracion de la Pagina Principal
@@ -23,7 +23,6 @@ collections:
               - { label: "Nombre / Encabezado", name: "heading", widget: "string" }
               - { label: "Subtítulo / Eslógan", name: "tagline", widget: "string" }
               - { label: "Imagen de Fondo", name: "banner_image", widget: "image" }
-              - { label: "Video del Banner (MP4)", name: "banner_video", widget: "file" }
           - label: "Biografía del Artista"
             name: "bio"
             widget: "object"
@@ -41,10 +40,10 @@ collections:
 
   # Editor de Portafolio
   - name: "portfolio"
-    label: "Portafolio & Flash"
+    label: "Portafolio"
     folder: "content/portfolio"
-    format: yaml-frontmatter
-    extension: md
+    format: "yaml-frontmatter"
+    extension: "md"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:

@@ -5,7 +5,12 @@
   
   {{ with .Params.image }}
   <div style="margin: 2rem 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color);">
-    <img src="{{ partial "asset-url.html" (dict "path" . "site" $.Site) }}" alt="{{ $.Title }}" style="width: 100%;">
+    {{ $webp := partial "img-src.html" (dict "path" . "site" $.Site "resize" "1200x") }}
+    {{ $avif := partial "img-src.html" (dict "path" . "site" $.Site "resize" "1200x" "format" "avif") }}
+    <picture>
+      <source srcset="{{ $avif }}" type="image/avif">
+      <img src="{{ $webp }}" alt="{{ $.Title }}" style="width: 100%;" loading="lazy" decoding="async">
+    </picture>
   </div>
   {{ end }}
 

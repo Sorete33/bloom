@@ -1,0 +1,12 @@
+{
+  version: 2,
+  mediaFileName: 'reel-background.mp4',
+  cutSegments: [
+    {
+      start: 0,
+      end: 57.1817496825,
+      name: '',
+      selected: true,
+    },
+  ],
+}

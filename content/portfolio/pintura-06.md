@@ -1,7 +1,7 @@
 ---
 title: "Obra de Arte VI"
 date: 2026-07-15T10:00:00Z
-image: "/uploads/pinturas/3.png"
+image: "/assets/images/pinturas/3.png"
 category: "Bellas Artes"
 tags:
   - "Pintura"

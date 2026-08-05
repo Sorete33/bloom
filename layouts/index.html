@@ -1,10 +1,14 @@
 {{ define "main" }}
 
 <!-- Hero Section -->
-<section class="hero" id="hero" style="background-image: url('{{ partial "asset-url.html" (dict "path" (.Params.hero.banner_image | default "/uploads/hero-bg.svg") "site" .Site) }}');">
-  <video class="hero-bg" autoplay muted loop playsinline preload="auto"
-    poster="{{ partial "asset-url.html" (dict "path" (.Params.hero.banner_image | default "/uploads/hero-bg.svg") "site" .Site) }}"
-    src="{{ partial "asset-url.html" (dict "path" (.Params.hero.banner_video | default "/uploads/reel-background.mp4") "site" .Site) }}"></video>
+{{ $poster := .Params.hero.banner_image | default "/uploads/reel-background-poster.webp" }}
+{{ $posterUrl := partial "asset-url.html" (dict "path" $poster "site" .Site) }}
+{{ $videoWebm := partial "asset-url.html" (dict "path" "/uploads/reel-background.webm" "site" .Site) }}
+{{ $videoMp4 := partial "asset-url.html" (dict "path" (.Params.hero.banner_video | default "/uploads/reel-background.mp4") "site" .Site) }}
+<section class="hero" id="hero">
+  <img class="hero-poster" src="{{ $posterUrl }}" alt="" width="1080" height="1920" fetchpriority="high" decoding="async">
+  <video class="hero-bg" muted loop playsinline preload="none" poster="{{ $posterUrl }}"
+    data-src-webm="{{ $videoWebm }}" data-src-mp4="{{ $videoMp4 }}"></video>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     {{ with .Params.booking.status_notice }}
@@ -44,10 +48,18 @@
     <div class="gallery-grid">
       {{ $portfolio := where .Site.RegularPages "Section" "portfolio" }}
       {{ range $portfolio }}
+      {{ $isAsset := hasPrefix .Params.image "/assets/" }}
+      {{ $cardWebp := partial "img-src.html" (dict "path" .Params.image "site" .Site "fill" "720x960") }}
+      {{ $cardAvif := partial "img-src.html" (dict "path" .Params.image "site" .Site "fill" "720x960" "format" "avif") }}
+      {{ $lightboxWebp := partial "img-src.html" (dict "path" .Params.image "site" .Site "resize" "1600x") }}
+      {{ $lightboxAvif := partial "img-src.html" (dict "path" .Params.image "site" .Site "resize" "1600x" "format" "avif") }}
       <div class="gallery-item" data-category="{{ .Params.category }}" data-title="{{ .Title }}"
-        data-image="{{ partial "asset-url.html" (dict "path" .Params.image "site" .Site) }}" data-description="{{ .Plain }}">
+        data-image="{{ $lightboxWebp }}"{{ if $isAsset }} data-image-avif="{{ $lightboxAvif }}"{{ end }} data-description="{{ .Plain }}">
         <div class="gallery-img-wrap">
-          <img src="{{ partial "asset-url.html" (dict "path" .Params.image "site" .Site) }}" alt="{{ .Title }}" loading="lazy">
+          <picture>
+            <source srcset="{{ $cardAvif }}" type="image/avif">
+            <img src="{{ $cardWebp }}" alt="{{ .Title }}" width="720" height="960" loading="lazy" decoding="async">
+          </picture>
           <div class="gallery-overlay">
             <span class="category-tag">{{ .Params.category }}</span>
             <h3 class="item-title">{{ .Title }}</h3>
@@ -70,7 +82,12 @@
   <div class="container">
     <div class="bio-grid">
       <div class="bio-img-card">
-        <img src="{{ partial "asset-url.html" (dict "path" (.photo | default "/uploads/artist-portrait.svg") "site" $.Site) }}" alt="Fotografía del Artista">
+        {{ $bioWebp := partial "img-src.html" (dict "path" (.photo | default "/assets/images/artist-portrait.jpg") "site" $.Site "resize" "1000x") }}
+        {{ $bioAvif := partial "img-src.html" (dict "path" (.photo | default "/assets/images/artist-portrait.jpg") "site" $.Site "resize" "1000x" "format" "avif") }}
+        <picture>
+          <source srcset="{{ $bioAvif }}" type="image/avif">
+          <img src="{{ $bioWebp }}" alt="Fotografía del Artista" loading="lazy" decoding="async">
+        </picture>
       </div>
       <div class="bio-text-content">
         <p class="section-subtitle" style="text-align: left; margin-bottom: 0.5rem;">SOBRE EL ARTISTA</p>
@@ -116,7 +133,9 @@
   <div class="lightbox-content">
     <button class="lightbox-close" id="lightbox-close" aria-label="Cerrar modal">&times;</button>
     <div class="lightbox-img-wrap">
-      <img id="lightbox-img" src="" alt="Vista previa de la obra">
+      <picture>
+        <img id="lightbox-img" src="" alt="Vista previa de la obra">
+      </picture>
     </div>
     <div class="lightbox-details">
       <div>
