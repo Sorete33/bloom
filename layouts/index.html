@@ -14,7 +14,9 @@
     </div>
     {{ end }}
 
-    <h1 class="hero-title">{{ .Params.hero.heading | default .Title }}</h1>
+    <h1 class="hero-title">
+      <img class="hero-logo" src="{{ partial "asset-url.html" (dict "path" "/uploads/inbloomlogoblanco.png" "site" .Site) }}" alt="{{ .Title }}">
+    </h1>
     <p class="hero-tagline">{{ .Params.hero.tagline }}</p>
 
     <div class="hero-actions">
