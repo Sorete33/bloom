@@ -1,4 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // --- Hero Background Video Autoplay ---
+  const heroVideo = document.querySelector('.hero-bg');
+  if (heroVideo) {
+    const playHeroVideo = () => {
+      if (heroVideo.paused) {
+        heroVideo.play().catch(() => {});
+      }
+    };
+    heroVideo.addEventListener('playing', () => {
+      heroVideo.parentElement.classList.add('hero-video-playing');
+    });
+    playHeroVideo();
+    ['pointerdown', 'touchstart', 'keydown', 'scroll', 'wheel'].forEach((eventName) => {
+      document.addEventListener(eventName, playHeroVideo, { once: true, passive: true });
+    });
+  }
+
   // --- Category Filter Tabs ---
   const filterBtns = document.querySelectorAll('.filter-btn');
   const galleryItems = document.querySelectorAll('.gallery-item');

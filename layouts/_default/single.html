@@ -5,7 +5,7 @@
   
   {{ with .Params.image }}
   <div style="margin: 2rem 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color);">
-    <img src="{{ . }}" alt="{{ $.Title }}" style="width: 100%;">
+    <img src="{{ partial "asset-url.html" (dict "path" . "site" $.Site) }}" alt="{{ $.Title }}" style="width: 100%;">
   </div>
   {{ end }}
 
@@ -14,7 +14,7 @@
   </div>
 
   <div style="margin-top: 3rem;">
-    <a href="/#gallery" class="btn btn-primary">&larr; Volver a la Galería</a>
+    <a href="{{ .Site.BaseURL }}#gallery" class="btn btn-primary">&larr; Volver a la Galería</a>
   </div>
 </div>
 {{ end }}

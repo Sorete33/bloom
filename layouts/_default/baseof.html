@@ -14,14 +14,14 @@
     rel="stylesheet">
 
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="{{ partial "asset-url.html" (dict "path" "/css/style.css" "site" .Site) }}">
 </head>
 
 <body>
   <!-- Navigation Header -->
   <header class="navbar">
     <div class="container">
-      <a href="/" class="logo"><img class="logo-img" src="/uploads/inbloomlogoblanco.png" alt="In Bloom"></a>
+      <a href="{{ .Site.BaseURL }}" class="logo"><img class="logo-img" src="{{ partial "asset-url.html" (dict "path" "/uploads/inbloomlogoblanco.png" "site" .Site) }}" alt="In Bloom"></a>
       <ul class="nav-links">
         <li><a href="#gallery">Galería</a></li>
         <li><a href="#bio">Sobre el Artista</a></li>
@@ -47,7 +47,7 @@
   </footer>
 
   <!-- Main Client Script -->
-  <script src="/js/main.js"></script>
+  <script src="{{ partial "asset-url.html" (dict "path" "/js/main.js" "site" .Site) }}"></script>
 </body>
 
 </html>

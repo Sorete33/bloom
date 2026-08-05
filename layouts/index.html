@@ -1,10 +1,10 @@
 {{ define "main" }}
 
 <!-- Hero Section -->
-<section class="hero" id="hero" style="background-image: url('{{ .Params.hero.banner_image | default "/uploads/hero-bg.svg" }}');">
-  <video class="hero-bg" autoplay muted loop playsinline
-    poster="{{ .Params.hero.banner_image | default "/uploads/hero-bg.svg" }}"
-    src="{{ .Params.hero.banner_video | default "/uploads/reel-background.mp4" }}"></video>
+<section class="hero" id="hero" style="background-image: url('{{ partial "asset-url.html" (dict "path" (.Params.hero.banner_image | default "/uploads/hero-bg.svg") "site" .Site) }}');">
+  <video class="hero-bg" autoplay muted loop playsinline preload="auto"
+    poster="{{ partial "asset-url.html" (dict "path" (.Params.hero.banner_image | default "/uploads/hero-bg.svg") "site" .Site) }}"
+    src="{{ partial "asset-url.html" (dict "path" (.Params.hero.banner_video | default "/uploads/reel-background.mp4") "site" .Site) }}"></video>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     {{ with .Params.booking.status_notice }}
@@ -43,9 +43,9 @@
       {{ $portfolio := where .Site.RegularPages "Section" "portfolio" }}
       {{ range $portfolio }}
       <div class="gallery-item" data-category="{{ .Params.category }}" data-title="{{ .Title }}"
-        data-image="{{ .Params.image }}" data-description="{{ .Plain }}">
+        data-image="{{ partial "asset-url.html" (dict "path" .Params.image "site" .Site) }}" data-description="{{ .Plain }}">
         <div class="gallery-img-wrap">
-          <img src="{{ .Params.image }}" alt="{{ .Title }}" loading="lazy">
+          <img src="{{ partial "asset-url.html" (dict "path" .Params.image "site" .Site) }}" alt="{{ .Title }}" loading="lazy">
           <div class="gallery-overlay">
             <span class="category-tag">{{ .Params.category }}</span>
             <h3 class="item-title">{{ .Title }}</h3>
@@ -68,7 +68,7 @@
   <div class="container">
     <div class="bio-grid">
       <div class="bio-img-card">
-        <img src="{{ .photo | default " /uploads/artist-portrait.svg" }}" alt="Fotografía del Artista">
+        <img src="{{ partial "asset-url.html" (dict "path" (.photo | default "/uploads/artist-portrait.svg") "site" $.Site) }}" alt="Fotografía del Artista">
       </div>
       <div class="bio-text-content">
         <p class="section-subtitle" style="text-align: left; margin-bottom: 0.5rem;">SOBRE EL ARTISTA</p>

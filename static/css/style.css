@@ -177,6 +177,10 @@ h1, h2, h3, h4, .brand-font {
   z-index: 0;
 }
 
+.hero.hero-video-playing {
+  background-image: none !important;
+}
+
 .hero-overlay {
   position: absolute;
   inset: 0;
