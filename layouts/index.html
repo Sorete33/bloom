@@ -35,6 +35,15 @@
       <a href="#booking" class="btn status-badge">Reservar Consulta</a>
     </div>
   </div>
+
+  <div class="social-floating">
+    <a href="{{ .Params.social.instagram | default "https://www.instagram.com/in.blx0m/" }}" target="_blank" rel="noopener" aria-label="Instagram">
+      <img src="{{ partial "asset-url.html" (dict "path" "/uploads/instagram-logo.webp" "site" .Site) }}" alt="Instagram" loading="lazy" decoding="async">
+    </a>
+    <a href="{{ .Params.booking.contact_url }}" target="_blank" rel="noopener" aria-label="WhatsApp">
+      <img src="{{ partial "asset-url.html" (dict "path" "/uploads/whatsapp-logo.webp" "site" .Site) }}" alt="WhatsApp" loading="lazy" decoding="async">
+    </a>
+  </div>
 </section>
 
 <!-- Portfolio Gallery Section -->
@@ -110,6 +119,32 @@
           {{ end }}
         </ul>
       </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+<!-- FAQ Section -->
+{{ with .Params.faq }}
+<section class="faq-section" id="faq">
+  <div class="container">
+    <h2 class="section-title script">Preguntas Frecuentes</h2>
+    <p class="section-subtitle">Resolvé tus dudas antes de reservar</p>
+
+    <div class="faq-list">
+      {{ range $index, $item := . }}
+      <div class="faq-item">
+        <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-{{ $index }}">
+          <span class="faq-question-text">{{ $item.question }}</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer" id="faq-answer-{{ $index }}" role="region">
+          <div class="faq-answer-inner">
+            <p>{{ $item.answer | markdownify }}</p>
+          </div>
+        </div>
+      </div>
+      {{ end }}
     </div>
   </div>
 </section>

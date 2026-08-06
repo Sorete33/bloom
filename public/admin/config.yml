@@ -37,6 +37,17 @@ collections:
               - { label: "Ubicación del Estudio", name: "location", widget: "string" }
               - { label: "Estado de la Agenda", name: "status_notice", widget: "string" }
               - { label: "Enlace de Contacto (WhatsApp)", name: "contact_url", widget: "string" }
+          - label: "Redes Sociales"
+            name: "social"
+            widget: "object"
+            fields:
+              - { label: "Enlace de Instagram", name: "instagram", widget: "string" }
+          - label: "Preguntas Frecuentes"
+            name: "faq"
+            widget: "list"
+            fields:
+              - { label: "Pregunta", name: "question", widget: "string" }
+              - { label: "Respuesta", name: "answer", widget: "text" }
 
   # Editor de Portafolio
   - name: "portfolio"
