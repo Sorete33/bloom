@@ -33,6 +33,11 @@
   </div>
 </section>
 
+<!-- Branch Divider -->
+<div class="branch-divider" aria-hidden="true">
+  <img src="{{ partial "asset-url.html" (dict "path" "/branch.webp" "site" .Site) }}" alt="" width="4088" height="2104" loading="lazy" decoding="async">
+</div>
+
 <!-- Portfolio Gallery Section -->
 <section class="portfolio-section" id="gallery">
   <div class="container">
@@ -79,11 +84,6 @@
     </div>
   </div>
 </section>
-
-<!-- Branch Divider -->
-<div class="branch-divider" aria-hidden="true">
-  <img src="{{ partial "asset-url.html" (dict "path" "/branch.webp" "site" .Site) }}" alt="" width="4088" height="2104" loading="lazy" decoding="async">
-</div>
 
 <!-- Bio Section -->
 {{ with .Params.bio }}

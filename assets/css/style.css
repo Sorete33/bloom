@@ -237,14 +237,13 @@ h1, h2, h3, h4, .brand-font {
 .branch-divider {
   display: flex;
   justify-content: center;
-  overflow: hidden;
+  padding: 2rem 1.5rem;
 }
 
 .branch-divider img {
-  width: 112%;
-  max-width: none;
+  width: 100%;
+  max-width: 48rem;
   height: auto;
-  flex-shrink: 0;
 }
 
 .hero-overlay {
