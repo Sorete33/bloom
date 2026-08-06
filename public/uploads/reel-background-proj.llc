@@ -1,10 +1,10 @@
 {
   version: 2,
-  mediaFileName: 'reel-background.mp4',
+  mediaFileName: 'reel-background.webm',
   cutSegments: [
     {
       start: 0,
-      end: 57.1817496825,
+      end: 57.07917,
       name: '',
       selected: true,
     },
