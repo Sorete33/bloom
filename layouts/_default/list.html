@@ -1,6 +1,6 @@
 {{ define "main" }}
 <div class="container" style="padding-top: 10rem; padding-bottom: 6rem;">
-  <h1 class="section-title">{{ .Title }}</h1>
+  <h1 class="section-title{{ if partial "uses-script-font.html" .Title }} script{{ end }}">{{ .Title }}</h1>
   <div style="margin-top: 2rem;">
     {{ .Content }}
   </div>

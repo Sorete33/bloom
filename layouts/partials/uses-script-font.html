@@ -1,0 +1,2 @@
+{{- $bad := findRE `[^ !&',.\-0-9A-Za-z:;?…ßˆ]` . -}}
+{{- return (not $bad) -}}

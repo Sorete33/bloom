@@ -1,7 +1,7 @@
 {{ define "main" }}
 <div class="container" style="padding-top: 10rem; padding-bottom: 6rem; max-width: 800px;">
   <span class="category-tag">{{ .Params.category }}</span>
-  <h1 class="hero-title" style="font-size: 3rem; margin: 1rem 0;">{{ .Title }}</h1>
+  <h1 class="hero-title{{ if partial "uses-script-font.html" .Title }} script{{ end }}" style="font-size: 3rem; margin: 1rem 0;">{{ .Title }}</h1>
   
   {{ with .Params.image }}
   <div style="margin: 2rem 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color);">

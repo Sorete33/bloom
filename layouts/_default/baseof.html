@@ -13,6 +13,17 @@
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap"
     rel="stylesheet">
 
+  <!-- Brand Display Font -->
+  <style>
+    @font-face {
+      font-family: 'Cantebriggia';
+      src: url('{{ partial "asset-url.html" (dict "path" "/cantebriggia.ttf" "site" .Site) }}') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+  </style>
+
   <!-- Main Stylesheet -->
   {{ $css := resources.Get "css/style.css" | resources.Minify | resources.Fingerprint }}
   <link rel="stylesheet" href="{{ $css.Permalink }}">

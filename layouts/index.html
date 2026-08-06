@@ -15,8 +15,13 @@
     <source src="{{ $videoWebm }}" type="video/webm">
     <source src="{{ $videoMp4 }}" type="video/mp4">
   </video>
+  
   <div class="hero-overlay"></div>
   <div class="hero-content">
+     <h1 class="hero-title">
+      <img class="hero-logo" src="{{ partial "asset-url.html" (dict "path" "/uploads/inbloomlogoblanco.png" "site" .Site) }}" alt="{{ .Title }}">
+    </h1>
+    <p class="hero-tagline">{{ .Params.hero.tagline }}</p>
     {{ with .Params.booking.status_notice }}
     <div class="status-badge">
       <span class="status-dot"></span>
@@ -24,10 +29,7 @@
     </div>
     {{ end }}
 
-    <h1 class="hero-title">
-      <img class="hero-logo" src="{{ partial "asset-url.html" (dict "path" "/uploads/inbloomlogoblanco.png" "site" .Site) }}" alt="{{ .Title }}">
-    </h1>
-    <p class="hero-tagline">{{ .Params.hero.tagline }}</p>
+   
 
     <div class="hero-actions">
       <a href="#booking" class="btn status-badge">Reservar Consulta</a>
@@ -38,7 +40,7 @@
 <!-- Portfolio Gallery Section -->
 <section class="portfolio-section" id="gallery">
   <div class="container">
-    <h2 class="section-title">Obras Seleccionadas</h2>
+    <h2 class="section-title script">Obras Seleccionadas</h2>
     <p class="section-subtitle">Tatuajes, Diseños &amp; Bellas Artes</p>
 
     <!-- Category Filter Tabs -->
@@ -55,11 +57,12 @@
       {{ $portfolio := where .Site.RegularPages "Section" "portfolio" }}
       {{ range $portfolio }}
       {{ $isAsset := hasPrefix .Params.image "/assets/" }}
+      {{ $titleScript := partial "uses-script-font.html" .Title }}
       {{ $cardWebp := partial "img-src.html" (dict "path" .Params.image "site" .Site "fill" "720x960") }}
       {{ $cardAvif := partial "img-src.html" (dict "path" .Params.image "site" .Site "fill" "720x960" "format" "avif") }}
       {{ $lightboxWebp := partial "img-src.html" (dict "path" .Params.image "site" .Site "resize" "1600x") }}
       {{ $lightboxAvif := partial "img-src.html" (dict "path" .Params.image "site" .Site "resize" "1600x" "format" "avif") }}
-      <div class="gallery-item" data-category="{{ .Params.category }}" data-title="{{ .Title }}"
+      <div class="gallery-item" data-category="{{ .Params.category }}" data-title="{{ .Title }}" data-title-script="{{ $titleScript }}"
         data-image="{{ $lightboxWebp }}"{{ if $isAsset }} data-image-avif="{{ $lightboxAvif }}"{{ end }} data-description="{{ .Plain }}">
         <div class="gallery-img-wrap">
           <picture>
@@ -68,7 +71,7 @@
           </picture>
           <div class="gallery-overlay">
             <span class="category-tag">{{ .Params.category }}</span>
-            <h3 class="item-title">{{ .Title }}</h3>
+            <h3 class="item-title{{ if $titleScript }} script{{ end }}">{{ .Title }}</h3>
             <div class="item-tags">
               {{ range .Params.tags }}
               <span>#{{ . }}</span>
@@ -97,7 +100,7 @@
       </div>
       <div class="bio-text-content">
         <p class="section-subtitle" style="text-align: left; margin-bottom: 0.5rem;">SOBRE EL ARTISTA</p>
-        <h3>In Bloom</h3>
+        <h3 class="script">In Bloom</h3>
         <p class="bio-description">{{ .description }}</p>
 
         <h4 class="specialties-title">Especialidades Destacadas</h4>

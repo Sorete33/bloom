@@ -80,6 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const title = item.getAttribute('data-title');
     const category = item.getAttribute('data-category');
     const description = item.getAttribute('data-description');
+    const titleScript = item.getAttribute('data-title-script') === 'true';
 
     if (lightboxImg) {
       lightboxImg.querySelectorAll('source').forEach(s => s.remove());
@@ -92,7 +93,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       lightboxImg.src = imgSrc;
     }
-    if (lightboxTitle) lightboxTitle.textContent = title;
+    if (lightboxTitle) {
+      lightboxTitle.textContent = title;
+      lightboxTitle.classList.toggle('script', titleScript);
+    }
     if (lightboxCategory) lightboxCategory.textContent = category;
     if (lightboxBody) lightboxBody.textContent = description || '';
 

@@ -16,6 +16,7 @@
   --border-color: rgba(212, 175, 55, 0.15);
   --border-hover: rgba(212, 175, 55, 0.5);
   
+  --font-display: 'Cantebriggia', 'Cormorant Garamond', Georgia, serif;
   --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   
@@ -70,6 +71,12 @@ h1, h2, h3, h4, .brand-font {
   font-family: var(--font-serif);
   font-weight: 600;
   letter-spacing: 0.03em;
+}
+
+.script {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0;
 }
 
 .section-title {
@@ -483,6 +490,7 @@ h1, h2, h3, h4, .brand-font {
 }
 
 .specialties-title {
+  font-family: var(--font-sans);
   font-size: 0.85rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
