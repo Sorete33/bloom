@@ -27,63 +27,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape') closeNav();
   });
 
-  // --- Hero Background Video (lazy load via IntersectionObserver) ---
+  // --- Hero Background Video (native autoplay; hide poster once playing) ---
   const heroVideo = document.querySelector('.hero-bg');
   if (heroVideo) {
-    let videoLoaded = false;
-    const loadVideo = () => {
-      if (videoLoaded) return;
-      videoLoaded = true;
-      const webm = heroVideo.dataset.srcWebm;
-      const mp4 = heroVideo.dataset.srcMp4;
-      if (webm) {
-        const s = document.createElement('source');
-        s.src = webm;
-        s.type = 'video/webm';
-        heroVideo.appendChild(s);
-      }
-      if (mp4) {
-        const s = document.createElement('source');
-        s.src = mp4;
-        s.type = 'video/mp4';
-        heroVideo.appendChild(s);
-      }
-      heroVideo.muted = true;
-      heroVideo.load();
-      heroVideo.addEventListener('playing', () => {
-        heroVideo.parentElement.classList.add('hero-video-playing');
-      });
-      const tryPlay = () => {
-        heroVideo.play().catch(() => {
-          heroVideo.addEventListener('canplay', tryPlay, { once: true });
-        });
-      };
-      tryPlay();
-    };
-
-    if ('IntersectionObserver' in window) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            loadVideo();
-            observer.disconnect();
-          }
-        });
-      }, { rootMargin: '200px 0px 0px' });
-      observer.observe(heroVideo);
-    } else {
-      loadVideo();
-    }
-
-    ['pointerdown', 'touchstart', 'keydown', 'scroll', 'wheel'].forEach((eventName) => {
-      document.addEventListener(eventName, () => {
-        if (!videoLoaded) {
-          loadVideo();
-        } else {
-          heroVideo.play().catch(() => {});
-        }
-      }, { once: true, passive: true });
-    });
+    const hidePoster = () => heroVideo.parentElement.classList.add('hero-video-playing');
+    heroVideo.addEventListener('playing', hidePoster);
+    if (!heroVideo.paused) hidePoster();
+    heroVideo.play().catch(() => {});
   }
 
   // --- Category Filter Tabs ---

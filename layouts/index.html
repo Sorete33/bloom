@@ -11,8 +11,10 @@
     {{ if hasPrefix $poster "/assets/" }}<source srcset="{{ $posterAvif }}" type="image/avif">{{ end }}
     <img class="hero-poster" src="{{ $posterWebp }}" alt="" width="1080" height="1920" fetchpriority="high" decoding="async">
   </picture>
-  <video class="hero-bg" muted loop playsinline preload="none" poster="{{ $posterWebp }}"
-    data-src-webm="{{ $videoWebm }}" data-src-mp4="{{ $videoMp4 }}"></video>
+  <video class="hero-bg" autoplay muted loop playsinline preload="auto" poster="{{ $posterWebp }}">
+    <source src="{{ $videoWebm }}" type="video/webm">
+    <source src="{{ $videoMp4 }}" type="video/mp4">
+  </video>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     {{ with .Params.booking.status_notice }}
