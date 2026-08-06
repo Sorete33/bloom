@@ -48,10 +48,17 @@ document.addEventListener('DOMContentLoaded', () => {
         s.type = 'video/mp4';
         heroVideo.appendChild(s);
       }
+      heroVideo.muted = true;
+      heroVideo.load();
       heroVideo.addEventListener('playing', () => {
         heroVideo.parentElement.classList.add('hero-video-playing');
       });
-      heroVideo.play().catch(() => {});
+      const tryPlay = () => {
+        heroVideo.play().catch(() => {
+          heroVideo.addEventListener('canplay', tryPlay, { once: true });
+        });
+      };
+      tryPlay();
     };
 
     if ('IntersectionObserver' in window) {
