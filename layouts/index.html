@@ -61,35 +61,45 @@
       <button class="filter-btn" data-filter="Bellas Artes">Bellas Artes</button>
     </div>
 
-    <!-- Gallery Grid -->
-    <div class="gallery-grid">
-      {{ $portfolio := where .Site.RegularPages "Section" "portfolio" }}
-      {{ range $portfolio }}
-      {{ $isAsset := hasPrefix .Params.image "/assets/" }}
-      {{ $titleScript := partial "uses-script-font.html" .Title }}
-      {{ $cardWebp := partial "img-src.html" (dict "path" .Params.image "site" .Site "fill" "720x960") }}
-      {{ $cardAvif := partial "img-src.html" (dict "path" .Params.image "site" .Site "fill" "720x960" "format" "avif") }}
-      {{ $lightboxWebp := partial "img-src.html" (dict "path" .Params.image "site" .Site "resize" "1600x") }}
-      {{ $lightboxAvif := partial "img-src.html" (dict "path" .Params.image "site" .Site "resize" "1600x" "format" "avif") }}
-      <div class="gallery-item" data-category="{{ .Params.category }}" data-title="{{ .Title }}" data-title-script="{{ $titleScript }}"
-        data-image="{{ $lightboxWebp }}"{{ if $isAsset }} data-image-avif="{{ $lightboxAvif }}"{{ end }} data-description="{{ .Plain }}">
-        <div class="gallery-img-wrap">
-          <picture>
-            <source srcset="{{ $cardAvif }}" type="image/avif">
-            <img src="{{ $cardWebp }}" alt="{{ .Title }}" width="720" height="960" loading="lazy" decoding="async">
-          </picture>
-          <div class="gallery-overlay">
-            <span class="category-tag">{{ .Params.category }}</span>
-            <h3 class="item-title{{ if $titleScript }} script{{ end }}">{{ .Title }}</h3>
-            <div class="item-tags">
-              {{ range .Params.tags }}
-              <span>#{{ . }}</span>
-              {{ end }}
+    <!-- Gallery Strip -->
+    <div class="gallery-wrap">
+      <div class="gallery-track" id="gallery-track" tabindex="0" aria-label="Galería de obras">
+        {{ $works := where .Site.RegularPages "Section" "portfolio" }}
+        {{ range $index, $work := $works }}
+        {{ $isAsset := hasPrefix $work.Params.image "/assets/" }}
+        {{ $titleScript := partial "uses-script-font.html" $work.Title }}
+        {{ $cardWebp := partial "img-src.html" (dict "path" $work.Params.image "site" $.Site "fill" "720x960") }}
+        {{ $cardAvif := partial "img-src.html" (dict "path" $work.Params.image "site" $.Site "fill" "720x960" "format" "avif") }}
+        {{ $lightboxWebp := partial "img-src.html" (dict "path" $work.Params.image "site" $.Site "resize" "1600x") }}
+        {{ $lightboxAvif := partial "img-src.html" (dict "path" $work.Params.image "site" $.Site "resize" "1600x" "format" "avif") }}
+        <div class="gallery-item" data-category="{{ $work.Params.category }}" data-title="{{ $work.Title }}" data-title-script="{{ $titleScript }}"
+          data-image="{{ $lightboxWebp }}"{{ if $isAsset }} data-image-avif="{{ $lightboxAvif }}"{{ end }} data-description="{{ $work.Plain }}">
+          <span class="gallery-index" aria-hidden="true">{{ printf "%02d" (add $index 1) }}</span>
+          <div class="gallery-img-wrap">
+            <picture>
+              <source srcset="{{ $cardAvif }}" type="image/avif">
+              <img src="{{ $cardWebp }}" alt="{{ $work.Title }}" width="720" height="960" loading="lazy" decoding="async">
+            </picture>
+            <div class="gallery-overlay">
+              <span class="category-tag">{{ $work.Params.category }}</span>
+              <h3 class="item-title{{ if $titleScript }} script{{ end }}">{{ $work.Title }}</h3>
+              <div class="item-tags">
+                {{ range $work.Params.tags }}
+                <span>#{{ . }}</span>
+                {{ end }}
+              </div>
             </div>
           </div>
         </div>
+        {{ end }}
       </div>
-      {{ end }}
+
+      <div class="gallery-controls">
+        <button class="gallery-arrow" id="gallery-prev" aria-label="Obra anterior">&larr;</button>
+        <div class="gallery-progress" id="gallery-progress"><span class="gallery-progress-fill" id="gallery-progress-fill"></span></div>
+        <span class="gallery-counter" id="gallery-counter" aria-live="polite">0 / 0</span>
+        <button class="gallery-arrow" id="gallery-next" aria-label="Obra siguiente">&rarr;</button>
+      </div>
     </div>
   </div>
 </section>
@@ -176,6 +186,8 @@
 <div class="lightbox-modal" id="lightbox-modal">
   <div class="lightbox-content">
     <button class="lightbox-close" id="lightbox-close" aria-label="Cerrar modal">&times;</button>
+    <button class="lightbox-nav" id="lightbox-prev" aria-label="Obra anterior">&lsaquo;</button>
+    <button class="lightbox-nav" id="lightbox-next" aria-label="Obra siguiente">&rsaquo;</button>
     <div class="lightbox-img-wrap">
       <picture>
         <img id="lightbox-img" src="" alt="Vista previa de la obra">
