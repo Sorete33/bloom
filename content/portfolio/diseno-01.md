@@ -1,8 +1,8 @@
 ---
-title: "Diseño Original I"
+title: "Pajarito"
 date: 2026-07-25T11:00:00Z
 image: "/assets/images/diseños/IMG_20210425_103922.jpg"
-category: "Diseños"
+category: "Diseños Disponibles"
 tags:
   - "Diseño"
   - "Flash"

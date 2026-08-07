@@ -50,15 +50,16 @@
 <section class="portfolio-section" id="gallery">
   <div class="container">
     <h2 class="section-title script">Obras Seleccionadas</h2>
-    <p class="section-subtitle">Tatuajes, Diseños &amp; Bellas Artes</p>
+    <p class="section-subtitle">Tatuajes, Diseños &amp; Pinturas</p>
 
     <!-- Category Filter Tabs -->
     <div class="filter-tabs">
       <button class="filter-btn active" data-filter="all">Todas las Obras</button>
-      <button class="filter-btn" data-filter="Tatuaje (Curado)">Tatuajes Curados</button>
-      <button class="filter-btn" data-filter="Tatuaje (Fresco)">Tatuajes Frescos</button>
-      <button class="filter-btn" data-filter="Diseños">Diseños</button>
-      <button class="filter-btn" data-filter="Bellas Artes">Bellas Artes</button>
+      <button class="filter-btn" data-filter="Tatu Curado">Tatu Curado</button>
+      <button class="filter-btn" data-filter="Tatu Fresco">Tatu Fresco</button>
+      <button class="filter-btn" data-filter="Pinturas">Pinturas</button>
+      <button class="filter-btn" data-filter="Dibujos">Dibujos</button>
+      <button class="filter-btn" data-filter="Diseños Disponibles">Diseños Disponibles</button>
     </div>
 
     <!-- Gallery Strip -->
@@ -73,7 +74,7 @@
         {{ $lightboxWebp := partial "img-src.html" (dict "path" $work.Params.image "site" $.Site "resize" "1600x") }}
         {{ $lightboxAvif := partial "img-src.html" (dict "path" $work.Params.image "site" $.Site "resize" "1600x" "format" "avif") }}
         <div class="gallery-item" data-category="{{ $work.Params.category }}" data-title="{{ $work.Title }}" data-title-script="{{ $titleScript }}"
-          data-image="{{ $lightboxWebp }}"{{ if $isAsset }} data-image-avif="{{ $lightboxAvif }}"{{ end }} data-description="{{ $work.Plain }}">
+          data-image="{{ $lightboxWebp }}"{{ if $isAsset }} data-image-avif="{{ $lightboxAvif }}"{{ end }} data-description="{{ $work.Plain }}" tabindex="0">
           <div class="gallery-img-wrap">
             <picture>
               <source srcset="{{ $cardAvif }}" type="image/avif">
@@ -184,7 +185,10 @@
 <!-- Lightbox Modal -->
 <div class="lightbox-modal" id="lightbox-modal">
   <div class="lightbox-content">
-    <button class="lightbox-close" id="lightbox-close" aria-label="Cerrar modal">&times;</button>
+    <button class="lightbox-close" id="lightbox-close" aria-label="Cerrar y volver a la galería">
+      <span aria-hidden="true">&times;</span>
+      <span class="lightbox-close-label">Volver a la galería</span>
+    </button>
     <button class="lightbox-nav" id="lightbox-prev" aria-label="Obra anterior">&lsaquo;</button>
     <button class="lightbox-nav" id="lightbox-next" aria-label="Obra siguiente">&rsaquo;</button>
     <div class="lightbox-img-wrap">

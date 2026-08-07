@@ -64,5 +64,5 @@ collections:
       - label: "Categoría"
         name: "category"
         widget: "select"
-        options: ["Tatuaje (Curado)", "Tatuaje (Fresco)", "Diseños", "Bellas Artes"]
+        options: ["Tatu Curado", "Tatu Fresco", "Pinturas", "Dibujos", "Diseños Disponibles"]
       - { label: "Descripción o Notas", name: "body", widget: "markdown", required: false }

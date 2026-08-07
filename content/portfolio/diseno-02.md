@@ -1,8 +1,8 @@
 ---
-title: "Diseño Original II"
+title: "Ciervo"
 date: 2026-07-24T15:00:00Z
 image: "/assets/images/diseños/IMG_20211114_232131.jpg"
-category: "Diseños"
+category: "Diseños Disponibles"
 tags:
   - "Diseño"
   - "Flash"

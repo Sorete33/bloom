@@ -234,6 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let lightboxItems = [];
   let lightboxIndex = 0;
+  let lastLightboxItem = null;
 
   function populateLightbox(item) {
     const imgSrc = item.getAttribute('data-image');
@@ -266,6 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function openLightbox(item) {
+    lastLightboxItem = item;
     lightboxItems = getVisibleItems();
     lightboxIndex = lightboxItems.indexOf(item);
     if (lightboxIndex === -1) lightboxIndex = 0;
@@ -283,6 +285,9 @@ document.addEventListener('DOMContentLoaded', () => {
       lightboxModal.classList.remove('active');
       document.body.style.overflow = 'auto';
     }
+    if (lastLightboxItem && typeof lastLightboxItem.focus === 'function') {
+      lastLightboxItem.focus();
+    }
   }
 
   function navigateLightbox(delta) {
@@ -293,6 +298,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   track.querySelectorAll('.gallery-item').forEach(item => {
     item.addEventListener('click', () => openLightbox(item));
+    item.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openLightbox(item);
+      }
+    });
   });
 
   if (lightboxClose) {

@@ -2,7 +2,7 @@
 title: "Tatuaje Curado"
 date: 2026-08-01T12:00:00Z
 image: "/assets/images/tatu curado/1.jpg"
-category: "Tatuaje (Curado)"
+category: "Tatu Curado"
 tags:
   - "Curado"
   - "Tatuaje"

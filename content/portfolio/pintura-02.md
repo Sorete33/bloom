@@ -1,8 +1,8 @@
 ---
-title: "Obra de Arte II"
+title: "Chala"
 date: 2026-07-19T10:00:00Z
 image: "/assets/images/pinturas/20190608_000813~3.jpg"
-category: "Bellas Artes"
+category: "Pinturas"
 tags:
   - "Pintura"
   - "Arte"
