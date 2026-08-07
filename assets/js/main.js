@@ -106,14 +106,16 @@ document.addEventListener('DOMContentLoaded', () => {
       dragMoved = false;
       startX = e.clientX;
       startLeft = track.scrollLeft;
-      track.classList.add('dragging');
     });
 
     window.addEventListener('mousemove', (e) => {
       if (!isDown) return;
       const dx = e.clientX - startX;
-      if (Math.abs(dx) > 5) dragMoved = true;
       track.scrollLeft = startLeft - dx;
+      if (Math.abs(dx) > 5 && !dragMoved) {
+        dragMoved = true;
+        track.classList.add('dragging');
+      }
     });
 
     const endDrag = () => {

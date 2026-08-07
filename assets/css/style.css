@@ -812,6 +812,7 @@ h1, h2, h3, h4, .brand-font {
   position: relative;
   max-width: 1000px;
   width: 100%;
+  height: min(90vh, 800px);
   max-height: 90vh;
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
@@ -824,18 +825,17 @@ h1, h2, h3, h4, .brand-font {
 }
 
 .lightbox-img-wrap {
+  position: relative;
   background: #000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   min-height: 0;
-  max-height: 90vh;
+  overflow: hidden;
 }
 
 .lightbox-img-wrap img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  max-height: 100%;
   object-fit: contain;
 }
 
@@ -935,13 +935,17 @@ h1, h2, h3, h4, .brand-font {
   .lightbox-content {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
+    height: auto;
     max-height: 92vh;
     overflow-y: auto;
     border-radius: 0;
   }
+  .lightbox-modal {
+    padding: 0;
+  }
   .lightbox-img-wrap {
     max-height: 72vh;
-    min-height: 50vh;
+    min-height: 55vh;
   }
   .lightbox-close {
     position: fixed;
