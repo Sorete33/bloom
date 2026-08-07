@@ -459,24 +459,6 @@ h1, h2, h3, h4, .brand-font {
   box-shadow: 0 12px 30px rgba(0,0,0,0.5), 0 0 20px var(--accent-gold-glow);
 }
 
-.gallery-index {
-  position: absolute;
-  top: 0.75rem;
-  left: 1rem;
-  z-index: 3;
-  font-family: var(--font-serif);
-  font-size: 3rem;
-  line-height: 1;
-  font-weight: 400;
-  color: rgba(244, 235, 225, 0.16);
-  pointer-events: none;
-  transition: var(--transition);
-}
-
-.gallery-item:hover .gallery-index {
-  color: var(--accent-gold);
-}
-
 .gallery-img-wrap {
   position: relative;
   width: 100%;

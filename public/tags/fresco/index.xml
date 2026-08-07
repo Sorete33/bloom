@@ -1,1 +1,31 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Fresco on Arte</title><link>https://Sorete33.github.io/bloom/tags/fresco/</link><description>Recent content in Fresco on Arte</description><generator>Hugo</generator><language>es-AR</language><lastBuildDate>Tue, 28 Jul 2026 14:00:00 +0000</lastBuildDate><atom:link href="https://Sorete33.github.io/bloom/tags/fresco/index.xml" rel="self" type="application/rss+xml"/><item><title>Tatuaje Fresco I</title><link>https://Sorete33.github.io/bloom/portfolio/tatu-fresco-01/</link><pubDate>Tue, 28 Jul 2026 14:00:00 +0000</pubDate><guid>https://Sorete33.github.io/bloom/portfolio/tatu-fresco-01/</guid><description>&lt;p&gt;Tatuaje recién terminado en estudio.&lt;/p&gt;</description></item><item><title>Tatuaje Fresco II</title><link>https://Sorete33.github.io/bloom/portfolio/tatu-fresco-02/</link><pubDate>Mon, 27 Jul 2026 16:00:00 +0000</pubDate><guid>https://Sorete33.github.io/bloom/portfolio/tatu-fresco-02/</guid><description>&lt;p&gt;Tatuaje recién finalizado con detalle de líneas y sombreado.&lt;/p&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Fresco on Arte</title>
+		<link>http://localhost:1313/tags/fresco/</link>
+		<description>Recent content in Fresco on Arte</description>
+		<generator>Hugo</generator>
+		<language>es-AR</language>
+		
+		
+		
+		
+			<lastBuildDate>Tue, 28 Jul 2026 14:00:00 +0000</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/tags/fresco/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Tatuaje Fresco I</title>
+				<link>http://localhost:1313/portfolio/tatu-fresco-01/</link>
+				<pubDate>Tue, 28 Jul 2026 14:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/portfolio/tatu-fresco-01/</guid>
+				<description>&lt;p&gt;Tatuaje recién terminado en estudio.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Tatuaje Fresco II</title>
+				<link>http://localhost:1313/portfolio/tatu-fresco-02/</link>
+				<pubDate>Mon, 27 Jul 2026 16:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/portfolio/tatu-fresco-02/</guid>
+				<description>&lt;p&gt;Tatuaje recién finalizado con detalle de líneas y sombreado.&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

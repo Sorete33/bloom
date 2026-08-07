@@ -65,7 +65,7 @@
     <div class="gallery-wrap">
       <div class="gallery-track" id="gallery-track" tabindex="0" aria-label="Galería de obras">
         {{ $works := where .Site.RegularPages "Section" "portfolio" }}
-        {{ range $index, $work := $works }}
+        {{ range $work := $works }}
         {{ $isAsset := hasPrefix $work.Params.image "/assets/" }}
         {{ $titleScript := partial "uses-script-font.html" $work.Title }}
         {{ $cardWebp := partial "img-src.html" (dict "path" $work.Params.image "site" $.Site "fill" "720x960") }}
@@ -74,7 +74,6 @@
         {{ $lightboxAvif := partial "img-src.html" (dict "path" $work.Params.image "site" $.Site "resize" "1600x" "format" "avif") }}
         <div class="gallery-item" data-category="{{ $work.Params.category }}" data-title="{{ $work.Title }}" data-title-script="{{ $titleScript }}"
           data-image="{{ $lightboxWebp }}"{{ if $isAsset }} data-image-avif="{{ $lightboxAvif }}"{{ end }} data-description="{{ $work.Plain }}">
-          <span class="gallery-index" aria-hidden="true">{{ printf "%02d" (add $index 1) }}</span>
           <div class="gallery-img-wrap">
             <picture>
               <source srcset="{{ $cardAvif }}" type="image/avif">
