@@ -1,39 +1,39 @@
 <!DOCTYPE html>
-<html lang="{{ .Site.Language.Locale | default "es-AR" }}">
+<html lang="es-AR">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ .Title }} | {{ .Site.Title }}</title>
-  <meta name="description" content="{{ .Params.hero.tagline | default "Sitio web de portafolio para tatuadora y artista visual" }}">
+  <title>Pinturas | Arte</title>
+  <meta name="description" content="Sitio web de portafolio para tatuadora y artista visual">
 
-  <!-- Google Fonts -->
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap"
     rel="stylesheet">
 
-  <!-- Brand Display Font -->
+  
   <style>
     @font-face {
       font-family: 'Cantebriggia';
-      src: url('{{ partial "asset-url.html" (dict "path" "/cantebriggia.ttf" "site" .Site) }}') format('truetype');
+      src: url('http://localhost:1313/cantebriggia.ttf') format('truetype');
       font-weight: 400;
       font-style: normal;
       font-display: swap;
     }
   </style>
 
-  <!-- Main Stylesheet -->
-  {{ $css := resources.Get "css/style.css" | resources.Minify | resources.Fingerprint }}
-  <link rel="stylesheet" href="{{ $css.Permalink }}">
+  
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/style.min.fe616dae93ae4b84dafe4270399268983a2cfe94742f91cef0ce5c2ba7ca3e75.css">
 </head>
 
 <body>
-  <!-- Navigation Header -->
+  
   <header class="navbar">
     <div class="container">
-      <a href="{{ .Site.BaseURL }}" class="logo"><img class="logo-img" src="{{ partial "asset-url.html" (dict "path" "/uploads/inbloomlogoblanco.png" "site" .Site) }}" alt="In Bloom"></a>
+      <a href="http://localhost:1313/" class="logo"><img class="logo-img" src="http://localhost:1313/uploads/inbloomlogoblanco.png" alt="In Bloom"></a>
       <ul class="nav-links" id="nav-links">
         <li><a href="#gallery">Galería</a></li>
         <li><a href="#tienda">Tienda</a></li>
@@ -49,15 +49,22 @@
     </div>
   </header>
 
-  <!-- Page Main Content Block -->
+  
   <main id="main-content">
-    {{ block "main" . }}{{ end }}
+    
+<div class="container" style="padding-top: 10rem; padding-bottom: 6rem;">
+  <h1 class="section-title script">Pinturas</h1>
+  <div style="margin-top: 2rem;">
+    
+  </div>
+</div>
+
   </main>
 
-  <!-- Footer -->
+  
   <footer class="footer">
     <div class="container">
-      <p>&copy; {{ now.Format "2006" }} {{ .Site.Title }}. Todos los derechos reservados.</p>
+      <p>&copy; 2026 Arte. Todos los derechos reservados.</p>
       <p style="margin-top: 0.5rem; font-size: 0.8rem;">
         Desarrollado con <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &amp;
         <a href="https://sveltia.dev/cms/" target="_blank" rel="noopener">Sveltia CMS</a>
@@ -65,7 +72,7 @@
     </div>
   </footer>
 
-  <!-- Back to Top Button -->
+  
   <button id="back-to-top" class="back-to-top" aria-label="Volver arriba" tabindex="0">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <path d="M12 19V5" />
@@ -73,9 +80,9 @@
     </svg>
   </button>
 
-  <!-- Main Client Script -->
-  {{ $js := resources.Get "js/main.js" | resources.Minify | resources.Fingerprint }}
-  <script src="{{ $js.Permalink }}" defer></script>
+  
+  
+  <script src="http://localhost:1313/js/main.min.816238968da57144af3920cf5bd5382167f3265970fdcc457538b1fae9915a6a.js" defer></script>
 </body>
 
 </html>

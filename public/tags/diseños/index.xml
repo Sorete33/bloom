@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
-		<title>Flash on Arte</title>
-		<link>http://localhost:1313/tags/flash/</link>
-		<description>Recent content in Flash on Arte</description>
+		<title>Diseños on Arte</title>
+		<link>http://localhost:1313/tags/dise%C3%B1os/</link>
+		<description>Recent content in Diseños on Arte</description>
 		<generator>Hugo</generator>
 		<language>es-AR</language>
 		
@@ -12,7 +12,7 @@
 		
 			<lastBuildDate>Sat, 25 Jul 2026 11:00:00 +0000</lastBuildDate>
 		
-			<atom:link href="http://localhost:1313/tags/flash/index.xml" rel="self" type="application/rss+xml" />
+			<atom:link href="http://localhost:1313/tags/dise%C3%B1os/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>Pajarito</title>
 				<link>http://localhost:1313/portfolio/diseno-01/</link>

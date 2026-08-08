@@ -2,19 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/portfolio/2026-08-05-bun/</loc>
-    <lastmod>2026-08-05T06:48:00+00:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/</loc>
+    <lastmod>2026-08-06T10:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/store/2026-08-06-lamina-ejemplo/</loc>
+    <lastmod>2026-08-06T10:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/remeras/</loc>
+    <lastmod>2026-08-06T10:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/store/</loc>
+    <lastmod>2026-08-06T10:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2026-08-06T10:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/portfolio/2026-08-05-bun/</loc>
     <lastmod>2026-08-05T06:48:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/portfolio/</loc>
     <lastmod>2026-08-05T06:48:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/curado/</loc>
-    <lastmod>2026-08-01T12:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2026-08-01T12:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/tatuaje/</loc>
@@ -32,10 +41,7 @@
     <loc>http://localhost:1313/portfolio/tatu-fresco-02/</loc>
     <lastmod>2026-07-27T16:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/dise%C3%B1o/</loc>
-    <lastmod>2026-07-25T11:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/flash/</loc>
+    <loc>http://localhost:1313/tags/dise%C3%B1os/</loc>
     <lastmod>2026-07-25T11:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/portfolio/diseno-01/</loc>
@@ -44,16 +50,19 @@
     <loc>http://localhost:1313/portfolio/diseno-02/</loc>
     <lastmod>2026-07-24T15:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/arte/</loc>
-    <lastmod>2026-07-20T10:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/pintura/</loc>
+    <loc>http://localhost:1313/tags/pinturas/</loc>
     <lastmod>2026-07-20T10:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/portfolio/pintura-01/</loc>
     <lastmod>2026-07-20T10:00:00+00:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/tags/arte/</loc>
+    <lastmod>2026-07-19T10:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/portfolio/pintura-02/</loc>
+    <lastmod>2026-07-19T10:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/pintura/</loc>
     <lastmod>2026-07-19T10:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/portfolio/pintura-03/</loc>

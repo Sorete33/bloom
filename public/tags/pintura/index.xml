@@ -10,16 +10,9 @@
 		
 		
 		
-			<lastBuildDate>Mon, 20 Jul 2026 10:00:00 +0000</lastBuildDate>
+			<lastBuildDate>Sun, 19 Jul 2026 10:00:00 +0000</lastBuildDate>
 		
 			<atom:link href="http://localhost:1313/tags/pintura/index.xml" rel="self" type="application/rss+xml" />
-			<item>
-				<title>Weed</title>
-				<link>http://localhost:1313/portfolio/pintura-01/</link>
-				<pubDate>Mon, 20 Jul 2026 10:00:00 +0000</pubDate>
-				<guid>http://localhost:1313/portfolio/pintura-01/</guid>
-				<description>&lt;p&gt;Obra de arte y pintura en formato mixto.&lt;/p&gt;</description>
-			</item>
 			<item>
 				<title>Chala</title>
 				<link>http://localhost:1313/portfolio/pintura-02/</link>

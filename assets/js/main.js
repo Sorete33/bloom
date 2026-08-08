@@ -26,6 +26,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // --- Back to Top ---
+  const backToTop = document.getElementById('back-to-top');
+  const scrollThreshold = 400;
+
+  const updateBackToTop = () => {
+    if (!backToTop) return;
+    backToTop.classList.toggle('visible', window.scrollY > scrollThreshold);
+  };
+
+  if (backToTop) {
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: smoothBehavior });
+    });
+  }
+  window.addEventListener('scroll', updateBackToTop, { passive: true });
+  updateBackToTop();
+
   // --- Hero Background Video (native autoplay; hide poster once playing) ---
   const heroVideo = document.querySelector('.hero-bg');
   if (heroVideo) {
@@ -35,66 +52,66 @@ document.addEventListener('DOMContentLoaded', () => {
     heroVideo.play().catch(() => {});
   }
 
-  // --- Gallery Horizontal Strip ---
-  const track = document.getElementById('gallery-track');
-  const prevBtn = document.getElementById('gallery-prev');
-  const nextBtn = document.getElementById('gallery-next');
-  const progressFill = document.getElementById('gallery-progress-fill');
-  const counter = document.getElementById('gallery-counter');
-
-  const getVisibleItems = () =>
-    Array.from(track.querySelectorAll('.gallery-item')).filter(
-      item => item.style.display !== 'none'
-    );
-
-  const cardStep = () => {
-    const first = track.querySelector('.gallery-item');
-    if (!first) return track.clientWidth;
-    const gap = parseFloat(getComputedStyle(track).gap) || 0;
-    return first.offsetWidth + gap;
+  // --- Gallery / Store Horizontal Strips (shared logic) ---
+  const itemMatchesFilter = (item, filter) => {
+    if (filter === 'all') return true;
+    const tags = item.getAttribute('data-tags');
+    if (tags) return tags.split(',').map(t => t.trim()).includes(filter);
+    return item.getAttribute('data-category') === filter;
   };
 
-  const updateControls = () => {
-    if (!track) return;
-    const max = track.scrollWidth - track.clientWidth;
-    const pos = track.scrollLeft;
+  function initGalleryStrip({ track, prevBtn, nextBtn, progressFill, counter, filters, onOpen }) {
+    if (!track) return null;
 
-    if (prevBtn) prevBtn.disabled = pos <= 1;
-    if (nextBtn) nextBtn.disabled = pos >= max - 1;
+    const getVisibleItems = () =>
+      Array.from(track.querySelectorAll('.gallery-item')).filter(
+        item => item.style.display !== 'none'
+      );
 
-    if (progressFill) {
-      progressFill.style.width = max > 0 ? `${(pos / max) * 100}%` : '0%';
-    }
+    const cardStep = () => {
+      const first = track.querySelector('.gallery-item');
+      if (!first) return track.clientWidth;
+      const gap = parseFloat(getComputedStyle(track).gap) || 0;
+      return first.offsetWidth + gap;
+    };
 
-    if (counter) {
-      const items = getVisibleItems();
-      const trackRect = track.getBoundingClientRect();
-      const center = trackRect.left + track.clientWidth / 2;
-      let current = items.length;
-      let bestDist = Infinity;
-      for (let i = 0; i < items.length; i++) {
-        const r = items[i].getBoundingClientRect();
-        const dist = Math.abs((r.left + r.right) / 2 - center);
-        if (dist < bestDist) {
-          bestDist = dist;
-          current = i + 1;
-        }
+    const updateControls = () => {
+      const max = track.scrollWidth - track.clientWidth;
+      const pos = track.scrollLeft;
+
+      if (prevBtn) prevBtn.disabled = pos <= 1;
+      if (nextBtn) nextBtn.disabled = pos >= max - 1;
+
+      if (progressFill) {
+        progressFill.style.width = max > 0 ? `${(pos / max) * 100}%` : '0%';
       }
-      counter.textContent = `${current} / ${items.length}`;
-    }
-  };
 
-  const scrollTrackBy = (delta) => {
-    if (track) track.scrollBy({ left: delta, behavior: smoothBehavior });
-  };
+      if (counter) {
+        const items = getVisibleItems();
+        const trackRect = track.getBoundingClientRect();
+        const center = trackRect.left + track.clientWidth / 2;
+        let current = items.length;
+        let bestDist = Infinity;
+        for (let i = 0; i < items.length; i++) {
+          const r = items[i].getBoundingClientRect();
+          const dist = Math.abs((r.left + r.right) / 2 - center);
+          if (dist < bestDist) {
+            bestDist = dist;
+            current = i + 1;
+          }
+        }
+        counter.textContent = `${current} / ${items.length}`;
+      }
+    };
 
-  if (track) {
+    const scrollTrackBy = (delta) => {
+      track.scrollBy({ left: delta, behavior: smoothBehavior });
+    };
+
     track.addEventListener('scroll', updateControls);
     updateControls();
-  }
 
-  // Drag to scroll with click-vs-drag guard
-  if (track) {
+    // Drag to scroll with click-vs-drag guard
     let isDown = false;
     let startX = 0;
     let startLeft = 0;
@@ -134,14 +151,12 @@ document.addEventListener('DOMContentLoaded', () => {
         dragMoved = false;
       }
     }, true);
-  }
 
-  // Arrow buttons
-  if (prevBtn) prevBtn.addEventListener('click', () => scrollTrackBy(-cardStep()));
-  if (nextBtn) nextBtn.addEventListener('click', () => scrollTrackBy(cardStep()));
+    // Arrow buttons
+    if (prevBtn) prevBtn.addEventListener('click', () => scrollTrackBy(-cardStep()));
+    if (nextBtn) nextBtn.addEventListener('click', () => scrollTrackBy(cardStep()));
 
-  // Keyboard navigation on the strip
-  if (track) {
+    // Keyboard navigation on the strip
     track.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowRight') {
         e.preventDefault();
@@ -151,55 +166,58 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollTrackBy(-cardStep());
       }
     });
-  }
 
-  // --- Category Filter Tabs ---
-  const filterBtns = document.querySelectorAll('.filter-btn');
+    // Filter tabs
+    filters.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filters.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
 
-  const applyFilter = () => {
-    const visible = getVisibleItems();
-    visible.forEach(item => {
-      item.style.opacity = '1';
-      item.style.transform = 'scale(1)';
-    });
+        const filterValue = btn.getAttribute('data-filter');
 
-    if (track) {
-      track.scrollLeft = 0;
-      updateControls();
-    }
-    return visible;
-  };
+        track.querySelectorAll('.gallery-item').forEach(item => {
+          if (itemMatchesFilter(item, filterValue)) {
+            item.style.display = 'block';
+            item.style.opacity = '0';
+            item.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+              item.style.opacity = '1';
+              item.style.transform = 'scale(1)';
+            }, 50);
+          } else {
+            item.style.opacity = '0';
+            item.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+              item.style.display = 'none';
+            }, 300);
+          }
+        });
 
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      const filterCategory = btn.getAttribute('data-filter');
-
-      track.querySelectorAll('.gallery-item').forEach(item => {
-        const itemCategory = item.getAttribute('data-category');
-
-        if (filterCategory === 'all' || itemCategory === filterCategory) {
-          item.style.display = 'block';
-          item.style.opacity = '0';
-          item.style.transform = 'scale(0.95)';
-          setTimeout(() => {
+        setTimeout(() => {
+          const visible = getVisibleItems();
+          visible.forEach(item => {
             item.style.opacity = '1';
             item.style.transform = 'scale(1)';
-          }, 50);
-        } else {
-          item.style.opacity = '0';
-          item.style.transform = 'scale(0.95)';
-          setTimeout(() => {
-            item.style.display = 'none';
-          }, 300);
+          });
+          track.scrollLeft = 0;
+          updateControls();
+        }, 350);
+      });
+    });
+
+    // Open lightbox on click / keyboard
+    track.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('click', () => onOpen(item, getVisibleItems()));
+      item.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onOpen(item, getVisibleItems());
         }
       });
-
-      setTimeout(applyFilter, 350);
     });
-  });
+
+    return { getVisibleItems, updateControls };
+  }
 
   // --- FAQ Accordion ---
   const faqItems = document.querySelectorAll('.faq-item');
@@ -233,6 +251,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const lightboxClose = document.getElementById('lightbox-close');
   const lightboxPrev = document.getElementById('lightbox-prev');
   const lightboxNext = document.getElementById('lightbox-next');
+  const lightboxStore = document.getElementById('lightbox-store');
+  const lightboxPrice = document.getElementById('lightbox-price');
+  const lightboxBuy = document.getElementById('lightbox-buy');
+  const lightboxSold = document.getElementById('lightbox-sold');
 
   let lightboxItems = [];
   let lightboxIndex = 0;
@@ -263,18 +285,38 @@ document.addEventListener('DOMContentLoaded', () => {
     if (lightboxCategory) lightboxCategory.textContent = category;
     if (lightboxBody) lightboxBody.textContent = description || '';
 
+    const forSale = item.getAttribute('data-for-sale') === 'true';
+    const price = item.getAttribute('data-price');
+    const buyUrl = item.getAttribute('data-buy-url');
+    const sold = item.getAttribute('data-sold') === 'true';
+
+    if (lightboxStore) lightboxStore.hidden = !forSale;
+    if (lightboxPrice) lightboxPrice.textContent = price || '';
+    if (lightboxSold) lightboxSold.hidden = !(forSale && sold);
+    if (lightboxBuy) {
+      lightboxBuy.hidden = !(forSale && buyUrl && !sold);
+      if (buyUrl) lightboxBuy.href = buyUrl;
+    }
+
     const hasNav = lightboxItems.length > 1;
     if (lightboxPrev) lightboxPrev.classList.toggle('hidden', !hasNav);
     if (lightboxNext) lightboxNext.classList.toggle('hidden', !hasNav);
   }
 
-  function openLightbox(item) {
+  function openLightbox(item, items) {
     lastLightboxItem = item;
-    lightboxItems = getVisibleItems();
+    lightboxItems = items || [];
     lightboxIndex = lightboxItems.indexOf(item);
     if (lightboxIndex === -1) lightboxIndex = 0;
 
     populateLightbox(item);
+
+    if (lightboxClose) {
+      const isStore = item.classList.contains('store-item');
+      lightboxClose.setAttribute('aria-label', isStore ? 'Cerrar y volver a la tienda' : 'Cerrar y volver a la galería');
+      const label = lightboxClose.querySelector('.lightbox-close-label');
+      if (label) label.textContent = isStore ? 'Volver a la tienda' : 'Volver a la galería';
+    }
 
     if (lightboxModal) {
       lightboxModal.classList.add('active');
@@ -297,16 +339,6 @@ document.addEventListener('DOMContentLoaded', () => {
     lightboxIndex = (lightboxIndex + delta + lightboxItems.length) % lightboxItems.length;
     populateLightbox(lightboxItems[lightboxIndex]);
   }
-
-  track.querySelectorAll('.gallery-item').forEach(item => {
-    item.addEventListener('click', () => openLightbox(item));
-    item.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        openLightbox(item);
-      }
-    });
-  });
 
   if (lightboxClose) {
     lightboxClose.addEventListener('click', closeLightbox);
@@ -356,5 +388,26 @@ document.addEventListener('DOMContentLoaded', () => {
         navigateLightbox(-1);
       }
     }
+  });
+
+  // --- Instantiate strips ---
+  initGalleryStrip({
+    track: document.getElementById('gallery-track'),
+    prevBtn: document.getElementById('gallery-prev'),
+    nextBtn: document.getElementById('gallery-next'),
+    progressFill: document.getElementById('gallery-progress-fill'),
+    counter: document.getElementById('gallery-counter'),
+    filters: document.querySelectorAll('.portfolio-section .filter-btn'),
+    onOpen: openLightbox,
+  });
+
+  initGalleryStrip({
+    track: document.getElementById('store-track'),
+    prevBtn: document.getElementById('store-prev'),
+    nextBtn: document.getElementById('store-next'),
+    progressFill: document.getElementById('store-progress-fill'),
+    counter: document.getElementById('store-counter'),
+    filters: document.querySelectorAll('#store-filters .filter-btn'),
+    onOpen: openLightbox,
   });
 });

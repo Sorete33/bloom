@@ -586,6 +586,75 @@ h1, h2, h3, h4, .brand-font {
   text-align: center;
 }
 
+/* Store Section */
+.store-section {
+  padding: 7rem 0;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.store-pills {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.sold-tag {
+  padding: 0.25rem 0.75rem;
+  background: rgba(5, 3, 0, 0.7);
+  border: 1px solid #d64545;
+  border-radius: 12px;
+  color: #d64545;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.gallery-store-tag {
+  align-self: flex-start;
+  margin-bottom: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  background: rgba(5, 3, 0, 0.7);
+  border: 1px solid var(--accent-gold);
+  border-radius: 12px;
+  color: var(--accent-gold);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.lightbox-store {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.store-price {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  letter-spacing: 0.03em;
+  color: var(--accent-gold);
+}
+
+.lightbox-store[hidden] {
+  display: none;
+}
+
+.sold-badge {
+  padding: 0.5rem 1.25rem;
+  border: 1px solid #d64545;
+  border-radius: 20px;
+  color: #d64545;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
 /* Bio Section */
 .bio-section {
   padding: 7rem 0;
@@ -912,6 +981,43 @@ h1, h2, h3, h4, .brand-font {
 
 .footer a {
   color: var(--accent-gold);
+}
+
+/* Back to Top Button */
+.back-to-top {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 200;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: var(--transition);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover,
+.back-to-top:focus-visible {
+  background: var(--accent-gold);
+  border-color: var(--accent-gold);
+  color: var(--bg-primary);
+  box-shadow: 0 0 15px var(--accent-gold-glow);
+  outline: none;
 }
 
 /* Responsive Media Queries */

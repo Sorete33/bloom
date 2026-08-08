@@ -66,3 +66,26 @@ collections:
         widget: "select"
         options: ["Tatu Curado", "Tatu Fresco", "Pinturas", "Dibujos", "Diseños Disponibles"]
       - { label: "Descripción o Notas", name: "body", widget: "markdown", required: false }
+      - { label: "Etiquetas (categorías)", name: "tags", widget: "list", required: false, hint: "Ej: Remeras, Calcomanías, Pinturas, Diseños..." }
+      - { label: "Disponible en Tienda", name: "for_sale", widget: "boolean", default: false, required: false }
+      - { label: "Precio", name: "price", widget: "string", required: false, hint: "Ej: AR$ 45.000" }
+      - { label: "Enlace de Pago", name: "buy_url", widget: "string", required: false, hint: "URL de Mercado Pago u otro checkout" }
+      - { label: "Vendido", name: "sold", widget: "boolean", default: false, required: false }
+
+  # Editor de la Tienda
+  - name: "store"
+    label: "Tienda"
+    folder: "content/store"
+    format: "yaml-frontmatter"
+    extension: "md"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Título del Producto", name: "title", widget: "string" }
+      - { label: "Fecha", name: "date", widget: "datetime" }
+      - { label: "Imagen", name: "image", widget: "image", hint: "Usá JPG o PNG (sin HEIC)" }
+      - { label: "Etiquetas (categorías)", name: "tags", widget: "list", required: false, hint: "Ej: Remeras, Calcomanías, Pinturas, Diseños..." }
+      - { label: "Precio", name: "price", widget: "string", required: false, hint: "Ej: AR$ 45.000" }
+      - { label: "Enlace de Pago", name: "buy_url", widget: "string", required: false, hint: "URL de Mercado Pago u otro checkout" }
+      - { label: "Vendido", name: "sold", widget: "boolean", default: false, required: false }
+      - { label: "Descripción", name: "body", widget: "markdown", required: false }
