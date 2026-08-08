@@ -147,6 +147,9 @@
               <source srcset="{{ $cardAvif }}" type="image/avif">
               <img src="{{ $cardWebp }}" alt="{{ .Title }}" width="720" height="960" loading="lazy" decoding="async">
             </picture>
+            {{ if or .Params.price .Params.sold }}
+            <span class="store-badge{{ if .Params.sold }} store-badge-sold{{ end }}">{{ if .Params.sold }}Vendido{{ else }}{{ .Params.price }}{{ end }}</span>
+            {{ end }}
             <div class="gallery-overlay">
               <div class="store-pills">
                 {{ if .Params.sold }}<span class="sold-tag">Vendido</span>{{ end }}

@@ -612,6 +612,10 @@ h1, h2, h3, h4, .brand-font {
   letter-spacing: 0.05em;
 }
 
+.store-badge {
+  display: none;
+}
+
 .gallery-store-tag {
   align-self: flex-start;
   margin-bottom: 0.5rem;
@@ -1117,5 +1121,38 @@ h1, h2, h3, h4, .brand-font {
   }
   .gallery-item:hover .gallery-img-wrap img {
     transform: none;
+  }
+}
+
+/* Touch devices: no hover-dependent UI. Cards get a small price badge
+   (store only) and the overlay never reveals on tap. */
+@media (hover: none) {
+  .gallery-item .gallery-overlay,
+  .gallery-item:hover .gallery-overlay,
+  .gallery-item:focus-visible .gallery-overlay {
+    opacity: 0;
+  }
+  .gallery-item .gallery-img-wrap img,
+  .gallery-item:hover .gallery-img-wrap img {
+    transform: none;
+  }
+  .store-badge {
+    display: inline-flex;
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 2;
+    padding: 0.3rem 0.75rem;
+    background: var(--accent-gold);
+    color: var(--bg-primary);
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+  .store-badge.store-badge-sold {
+    background: rgba(5, 3, 0, 0.7);
+    color: #d64545;
+    border: 1px solid #d64545;
   }
 }
