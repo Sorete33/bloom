@@ -1,1 +1,73 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tags on Arte</title><link>https://Sorete33.github.io/bloom/tags/</link><description>Recent content in Tags on Arte</description><generator>Hugo</generator><language>es-AR</language><lastBuildDate>Thu, 06 Aug 2026 10:00:00 +0000</lastBuildDate><atom:link href="https://Sorete33.github.io/bloom/tags/index.xml" rel="self" type="application/rss+xml"/><item><title>Calcomanías</title><link>https://Sorete33.github.io/bloom/tags/calcoman%C3%ADas/</link><pubDate>Thu, 06 Aug 2026 10:00:00 +0000</pubDate><guid>https://Sorete33.github.io/bloom/tags/calcoman%C3%ADas/</guid><description/></item><item><title>Curado</title><link>https://Sorete33.github.io/bloom/tags/curado/</link><pubDate>Sat, 01 Aug 2026 12:00:00 +0000</pubDate><guid>https://Sorete33.github.io/bloom/tags/curado/</guid><description/></item><item><title>Tatuaje</title><link>https://Sorete33.github.io/bloom/tags/tatuaje/</link><pubDate>Sat, 01 Aug 2026 12:00:00 +0000</pubDate><guid>https://Sorete33.github.io/bloom/tags/tatuaje/</guid><description/></item><item><title>Fresco</title><link>https://Sorete33.github.io/bloom/tags/fresco/</link><pubDate>Tue, 28 Jul 2026 14:00:00 +0000</pubDate><guid>https://Sorete33.github.io/bloom/tags/fresco/</guid><description/></item><item><title>Diseños</title><link>https://Sorete33.github.io/bloom/tags/dise%C3%B1os/</link><pubDate>Sat, 25 Jul 2026 11:00:00 +0000</pubDate><guid>https://Sorete33.github.io/bloom/tags/dise%C3%B1os/</guid><description/></item><item><title>Pinturas</title><link>https://Sorete33.github.io/bloom/tags/pinturas/</link><pubDate>Mon, 20 Jul 2026 10:00:00 +0000</pubDate><guid>https://Sorete33.github.io/bloom/tags/pinturas/</guid><description/></item><item><title>Arte</title><link>https://Sorete33.github.io/bloom/tags/arte/</link><pubDate>Sun, 19 Jul 2026 10:00:00 +0000</pubDate><guid>https://Sorete33.github.io/bloom/tags/arte/</guid><description/></item><item><title>Pintura</title><link>https://Sorete33.github.io/bloom/tags/pintura/</link><pubDate>Sun, 19 Jul 2026 10:00:00 +0000</pubDate><guid>https://Sorete33.github.io/bloom/tags/pintura/</guid><description/></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Tags on Arte</title>
+		<link>http://localhost:1313/tags/</link>
+		<description>Recent content in Tags on Arte</description>
+		<generator>Hugo</generator>
+		<language>es-AR</language>
+		
+		
+		
+		
+			<lastBuildDate>Thu, 06 Aug 2026 10:00:00 +0000</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Calcomanías</title>
+				<link>http://localhost:1313/tags/calcoman%C3%ADas/</link>
+				<pubDate>Thu, 06 Aug 2026 10:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/tags/calcoman%C3%ADas/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Curado</title>
+				<link>http://localhost:1313/tags/curado/</link>
+				<pubDate>Sat, 01 Aug 2026 12:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/tags/curado/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Tatuaje</title>
+				<link>http://localhost:1313/tags/tatuaje/</link>
+				<pubDate>Sat, 01 Aug 2026 12:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/tags/tatuaje/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Fresco</title>
+				<link>http://localhost:1313/tags/fresco/</link>
+				<pubDate>Tue, 28 Jul 2026 14:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/tags/fresco/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Diseños Disponibles</title>
+				<link>http://localhost:1313/tags/dise%C3%B1os-disponibles/</link>
+				<pubDate>Sat, 25 Jul 2026 11:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/tags/dise%C3%B1os-disponibles/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Pinturas</title>
+				<link>http://localhost:1313/tags/pinturas/</link>
+				<pubDate>Mon, 20 Jul 2026 10:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/tags/pinturas/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Arte</title>
+				<link>http://localhost:1313/tags/arte/</link>
+				<pubDate>Sun, 19 Jul 2026 10:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/tags/arte/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Pintura</title>
+				<link>http://localhost:1313/tags/pintura/</link>
+				<pubDate>Sun, 19 Jul 2026 10:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/tags/pintura/</guid>
+				<description></description>
+			</item>
+	</channel>
+</rss>

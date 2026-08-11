@@ -59,7 +59,7 @@
       <button class="filter-btn" data-filter="Tatu Fresco">Tatu Fresco</button>
       <button class="filter-btn" data-filter="Pinturas">Pinturas</button>
       <button class="filter-btn" data-filter="Dibujos">Dibujos</button>
-      <button class="filter-btn" data-filter="Diseños Disponibles">Diseños Disponibles</button>
+      <button class="filter-btn" data-filter="Diseños">Diseños</button>
     </div>
 
     <!-- Gallery Strip -->
@@ -73,17 +73,18 @@
         {{ $cardAvif := partial "img-src.html" (dict "path" $work.Params.image "site" $.Site "fill" "720x960" "format" "avif") }}
         {{ $lightboxWebp := partial "img-src.html" (dict "path" $work.Params.image "site" $.Site "resize" "1600x") }}
         {{ $lightboxAvif := partial "img-src.html" (dict "path" $work.Params.image "site" $.Site "resize" "1600x" "format" "avif") }}
+        {{ $workTag := "" }}{{ with $work.Params.tags }}{{ $workTag = index . 0 }}{{ end }}
         <div class="gallery-item" data-category="{{ $work.Params.category }}" data-title="{{ $work.Title }}" data-title-script="{{ $titleScript }}"
           data-image="{{ $lightboxWebp }}"{{ if $isAsset }} data-image-avif="{{ $lightboxAvif }}"{{ end }} data-description="{{ $work.Plain }}"
-          data-for-sale="{{ if $work.Params.for_sale }}true{{ end }}" data-price="{{ $work.Params.price }}" data-buy-url="{{ $work.Params.buy_url }}" data-sold="{{ if $work.Params.sold }}true{{ end }}" tabindex="0">
+          data-for-sale="{{ if $work.Params.for_sale }}true{{ end }}" data-store-tag="{{ $workTag }}" tabindex="0">
           <div class="gallery-img-wrap">
+            {{ if $work.Params.for_sale }}<span class="sale-ribbon">En Venta</span>{{ end }}
             <picture>
               <source srcset="{{ $cardAvif }}" type="image/avif">
               <img src="{{ $cardWebp }}" alt="{{ $work.Title }}" width="720" height="960" loading="lazy" decoding="async">
             </picture>
             <div class="gallery-overlay">
               <span class="category-tag">{{ $work.Params.category }}</span>
-              {{ if $work.Params.for_sale }}<span class="gallery-store-tag">{{ $work.Params.price }}</span>{{ end }}
               <h3 class="item-title{{ if $titleScript }} script{{ end }}">{{ $work.Title }}</h3>
               <div class="item-tags">
                 {{ range $work.Params.tags }}
@@ -276,6 +277,7 @@
       <div class="lightbox-store" id="lightbox-store" hidden>
         <span class="store-price" id="lightbox-price"></span>
         <a class="btn btn-primary" id="lightbox-buy" href="#" target="_blank" rel="noopener">Comprar</a>
+        <a class="lightbox-store-link" id="lightbox-store-link" href="#tienda">Ver en tienda</a>
         <span class="sold-badge" id="lightbox-sold" hidden>Vendido</span>
       </div>
     </div>

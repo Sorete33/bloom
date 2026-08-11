@@ -255,6 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const lightboxPrice = document.getElementById('lightbox-price');
   const lightboxBuy = document.getElementById('lightbox-buy');
   const lightboxSold = document.getElementById('lightbox-sold');
+  const lightboxStoreLink = document.getElementById('lightbox-store-link');
 
   let lightboxItems = [];
   let lightboxIndex = 0;
@@ -289,13 +290,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const price = item.getAttribute('data-price');
     const buyUrl = item.getAttribute('data-buy-url');
     const sold = item.getAttribute('data-sold') === 'true';
+    const isStoreItem = item.classList.contains('store-item');
 
     if (lightboxStore) lightboxStore.hidden = !forSale;
-    if (lightboxPrice) lightboxPrice.textContent = price || '';
-    if (lightboxSold) lightboxSold.hidden = !(forSale && sold);
+    if (lightboxPrice) {
+      lightboxPrice.textContent = price || '';
+      lightboxPrice.hidden = !(forSale && isStoreItem);
+    }
+    if (lightboxSold) lightboxSold.hidden = !(forSale && isStoreItem && sold);
     if (lightboxBuy) {
-      lightboxBuy.hidden = !(forSale && buyUrl && !sold);
+      lightboxBuy.hidden = !(forSale && isStoreItem && buyUrl && !sold);
       if (buyUrl) lightboxBuy.href = buyUrl;
+    }
+    if (lightboxStoreLink) {
+      lightboxStoreLink.hidden = !(forSale && !isStoreItem);
     }
 
     const hasNav = lightboxItems.length > 1;
@@ -342,6 +350,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (lightboxClose) {
     lightboxClose.addEventListener('click', closeLightbox);
+  }
+
+  if (lightboxStoreLink) {
+    lightboxStoreLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      closeLightbox();
+      const tienda = document.getElementById('tienda');
+      if (tienda) tienda.scrollIntoView({ behavior: smoothBehavior });
+      const tag = lastLightboxItem && lastLightboxItem.getAttribute('data-store-tag');
+      const allBtn = document.querySelector('#store-filters .filter-btn[data-filter="all"]');
+      let matched = false;
+      if (tag) {
+        document.querySelectorAll('#store-filters .filter-btn').forEach(btn => {
+          if (!matched && btn.getAttribute('data-filter') === tag) {
+            btn.click();
+            matched = true;
+          }
+        });
+      }
+      if (!matched && allBtn) allBtn.click();
+    });
   }
   if (lightboxPrev) lightboxPrev.addEventListener('click', (e) => {
     e.stopPropagation();

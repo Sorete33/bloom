@@ -34,6 +34,10 @@
   padding: 0;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 html {
   scroll-behavior: smooth;
   font-size: 16px;
@@ -479,6 +483,23 @@ h1, h2, h3, h4, .brand-font {
   transform: scale(1.06) rotate(0.5deg);
 }
 
+.sale-ribbon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+  padding: 0.3rem 0.9rem;
+  background: var(--accent-gold);
+  color: var(--bg-primary);
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+  transform: rotate(6deg);
+}
+
 .gallery-overlay {
   position: absolute;
   inset: 0;
@@ -653,6 +674,25 @@ h1, h2, h3, h4, .brand-font {
   font-size: 0.85rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
+}
+
+.lightbox-store-link {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--accent-gold);
+  border-radius: 30px;
+  color: var(--accent-gold);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.lightbox-store-link:hover {
+  background: var(--accent-gold);
+  color: var(--bg-primary);
 }
 
 /* Bio Section */
