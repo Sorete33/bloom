@@ -75,7 +75,7 @@
         {{ $lightboxAvif := partial "img-src.html" (dict "path" $work.Params.image "site" $.Site "resize" "1600x" "format" "avif") }}
         {{ $workTag := "" }}{{ with $work.Params.tags }}{{ $workTag = index . 0 }}{{ end }}
         <div class="gallery-item" data-category="{{ $work.Params.category }}" data-title="{{ $work.Title }}" data-title-script="{{ $titleScript }}"
-          data-image="{{ $lightboxWebp }}"{{ if $isAsset }} data-image-avif="{{ $lightboxAvif }}"{{ end }} data-description="{{ $work.Plain }}"
+          data-image="{{ $lightboxWebp }}"{{ if $isAsset }} data-image-avif="{{ $lightboxAvif }}"{{ end }}
           data-for-sale="{{ if $work.Params.for_sale }}true{{ end }}" data-store-tag="{{ $workTag }}" tabindex="0">
           <div class="gallery-img-wrap">
             {{ if $work.Params.for_sale }}<span class="sale-ribbon">En Venta</span>{{ end }}
@@ -88,7 +88,7 @@
               <h3 class="item-title{{ if $titleScript }} script{{ end }}">{{ $work.Title }}</h3>
               <div class="item-tags">
                 {{ range $work.Params.tags }}
-                <span>#{{ . }}</span>
+                <span>{{ . }}</span>
                 {{ end }}
               </div>
             </div>
@@ -141,7 +141,7 @@
         {{ $firstTag := "" }}{{ range first 1 .Params.tags }}{{ $firstTag = . }}{{ end }}
         <div class="gallery-item store-item" data-tags="{{ delimit .Params.tags "," }}" data-category="{{ $firstTag }}"
           data-title="{{ .Title }}" data-title-script="{{ $titleScript }}"
-          data-image="{{ $lightboxWebp }}"{{ if $isAsset }} data-image-avif="{{ $lightboxAvif }}"{{ end }} data-description="{{ .Plain }}"
+          data-image="{{ $lightboxWebp }}"{{ if $isAsset }} data-image-avif="{{ $lightboxAvif }}"{{ end }}
           data-for-sale="true" data-price="{{ .Params.price }}" data-buy-url="{{ .Params.buy_url }}" data-sold="{{ if .Params.sold }}true{{ end }}" tabindex="0">
           <div class="gallery-img-wrap">
             <picture>
@@ -156,7 +156,7 @@
               <h3 class="item-title{{ if $titleScript }} script{{ end }}">{{ .Title }}</h3>
               <div class="item-tags">
                 {{ range .Params.tags }}
-                <span>#{{ . }}</span>
+                <span>{{ . }}</span>
                 {{ end }}
               </div>
             </div>
@@ -270,15 +270,15 @@
     </div>
     <div class="lightbox-details">
       <span class="category-tag" id="lightbox-category">Categoría</span>
-      <h2 class="item-title" id="lightbox-title" style="font-size: 2rem; margin: 0.5rem 0 1rem;">Título de la Obra
-      </h2>
-      <p id="lightbox-body" style="color: var(--text-secondary); font-size: 1.05rem; line-height: 1.7;">Descripción
-      </p>
-      <div class="lightbox-store" id="lightbox-store" hidden>
-        <span class="store-price" id="lightbox-price"></span>
-        <a class="btn btn-primary" id="lightbox-buy" href="#" target="_blank" rel="noopener">Comprar</a>
-        <a class="lightbox-store-link" id="lightbox-store-link" href="#tienda">Ver en tienda</a>
-        <span class="sold-badge" id="lightbox-sold" hidden>Vendido</span>
+      <div class="lightbox-heading">
+        <h2 class="item-title" id="lightbox-title" style="font-size: 2rem; margin: 0.5rem 0 1rem;">Título de la Obra
+        </h2>
+        <div class="lightbox-store" id="lightbox-store" hidden>
+          <span class="store-price" id="lightbox-price"></span>
+          <a class="btn btn-primary" id="lightbox-buy" href="#" target="_blank" rel="noopener">Comprar</a>
+          <a class="lightbox-store-link" id="lightbox-store-link" href="#tienda">Ver en tienda</a>
+          <span class="sold-badge" id="lightbox-sold" hidden>Vendido</span>
+        </div>
       </div>
     </div>
   </div>

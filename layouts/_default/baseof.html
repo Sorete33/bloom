@@ -2,6 +2,7 @@
 <html lang="{{ .Site.Language.Locale | default "es-AR" }}">
 
 <head>
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ .Title }} | {{ .Site.Title }}</title>
   <meta name="description" content="{{ .Params.hero.tagline | default "Sitio web de portafolio para tatuadora y artista visual" }}">
@@ -35,7 +36,7 @@
     <div class="container">
       <a href="{{ .Site.BaseURL }}" class="logo"><img class="logo-img" src="{{ partial "asset-url.html" (dict "path" "/uploads/inbloomlogoblanco.png" "site" .Site) }}" alt="In Bloom"></a>
       <ul class="nav-links" id="nav-links">
-        <li><a href="#gallery">Galería</a></li>
+        <li><a href="#gallery">Obras</a></li>
         <li><a href="#tienda">Tienda</a></li>
         <li><a href="#bio">Sobre el Artista</a></li>
         <li><a href="#faq">Preguntas Frecuentes</a></li>

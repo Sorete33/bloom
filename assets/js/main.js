@@ -247,7 +247,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const lightboxImg = document.getElementById('lightbox-img');
   const lightboxTitle = document.getElementById('lightbox-title');
   const lightboxCategory = document.getElementById('lightbox-category');
-  const lightboxBody = document.getElementById('lightbox-body');
   const lightboxClose = document.getElementById('lightbox-close');
   const lightboxPrev = document.getElementById('lightbox-prev');
   const lightboxNext = document.getElementById('lightbox-next');
@@ -265,7 +264,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const imgSrc = item.getAttribute('data-image');
     const title = item.getAttribute('data-title');
     const category = item.getAttribute('data-category');
-    const description = item.getAttribute('data-description');
     const titleScript = item.getAttribute('data-title-script') === 'true';
 
     if (lightboxImg) {
@@ -284,7 +282,6 @@ document.addEventListener('DOMContentLoaded', () => {
       lightboxTitle.classList.toggle('script', titleScript);
     }
     if (lightboxCategory) lightboxCategory.textContent = category;
-    if (lightboxBody) lightboxBody.textContent = description || '';
 
     const forSale = item.getAttribute('data-for-sale') === 'true';
     const price = item.getAttribute('data-price');

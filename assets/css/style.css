@@ -541,6 +541,12 @@ h1, h2, h3, h4, .brand-font {
   gap: 0.5rem;
   font-size: 0.8rem;
   color: var(--text-secondary);
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  height: 0;
+  overflow: hidden;
 }
 
 .gallery-controls {
@@ -646,12 +652,23 @@ h1, h2, h3, h4, .brand-font {
   letter-spacing: 0.05em;
 }
 
+.lightbox-heading {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.lightbox-heading .item-title {
+  margin-bottom: 0.25rem;
+}
+
 .lightbox-store {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1.25rem;
-  margin-top: 1.5rem;
   flex-wrap: wrap;
 }
 
