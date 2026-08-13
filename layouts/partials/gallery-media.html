@@ -1,0 +1,17 @@
+{{- $site := .site }}
+{{- $title := .title }}
+{{- $image := .image }}
+{{- $video := .video }}
+{{- $fill := .fill }}
+{{- if $video }}
+  {{- $videoUrl := partial "video-url.html" (dict "path" $video "site" $site) }}
+  {{- $poster := partial "img-src.html" (dict "path" $image "site" $site "fill" $fill) }}
+  <video class="gallery-video" src="{{ $videoUrl }}" poster="{{ $poster }}" muted loop playsinline preload="metadata" aria-label="{{ $title }}"></video>
+{{- else }}
+  {{- $cardAvif := partial "img-src.html" (dict "path" $image "site" $site "fill" $fill "format" "avif") }}
+  {{- $cardWebp := partial "img-src.html" (dict "path" $image "site" $site "fill" $fill) }}
+  <picture>
+    <source srcset="{{ $cardAvif }}" type="image/avif">
+    <img src="{{ $cardWebp }}" alt="{{ $title }}" width="720" height="960" loading="lazy" decoding="async">
+  </picture>
+{{- end -}}

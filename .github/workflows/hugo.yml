@@ -40,6 +40,9 @@ jobs:
         id: pages
         uses: actions/configure-pages@v4
 
+      - name: Pre-encode media for web
+        run: ./scripts/pre-encode.sh
+
       - name: Build site with Hugo
         run: |
           hugo \

@@ -1,0 +1,12 @@
+{{- $path := .path }}
+{{- $site := .site }}
+{{- if hasPrefix $path "/assets/" }}
+  {{- $video := resources.Get (strings.TrimPrefix "/assets/" $path) }}
+  {{- if $video }}
+    {{- $video.Permalink }}
+  {{- else }}
+    {{- partial "asset-url.html" (dict "path" $path "site" $site) }}
+  {{- end }}
+{{- else }}
+  {{- partial "asset-url.html" (dict "path" $path "site" $site) -}}
+{{- end -}}

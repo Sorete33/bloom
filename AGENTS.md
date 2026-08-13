@@ -4,8 +4,9 @@ Static Hugo site (single-page portfolio) for a tattoo artist in Córdoba, Argent
 
 ## Commands
 
+- Pre-encode media: `./scripts/pre-encode.sh` — compresses all videos in `assets/images` to H.264 (max 720px, CRF 30, faststart) and downscales oversized JPG/PNG sources (max 2000px). **Run it before every build**; CI runs it automatically. Only replaces a file when the output is ≥10% smaller, so it's idempotent. Requires `ffmpeg` and ImageMagick (`magick`).
 - Local dev: `hugo server -D` (site is `es-AR`; `hugo.toml` `baseURL` is `http://localhost/` and `hugo server` appends the port, e.g. `http://localhost:1313/`). To test from a phone on the LAN, serve with `hugo server -D --bind 0.0.0.0 --baseURL http://<LAN-IP>:1313/` — with the default `localhost` baseURL the phone resolves asset URLs to itself and the site breaks.
-- Build: `hugo --minify --baseURL https://Sorete33.github.io/bloom` — CI runs the same with `--baseURL` from the Pages URL. Static asset URLs are built with the `layouts/partials/asset-url.html` partial, which prefixes `.Site.BaseURL` (e.g. `https://Sorete33.github.io/bloom/`). **Never use `absURL` or `relURL`** for site assets: both resolve against the origin and DROP the `/bloom/` base path (they emit `https://Sorete33.github.io/uploads/...`, which 404s in production). `.Permalink` of `resources.Get` output (CSS/JS/images) is safe — it already includes the `/bloom/` base path. A production `--baseURL` is **required**: a plain `hugo --minify` emits `http://localhost/...` URLs that 404 in production.
+- Build: `hugo --minify --baseURL https://Sorete33.github.io/bloom` — CI runs the same with `--baseURL` from the Pages URL. Static asset URLs are built with the `layouts/partials/asset-url.html` partial, which prefixes `.Site.BaseURL` (e.g. `https://Sorete33.github.io/bloom/`). **Never use `absURL` or `relURL`** for site assets: both resolve against the origin and DROP the `/bloom/` base path (they emit `https://Sorete33.github.io/uploads/...`, which 404s in production). `.Permalink` of `resources.Get` output (CSS/JS/images/videos) is safe — it already includes the `/bloom/` base path. A production `--baseURL` is **required**: a plain `hugo --minify` emits `http://localhost/...` URLs that 404 in production.
 - Hugo version is pinned to **0.164.0+extended** in `.github/workflows/hugo.yml`; use the same locally
 - No tests, linter, or formatter configured.
 
@@ -31,6 +32,7 @@ Static Hugo site (single-page portfolio) for a tattoo artist in Córdoba, Argent
 - `static/_headers` — cache policy (`immutable` for hashed `/css/`, `/js/`, `/images/`). **GitHub Pages ignores it**; it only takes effect if the site is served on Netlify/Cloudflare Pages. Fingerprinted filenames still bust cache on GH Pages via unique URLs.
 - `archetypes/default.md` emits TOML front matter (`+++`), but all existing content files use YAML (`---`). Match YAML when hand-writing content.
 - `markup.goldmark.renderer.unsafe = true` in `hugo.toml`, so raw HTML in Markdown is rendered.
+- **Gallery videos** — a portfolio/store item becomes a video when front matter has `video:` (e.g. `/assets/images/tatu/foo.mp4`). `layouts/partials/video-url.html` publishes the raw mp4 via `resources.Get` + `.Permalink` (lands in `public/images/...`); the `image:` field is the card/lightbox poster. Cards play muted/looped when near the viewport (JS IntersectionObserver, no `autoplay` attribute; `prefers-reduced-motion` pauses them); the lightbox plays muted with native controls. `video:` values are resolved by `layouts/partials/gallery-media.html`, used by both the portfolio and Tienda loops.
 
 ## Deploy
 

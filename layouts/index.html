@@ -69,20 +69,17 @@
         {{ range $work := $works }}
         {{ $isAsset := hasPrefix $work.Params.image "/assets/" }}
         {{ $titleScript := partial "uses-script-font.html" $work.Title }}
-        {{ $cardWebp := partial "img-src.html" (dict "path" $work.Params.image "site" $.Site "fill" "720x960") }}
-        {{ $cardAvif := partial "img-src.html" (dict "path" $work.Params.image "site" $.Site "fill" "720x960" "format" "avif") }}
         {{ $lightboxWebp := partial "img-src.html" (dict "path" $work.Params.image "site" $.Site "resize" "1600x") }}
         {{ $lightboxAvif := partial "img-src.html" (dict "path" $work.Params.image "site" $.Site "resize" "1600x" "format" "avif") }}
         {{ $workTag := "" }}{{ with $work.Params.tags }}{{ $workTag = index . 0 }}{{ end }}
+        {{ $videoUrl := "" }}{{ with $work.Params.video }}{{ $videoUrl = partial "video-url.html" (dict "path" . "site" $.Site) }}{{ end }}
         <div class="gallery-item" data-category="{{ $work.Params.category }}" data-title="{{ $work.Title }}" data-title-script="{{ $titleScript }}"
           data-image="{{ $lightboxWebp }}"{{ if $isAsset }} data-image-avif="{{ $lightboxAvif }}"{{ end }}
+          {{ if $videoUrl }}data-video="{{ $videoUrl }}" data-video-poster="{{ $lightboxWebp }}"{{ end }}
           data-for-sale="{{ if $work.Params.for_sale }}true{{ end }}" data-store-tag="{{ $workTag }}" tabindex="0">
           <div class="gallery-img-wrap">
             {{ if $work.Params.for_sale }}<span class="sale-ribbon">En Venta</span>{{ end }}
-            <picture>
-              <source srcset="{{ $cardAvif }}" type="image/avif">
-              <img src="{{ $cardWebp }}" alt="{{ $work.Title }}" width="720" height="960" loading="lazy" decoding="async">
-            </picture>
+            {{ partial "gallery-media.html" (dict "site" $.Site "title" $work.Title "image" $work.Params.image "video" $work.Params.video "fill" "720x960") }}
             <div class="gallery-overlay">
               <span class="category-tag">{{ $work.Params.category }}</span>
               <h3 class="item-title{{ if $titleScript }} script{{ end }}">{{ $work.Title }}</h3>
@@ -134,20 +131,17 @@
         {{ range $allStore.ByDate.Reverse }}
         {{ $isAsset := hasPrefix .Params.image "/assets/" }}
         {{ $titleScript := partial "uses-script-font.html" .Title }}
-        {{ $cardWebp := partial "img-src.html" (dict "path" .Params.image "site" $.Site "fill" "720x960") }}
-        {{ $cardAvif := partial "img-src.html" (dict "path" .Params.image "site" $.Site "fill" "720x960" "format" "avif") }}
         {{ $lightboxWebp := partial "img-src.html" (dict "path" .Params.image "site" $.Site "resize" "1600x") }}
         {{ $lightboxAvif := partial "img-src.html" (dict "path" .Params.image "site" $.Site "resize" "1600x" "format" "avif") }}
         {{ $firstTag := "" }}{{ range first 1 .Params.tags }}{{ $firstTag = . }}{{ end }}
+        {{ $videoUrl := "" }}{{ with .Params.video }}{{ $videoUrl = partial "video-url.html" (dict "path" . "site" $.Site) }}{{ end }}
         <div class="gallery-item store-item" data-tags="{{ delimit .Params.tags "," }}" data-category="{{ $firstTag }}"
           data-title="{{ .Title }}" data-title-script="{{ $titleScript }}"
           data-image="{{ $lightboxWebp }}"{{ if $isAsset }} data-image-avif="{{ $lightboxAvif }}"{{ end }}
+          {{ if $videoUrl }}data-video="{{ $videoUrl }}" data-video-poster="{{ $lightboxWebp }}"{{ end }}
           data-for-sale="true" data-price="{{ .Params.price }}" data-buy-url="{{ .Params.buy_url }}" data-sold="{{ if .Params.sold }}true{{ end }}" tabindex="0">
           <div class="gallery-img-wrap">
-            <picture>
-              <source srcset="{{ $cardAvif }}" type="image/avif">
-              <img src="{{ $cardWebp }}" alt="{{ .Title }}" width="720" height="960" loading="lazy" decoding="async">
-            </picture>
+            {{ partial "gallery-media.html" (dict "site" $.Site "title" .Title "image" .Params.image "video" .Params.video "fill" "720x960") }}
             <div class="gallery-overlay">
               <div class="store-pills">
                 {{ if .Params.sold }}<span class="sold-tag">Vendido</span>{{ end }}
@@ -267,6 +261,7 @@
       <picture>
         <img id="lightbox-img" src="" alt="Vista previa de la obra">
       </picture>
+      <video id="lightbox-video" class="lightbox-media-video" muted loop playsinline controls hidden></video>
     </div>
     <div class="lightbox-details">
       <span class="category-tag" id="lightbox-category">Categoría</span>
