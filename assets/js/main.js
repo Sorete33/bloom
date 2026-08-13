@@ -2,6 +2,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const smoothBehavior = prefersReducedMotion ? 'auto' : 'smooth';
 
+  // --- Randomize gallery/Tienda order on every load (Fisher–Yates) ---
+  const shuffleTrack = (track) => {
+    if (!track) return;
+    const items = Array.from(track.children);
+    for (let i = items.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [items[i], items[j]] = [items[j], items[i]];
+    }
+    items.forEach(el => track.appendChild(el));
+  };
+  shuffleTrack(document.getElementById('gallery-track'));
+  shuffleTrack(document.getElementById('store-track'));
+
   // --- Mobile Nav Toggle ---
   const navToggle = document.getElementById('nav-toggle');
   const navLinks = document.getElementById('nav-links');
