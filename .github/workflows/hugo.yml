@@ -40,6 +40,9 @@ jobs:
         id: pages
         uses: actions/configure-pages@v4
 
+      - name: Install media tools (ffmpeg, ImageMagick)
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg imagemagick
+
       - name: Pre-encode media for web
         run: ./scripts/pre-encode.sh
 

@@ -6,6 +6,7 @@
 #   AAC audio ~96kbps, +faststart for progressive playback.
 # Images (*.jpg, *.jpeg, *.png):
 #   Downscale sources larger than 2000px and/or 1MB to max 2000px, JPEG q85 / PNG q90.
+# ImageMagick: accepts IM7 `magick` or IM6 `convert` (GitHub runners ship IM6).
 #
 # A file is replaced only when the re-encoded output is >=10% smaller, so the script
 # is idempotent: already-optimized files produce identical bytes and never churn.
@@ -22,7 +23,13 @@ IMAGE_QUALITY_PNG="90"
 MIN_SAVING_PCT="10"
 
 command -v ffmpeg >/dev/null 2>&1 || { echo "ffmpeg is required" >&2; exit 1; }
-command -v magick >/dev/null 2>&1 || { echo "imagemagick (magick) is required" >&2; exit 1; }
+if command -v magick >/dev/null 2>&1; then
+  MAGICK=magick
+elif command -v convert >/dev/null 2>&1; then
+  MAGICK=convert
+else
+  echo "imagemagick (magick or convert) is required" >&2; exit 1
+fi
 [[ -d "$MEDIA_DIR" ]] || { echo "media dir not found: $MEDIA_DIR" >&2; exit 1; }
 
 replace_if_smaller() {
@@ -63,7 +70,7 @@ compress_image() {
   esac
   tmp="$(mktemp --suffix=".$ext")"
   trap 'rm -f "$tmp"' RETURN
-  magick "$src" -auto-orient -resize "${IMAGE_MAX_PX}x${IMAGE_MAX_PX}>" -strip -quality "$q" "$tmp"
+  "$MAGICK" "$src" -auto-orient -resize "${IMAGE_MAX_PX}x${IMAGE_MAX_PX}>" -strip -quality "$q" "$tmp"
   replace_if_smaller "$src" "$tmp"
 }
 
