@@ -55,8 +55,8 @@
     <!-- Category Filter Tabs -->
     <div class="filter-tabs">
       <button class="filter-btn active" data-filter="all">Todas las Obras</button>
-      <button class="filter-btn" data-filter="Tatu Curado">Tatu Curado</button>
-      <button class="filter-btn" data-filter="Tatu Fresco">Tatu Fresco</button>
+      <button class="filter-btn" data-filter="Tatu Curado">Tatuajes Curados</button>
+      <button class="filter-btn" data-filter="Tatu Fresco">Tatuajes Frescos</button>
       <button class="filter-btn" data-filter="Pinturas">Pinturas</button>
       <button class="filter-btn" data-filter="Dibujos">Dibujos</button>
       <button class="filter-btn" data-filter="Diseños">Diseños</button>
@@ -71,23 +71,17 @@
         {{ $titleScript := partial "uses-script-font.html" $work.Title }}
         {{ $lightboxWebp := partial "img-src.html" (dict "path" $work.Params.image "site" $.Site "resize" "1600x") }}
         {{ $lightboxAvif := partial "img-src.html" (dict "path" $work.Params.image "site" $.Site "resize" "1600x" "format" "avif") }}
-        {{ $workTag := "" }}{{ with $work.Params.tags }}{{ $workTag = index . 0 }}{{ end }}
         {{ $videoUrl := "" }}{{ with $work.Params.video }}{{ $videoUrl = partial "video-url.html" (dict "path" . "site" $.Site) }}{{ end }}
         <div class="gallery-item" data-category="{{ $work.Params.category }}" data-title="{{ $work.Title }}" data-title-script="{{ $titleScript }}"
           data-image="{{ $lightboxWebp }}"{{ if $isAsset }} data-image-avif="{{ $lightboxAvif }}"{{ end }}
           {{ if $videoUrl }}data-video="{{ $videoUrl }}" data-video-poster="{{ $lightboxWebp }}"{{ end }}
-          data-for-sale="{{ if $work.Params.for_sale }}true{{ end }}" data-store-tag="{{ $workTag }}" tabindex="0">
+          data-for-sale="{{ if $work.Params.for_sale }}true{{ end }}" tabindex="0">
           <div class="gallery-img-wrap">
             {{ if $work.Params.for_sale }}<span class="sale-ribbon">{{ if eq $work.Params.category "Diseños" }}Disponible{{ else }}En Venta{{ end }}</span>{{ end }}
             {{ partial "gallery-media.html" (dict "site" $.Site "title" $work.Title "image" $work.Params.image "video" $work.Params.video "fill" "720x960") }}
             <div class="gallery-overlay">
               <span class="category-tag">{{ $work.Params.category }}</span>
               <h3 class="item-title{{ if $titleScript }} script{{ end }}">{{ $work.Title }}</h3>
-              <div class="item-tags">
-                {{ range $work.Params.tags }}
-                <span>{{ . }}</span>
-                {{ end }}
-              </div>
             </div>
           </div>
         </div>
@@ -108,19 +102,19 @@
 {{ $storeItems := where .Site.RegularPages "Section" "store" }}
 {{ $saleWorks := where (where .Site.RegularPages "Section" "portfolio") ".Params.for_sale" true }}
 {{ $allStore := union $storeItems $saleWorks }}
-{{ $storeTags := slice }}
-{{ range $allStore }}{{ range .Params.tags }}{{ $storeTags = $storeTags | append . }}{{ end }}{{ end }}
-{{ $storeTags = uniq $storeTags }}
+{{ $storeCategories := slice }}
+{{ range $allStore }}{{ with .Params.category }}{{ $storeCategories = $storeCategories | append . }}{{ end }}{{ end }}
+{{ $storeCategories = uniq $storeCategories }}
 {{ if gt (len $allStore) 0 }}
 <section class="store-section" id="tienda">
   <div class="container">
     <h2 class="section-title script">Tienda</h2>
     <p class="section-subtitle">Obras y diseños a la venta</p>
 
-    <!-- Product Filter Tabs (generados desde las tags de la tienda) -->
+    <!-- Product Filter Tabs (generados desde las categorías de la tienda) -->
     <div class="filter-tabs" id="store-filters">
       <button class="filter-btn active" data-filter="all">Todos</button>
-      {{ range $storeTags }}
+      {{ range $storeCategories }}
       <button class="filter-btn" data-filter="{{ . }}">{{ . }}</button>
       {{ end }}
     </div>
@@ -133,9 +127,8 @@
         {{ $titleScript := partial "uses-script-font.html" .Title }}
         {{ $lightboxWebp := partial "img-src.html" (dict "path" .Params.image "site" $.Site "resize" "1600x") }}
         {{ $lightboxAvif := partial "img-src.html" (dict "path" .Params.image "site" $.Site "resize" "1600x" "format" "avif") }}
-        {{ $firstTag := "" }}{{ range first 1 .Params.tags }}{{ $firstTag = . }}{{ end }}
         {{ $videoUrl := "" }}{{ with .Params.video }}{{ $videoUrl = partial "video-url.html" (dict "path" . "site" $.Site) }}{{ end }}
-        <div class="gallery-item store-item" data-tags="{{ delimit .Params.tags "," }}" data-category="{{ $firstTag }}"
+        <div class="gallery-item store-item" data-category="{{ .Params.category }}"
           data-title="{{ .Title }}" data-title-script="{{ $titleScript }}"
           data-image="{{ $lightboxWebp }}"{{ if $isAsset }} data-image-avif="{{ $lightboxAvif }}"{{ end }}
           {{ if $videoUrl }}data-video="{{ $videoUrl }}" data-video-poster="{{ $lightboxWebp }}"{{ end }}
@@ -148,11 +141,7 @@
                 {{ with .Params.price }}<span class="gallery-store-tag">{{ . }}</span>{{ end }}
               </div>
               <h3 class="item-title{{ if $titleScript }} script{{ end }}">{{ .Title }}</h3>
-              <div class="item-tags">
-                {{ range .Params.tags }}
-                <span>{{ . }}</span>
-                {{ end }}
-              </div>
+              {{ with .Params.category }}<span class="category-tag">{{ . }}</span>{{ end }}
             </div>
           </div>
         </div>

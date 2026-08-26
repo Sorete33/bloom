@@ -59,15 +59,14 @@ collections:
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - { label: "Título de la Obra", name: "title", widget: "string" }
-      - { label: "Fecha", name: "date", widget: "datetime" }
       - { label: "Imagen", name: "image", widget: "image", hint: "Usá JPG o PNG (sin HEIC). Si agregás un video, esta imagen será el cartel (poster)." }
       - { label: "Video (opcional)", name: "video", widget: "file", required: false, hint: "MP4 corto para que se reproduzca solo en la galería. Elegilo desde el media library." }
       - label: "Categoría"
         name: "category"
-        widget: "select"
-        options: ["Tatu Curado", "Tatu Fresco", "Pinturas", "Dibujos", "Diseños"]
+        widget: "string"
+        suggestions: ["Tatu Curado", "Tatu Fresco", "Pinturas", "Dibujos", "Diseños"]
+        hint: "Elegí una existente o escribí una nueva (ej: Remeras)"
       - { label: "Descripción o Notas", name: "body", widget: "markdown", required: false }
-      - { label: "Etiquetas (categorías)", name: "tags", widget: "list", required: false, hint: "Ej: Remeras, Calcomanías, Pinturas, Diseños Disponibles..." }
       - { label: "Disponible en Tienda", name: "for_sale", widget: "boolean", default: false, required: false }
       - { label: "Precio", name: "price", widget: "string", required: false, hint: "Ej: AR$ 45.000" }
       - { label: "Enlace de Pago", name: "buy_url", widget: "string", required: false, hint: "URL de Mercado Pago u otro checkout" }
@@ -83,10 +82,13 @@ collections:
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - { label: "Título del Producto", name: "title", widget: "string" }
-      - { label: "Fecha", name: "date", widget: "datetime" }
       - { label: "Imagen", name: "image", widget: "image", hint: "Usá JPG o PNG (sin HEIC). Si agregás un video, esta imagen será el cartel (poster)." }
       - { label: "Video (opcional)", name: "video", widget: "file", required: false, hint: "MP4 corto para que se reproduzca solo en la tienda. Elegilo desde el media library." }
-      - { label: "Etiquetas (categorías)", name: "tags", widget: "list", required: false, hint: "Ej: Remeras, Calcomanías, Pinturas, Diseños Disponibles..." }
+      - label: "Categoría"
+        name: "category"
+        widget: "string"
+        suggestions: ["Tatu Curado", "Tatu Fresco", "Pinturas", "Dibujos", "Diseños"]
+        hint: "Elegí una existente o escribí una nueva (ej: Remeras, Calcomanías)"
       - { label: "Precio", name: "price", widget: "string", required: false, hint: "Ej: AR$ 45.000" }
       - { label: "Enlace de Pago", name: "buy_url", widget: "string", required: false, hint: "URL de Mercado Pago u otro checkout" }
       - { label: "Vendido", name: "sold", widget: "boolean", default: false, required: false }

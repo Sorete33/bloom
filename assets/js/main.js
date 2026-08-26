@@ -68,8 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Gallery / Store Horizontal Strips (shared logic) ---
   const itemMatchesFilter = (item, filter) => {
     if (filter === 'all') return true;
-    const tags = item.getAttribute('data-tags');
-    if (tags) return tags.split(',').map(t => t.trim()).includes(filter);
     return item.getAttribute('data-category') === filter;
   };
 
@@ -401,9 +399,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const allBtn = document.querySelector('#store-filters .filter-btn[data-filter="all"]');
       const candidates = [];
       if (item) {
-        const tag = item.getAttribute('data-store-tag');
         const category = item.getAttribute('data-category');
-        if (tag) candidates.push(tag);
         if (category) candidates.push(category);
       }
 

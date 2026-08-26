@@ -1,10 +1,6 @@
 ---
 title: "Obra de Arte VII"
-date: 2026-07-14T10:00:00Z
 image: "/assets/images/pinturas/IMG_20201220_225048_261.jpg"
 category: "Pinturas"
-tags:
-  - "Pintura"
-  - "Arte"
 ---
 Estudio y pieza en bellas artes.
