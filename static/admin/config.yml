@@ -63,9 +63,8 @@ collections:
       - { label: "Video (opcional)", name: "video", widget: "file", required: false, hint: "MP4 corto para que se reproduzca solo en la galería. Elegilo desde el media library." }
       - label: "Categoría"
         name: "category"
-        widget: "string"
-        suggestions: ["Tatu Curado", "Tatu Fresco", "Pinturas", "Dibujos", "Diseños"]
-        hint: "Elegí una existente o escribí una nueva (ej: Remeras)"
+        widget: "select"
+        options: ["Tatuaje Curado", "Tatuaje Fresco", "Pinturas", "Dibujos", "Diseños", "Calcomanías", "Remeras"]
       - { label: "Descripción o Notas", name: "body", widget: "markdown", required: false }
       - { label: "Disponible en Tienda", name: "for_sale", widget: "boolean", default: false, required: false }
       - { label: "Precio", name: "price", widget: "string", required: false, hint: "Ej: AR$ 45.000" }
@@ -86,9 +85,8 @@ collections:
       - { label: "Video (opcional)", name: "video", widget: "file", required: false, hint: "MP4 corto para que se reproduzca solo en la tienda. Elegilo desde el media library." }
       - label: "Categoría"
         name: "category"
-        widget: "string"
-        suggestions: ["Tatu Curado", "Tatu Fresco", "Pinturas", "Dibujos", "Diseños"]
-        hint: "Elegí una existente o escribí una nueva (ej: Remeras, Calcomanías)"
+        widget: "select"
+        options: ["Tatuaje Curado", "Tatuaje Fresco", "Pinturas", "Dibujos", "Diseños", "Calcomanías", "Remeras"]
       - { label: "Precio", name: "price", widget: "string", required: false, hint: "Ej: AR$ 45.000" }
       - { label: "Enlace de Pago", name: "buy_url", widget: "string", required: false, hint: "URL de Mercado Pago u otro checkout" }
       - { label: "Vendido", name: "sold", widget: "boolean", default: false, required: false }
