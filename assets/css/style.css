@@ -1164,13 +1164,14 @@ h1, h2, h3, h4, .brand-font {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.55;
+  opacity: 1;
 }
 
+/* Full-bleed designed cover: hide the logo/text overlay */
 .book-cover-text {
   position: absolute;
   inset: 0;
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   justify-content: center;

@@ -5,7 +5,7 @@ hero:
   banner_video: "/uploads/reel-background.mp4"
 book:
   title: "In Bloom — Libro de Obras 2026"
-  cover: ""
+  cover: "/assets/images/book.webp"
 
 bio:
   photo: "/assets/images/artist-portrait.jpg"
