@@ -37,6 +37,13 @@ collections:
               - { label: "Ubicación del Estudio", name: "location", widget: "string" }
               - { label: "Estado de la Agenda", name: "status_notice", widget: "string" }
               - { label: "Enlace de Contacto (WhatsApp)", name: "contact_url", widget: "string" }
+          - label: "Libro Interactivo (Portada)"
+            name: "book"
+            widget: "object"
+            hint: "Título y foto de tapa del libro 3D de la sección Obras."
+            fields:
+              - { label: "Título en la Portada", name: "title", widget: "string", required: false, hint: "Ej: In Bloom — Libro de Obras 2026" }
+              - { label: "Foto de Portada (opcional)", name: "cover", widget: "image", required: false, hint: "Dejalo vacío para usar la tapa de cuero clásica (JPG o PNG, sin HEIC)" }
           - label: "Redes Sociales"
             name: "social"
             widget: "object"
@@ -49,7 +56,7 @@ collections:
               - { label: "Pregunta", name: "question", widget: "string" }
               - { label: "Respuesta", name: "answer", widget: "text" }
 
-  # Editor de Portafolio
+  # Editor de Portafolio (hojas del libro 3D)
   - name: "portfolio"
     label: "Portafolio"
     folder: "content/portfolio"
@@ -57,14 +64,25 @@ collections:
     extension: "md"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    reorder:
+      key: weight
     fields:
       - { label: "Título de la Obra", name: "title", widget: "string" }
+      - { label: "Orden en el libro", name: "weight", widget: "number", required: false, hint: "Arrastrá las obras en la lista para reordenarlas. Números bajos van primero." }
+      - label: "Tipo de Hoja"
+        name: "page_type"
+        widget: "select"
+        default: "soft"
+        required: false
+        options: ["soft", "hard"]
+        hint: "soft = hoja de papel. hard = cartón/tapa. La primera y la última hoja siempre son tapa."
       - { label: "Imagen", name: "image", widget: "image", hint: "Usá JPG o PNG (sin HEIC). Si agregás un video, esta imagen será el cartel (poster)." }
-      - { label: "Video (opcional)", name: "video", widget: "file", required: false, hint: "MP4 corto para que se reproduzca solo en la galería. Elegilo desde el media library." }
+      - { label: "Video (opcional)", name: "video", widget: "file", required: false, hint: "MP4 corto para la tienda. En el libro 3D se muestra la imagen." }
       - label: "Categoría"
         name: "category"
         widget: "select"
         options: ["Tatuaje Curado", "Tatuaje Fresco", "Pinturas", "Dibujos", "Diseños", "Calcomanías", "Remeras"]
+      - { label: "Etiquetas", name: "tags", widget: "list", required: false, hint: "Ej: Línea fina, Floral, Negro y gris. Se muestran en la galería." }
       - { label: "Descripción o Notas", name: "body", widget: "markdown", required: false }
       - { label: "Disponible en Tienda", name: "for_sale", widget: "boolean", default: false, required: false }
       - { label: "Precio", name: "price", widget: "string", required: false, hint: "Ej: AR$ 45.000" }

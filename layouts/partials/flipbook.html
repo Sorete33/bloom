@@ -1,0 +1,56 @@
+{{- $works := where (where .Site.RegularPages "Section" "portfolio") ".Params.category" "Diseños" }}
+{{- $works = sort $works "Weight" "asc" }}
+{{- $bookTitle := .Params.book.title | default .Site.Title }}
+{{- $bookCover := .Params.book.cover | default "" }}
+<div class="flipbook-wrap">
+  <div class="flipbook" id="flipbook" aria-label="Libro de obras">
+    <!-- Front cover (hard) -->
+    <div class="book-page book-cover" data-density="hard" data-cover="true">
+      <div class="book-cover-inner">
+        {{ if $bookCover }}
+        {{- $coverWebp := partial "img-src.html" (dict "path" $bookCover "site" .Site "resize" "1000x") }}
+        {{- $coverAvif := partial "img-src.html" (dict "path" $bookCover "site" .Site "resize" "1000x" "format" "avif") }}
+        <picture class="book-cover-picture">
+          {{ if hasPrefix $bookCover "/assets/" }}<source srcset="{{ $coverAvif }}" type="image/avif">{{ end }}
+          <img src="{{ $coverWebp }}" alt="{{ $bookTitle }}" decoding="async">
+        </picture>
+        {{ end }}
+        <div class="book-cover-text">
+          <img class="book-cover-logo" src="{{ partial "asset-url.html" (dict "path" "/uploads/inbloomlogoblanco.png" "site" .Site) }}" alt="In Bloom" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </div>
+
+    <!-- Inner pages (pure artwork, no titles or tags) -->
+    {{ range $i, $work := $works }}
+    {{- $isAsset := hasPrefix $work.Params.image "/assets/" }}
+    {{- $pageWebp := partial "img-src.html" (dict "path" $work.Params.image "site" $.Site "resize" "1000x") }}
+    {{- $pageAvif := partial "img-src.html" (dict "path" $work.Params.image "site" $.Site "resize" "1000x" "format" "avif") }}
+    <div class="book-page book-leaf" data-density="{{ $work.Params.page_type | default "soft" }}">
+      <div class="book-leaf-inner">
+        <div class="book-leaf-art">
+          <picture>
+            {{ if $isAsset }}<source srcset="{{ $pageAvif }}" type="image/avif">{{ end }}
+            <img src="{{ $pageWebp }}" alt="" width="720" height="960" loading="lazy" decoding="async">
+          </picture>
+        </div>
+      </div>
+    </div>
+    {{ end }}
+
+    <!-- Back cover (hard) -->
+    <div class="book-page book-back-cover" data-density="hard" data-cover="true">
+      <div class="book-back-inner">
+        <img class="book-back-logo" src="{{ partial "asset-url.html" (dict "path" "/uploads/inbloomlogoblanco.png" "site" .Site) }}" alt="In Bloom" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Book controls -->
+<div class="gallery-controls" id="book-controls">
+  <button class="gallery-arrow" id="book-prev" aria-label="Hoja anterior">&larr;</button>
+  <div class="gallery-progress"><span class="gallery-progress-fill" id="book-progress-fill"></span></div>
+  <span class="gallery-counter" id="book-counter" aria-live="polite">0 / 0</span>
+  <button class="gallery-arrow" id="book-next" aria-label="Hoja siguiente">&rarr;</button>
+</div>

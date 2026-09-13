@@ -548,15 +548,10 @@ h1, h2, h3, h4, .brand-font {
 
 .item-tags {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
   font-size: 0.8rem;
   color: var(--text-secondary);
-  position: absolute;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  height: 0;
-  overflow: hidden;
 }
 
 .gallery-controls {
@@ -1100,6 +1095,216 @@ h1, h2, h3, h4, .brand-font {
   outline: none;
 }
 
+/* ============ Interactive 3D Book ============ */
+.flipbook-wrap {
+  margin: 0 auto;
+  max-width: 1440px;
+  padding: 0.25rem 0.5rem 0;
+}
+
+.flipbook {
+  position: relative;
+  margin: 0 auto;
+}
+
+/* Pre-init / static (no JS, reduced motion): stacked paper cards */
+.flipbook-static {
+  display: grid;
+  gap: 2.5rem;
+  max-width: 560px;
+}
+
+.flipbook-static .book-page {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+}
+
+.flipbook-static .book-cover,
+.flipbook-static .book-back-cover {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+}
+
+.flipbook-static .book-leaf {
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* --- Hardcover styling --- */
+.book-cover,
+.book-back-cover {
+  background: none;
+}
+
+.book-cover-inner,
+.book-back-inner {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 6px;
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(218, 174, 0, 0.10) 0%, transparent 55%),
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.025) 0 2px, transparent 2px 7px),
+    linear-gradient(160deg, #4a2c14 0%, #1d1006 55%, #2a1708 100%);
+  box-shadow:
+    inset 0 0 40px rgba(0, 0, 0, 0.55),
+    inset -8px 0 18px rgba(0, 0, 0, 0.6),
+    inset 8px 0 18px rgba(255, 255, 255, 0.05);
+}
+
+.book-cover-picture {
+  position: absolute;
+  inset: 0;
+}
+
+.book-cover-picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.55;
+}
+
+.book-cover-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.book-cover-logo {
+  width: 70%;
+  max-width: 280px;
+  height: auto;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.7));
+}
+
+.book-cover-title {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.25;
+  color: #daae00;
+  text-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.8),
+    0 0 18px rgba(218, 174, 0, 0.35);
+  max-width: 90%;
+  letter-spacing: 0.02em;
+}
+
+.book-back-inner {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background:
+    radial-gradient(ellipse at center, rgba(218, 174, 0, 0.08) 0%, transparent 60%),
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.02) 0 2px, transparent 2px 7px),
+    linear-gradient(200deg, #3b2410 0%, #170c03 60%, #241409 100%);
+}
+
+.book-back-logo {
+  width: 65%;
+  max-width: 240px;
+  height: auto;
+  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.7));
+}
+
+/* ============================================================
+   Realistic Book: aged paper, artwork blending, spine creases
+   ============================================================ */
+
+/* Fallback: hide any residual title/tag overlays inside the book */
+.flipbook .book-leaf-caption,
+.flipbook .book-leaf-title,
+.flipbook .book-leaf-description,
+.flipbook .category-tag,
+.flipbook .sale-ribbon {
+  display: none !important;
+}
+
+/* --- Inner paper pages: aged-paper texture --- */
+.book-leaf-inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #ede5d3;
+  background-image:
+    radial-gradient(ellipse at 50% 50%, rgba(245, 238, 220, 0.4) 0%, rgba(210, 195, 170, 0.4) 100%),
+    repeating-linear-gradient(0deg, rgba(120, 95, 55, 0.02) 0 2px, transparent 2px 4px);
+}
+
+/* Spine crease shadow (StPageFlip wraps pages in .stf__item --left/--right) */
+.book-leaf-inner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.stf__item.--left .book-leaf-inner::before {
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.32) 0%, rgba(0, 0, 0, 0.05) 12%, transparent 25%);
+}
+
+.stf__item.--right .book-leaf-inner::before {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.32) 0%, rgba(0, 0, 0, 0.05) 12%, transparent 25%);
+}
+
+/* Outer paper edge vignette */
+.book-leaf-inner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 0 15px rgba(80, 60, 30, 0.25);
+  z-index: 6;
+}
+
+/* --- Artwork: full-bleed and blended into the paper --- */
+.book-leaf-art {
+  width: 100%;
+  height: 100%;
+  padding: 6%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.book-leaf-art picture {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.book-leaf-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+  mix-blend-mode: multiply;
+  filter: contrast(0.97) saturate(0.95);
+}
+
+#book-controls {
+  margin: 0 auto 1rem;
+}
+
 /* Responsive Media Queries */
 @media (max-width: 900px) {
   .hero-title {
@@ -1186,6 +1391,18 @@ h1, h2, h3, h4, .brand-font {
     width: 22px;
     height: 22px;
   }
+  .book-cover-title {
+    font-size: 1.2rem;
+  }
+  .book-leaf-caption {
+    padding: 0.25rem 1rem 0.7rem;
+  }
+  .book-leaf-title {
+    font-size: 1rem;
+  }
+  .book-leaf-description {
+    font-size: 0.78rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1202,21 +1419,14 @@ h1, h2, h3, h4, .brand-font {
 }
 
 /* Touch devices and small (mobile) viewports: no hover-dependent UI.
-   Store cards keep the overlay info (price, title, tags) always visible;
-   portfolio overlays never reveal on hover/tap. */
+   Store and portfolio cards keep the overlay info (price, title, tags)
+   always visible. */
 @media (hover: none), (max-width: 600px) {
   .gallery-item:hover {
     border-color: var(--border-color);
     box-shadow: none;
   }
-  .gallery-item .gallery-overlay,
-  .gallery-item:hover .gallery-overlay,
-  .gallery-item:focus-visible .gallery-overlay {
-    opacity: 0;
-  }
-  .store-item .gallery-overlay,
-  .store-item:hover .gallery-overlay,
-  .store-item:focus-visible .gallery-overlay {
+  .gallery-item .gallery-overlay {
     opacity: 1;
   }
   .gallery-item .gallery-img-wrap img,
