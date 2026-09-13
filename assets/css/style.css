@@ -1238,10 +1238,10 @@ h1, h2, h3, h4, .brand-font {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background-color: #ede5d3;
+  background-color: #000;
   background-image:
-    radial-gradient(ellipse at 50% 50%, rgba(245, 238, 220, 0.4) 0%, rgba(210, 195, 170, 0.4) 100%),
-    repeating-linear-gradient(0deg, rgba(120, 95, 55, 0.02) 0 2px, transparent 2px 4px);
+    radial-gradient(ellipse at 50% 45%, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 45%, transparent 100%),
+    linear-gradient(160deg, #0d0d0d 0%, #000 60%, #111 100%);
 }
 
 /* Spine crease shadow (StPageFlip wraps pages in .stf__item --left/--right) */
@@ -1269,7 +1269,7 @@ h1, h2, h3, h4, .brand-font {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  box-shadow: inset 0 0 15px rgba(80, 60, 30, 0.25);
+  box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.6);
   z-index: 6;
 }
 
@@ -1298,8 +1298,8 @@ h1, h2, h3, h4, .brand-font {
   border-radius: 0;
   box-shadow: none;
   background: transparent;
-  mix-blend-mode: multiply;
-  filter: contrast(0.97) saturate(0.95);
+  mix-blend-mode: normal;
+  filter: none;
 }
 
 #book-controls {
