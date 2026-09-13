@@ -10,6 +10,7 @@ collections:
   # Configuracion de la Pagina Principal
   - name: "homepage"
     label: "Página Principal"
+    icon: "home"
     files:
       - file: "content/_index.md"
         label: "Página Inicio"
@@ -56,9 +57,44 @@ collections:
               - { label: "Pregunta", name: "question", widget: "string" }
               - { label: "Respuesta", name: "answer", widget: "text" }
 
-  # Editor de Portafolio (hojas del libro 3D)
+  # Libro de diseños (3D): cada entrada es una página y, si está disponible, un artículo en la Tienda.
+  # Se filtran las entradas de la carpeta store con categoría "Diseños".
+  - name: "libro"
+    label: "Libro"
+    icon: "menu_book"
+    folder: "content/store"
+    format: "yaml-frontmatter"
+    extension: "md"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    filter:
+      field: category
+      value: "Diseños"
+    reorder:
+      key: weight
+    fields:
+      - { label: "Título del Diseño", name: "title", widget: "string", hint: "Se muestra debajo del libro y en la tarjeta de la tienda." }
+      - { label: "Orden en el libro", name: "weight", widget: "number", required: false, hint: "Arrastrá las páginas en la lista para reordenarlas. Números bajos van primero." }
+      - label: "Tipo de Hoja"
+        name: "page_type"
+        widget: "select"
+        default: "soft"
+        required: false
+        options: ["soft", "hard"]
+        hint: "soft = hoja de papel. hard = cartón/tapa. La primera y la última hoja siempre son tapa."
+      - { label: "Imagen", name: "image", widget: "image", hint: "Cada imagen agregada acá es una página del libro y, automáticamente, un artículo en la Tienda (Diseños). Usá JPG o PNG (sin HEIC)." }
+      - { label: "Video (opcional)", name: "video", widget: "file", required: false, hint: "MP4 corto que se reproduce en la tienda. En el libro 3D se muestra la imagen." }
+      - { label: "Categoría", name: "category", widget: "hidden", default: "Diseños" }
+      - { label: "Disponible en Tienda", name: "for_sale", widget: "boolean", default: true, required: false, hint: "Activado por defecto: la página sale a la venta en la sección Diseños. Desactivá si no se vende." }
+      - { label: "Precio", name: "price", widget: "string", required: false, hint: "Ej: AR$ 45.000" }
+      - { label: "Enlace de Pago", name: "buy_url", widget: "string", required: false, hint: "URL de Mercado Pago u otro checkout" }
+      - { label: "Vendido", name: "sold", widget: "boolean", default: false, required: false }
+      - { label: "Descripción", name: "body", widget: "markdown", required: false }
+
+  # Portafolio / Galería de obras (tatuajes, pinturas, dibujos). No incluye diseños (van al libro).
   - name: "portfolio"
     label: "Portafolio"
+    icon: "palette"
     folder: "content/portfolio"
     format: "yaml-frontmatter"
     extension: "md"
@@ -68,30 +104,20 @@ collections:
       key: weight
     fields:
       - { label: "Título de la Obra", name: "title", widget: "string" }
-      - { label: "Orden en el libro", name: "weight", widget: "number", required: false, hint: "Arrastrá las obras en la lista para reordenarlas. Números bajos van primero." }
-      - label: "Tipo de Hoja"
-        name: "page_type"
-        widget: "select"
-        default: "soft"
-        required: false
-        options: ["soft", "hard"]
-        hint: "soft = hoja de papel. hard = cartón/tapa. La primera y la última hoja siempre son tapa."
-      - { label: "Imagen", name: "image", widget: "image", hint: "Usá JPG o PNG (sin HEIC). Si agregás un video, esta imagen será el cartel (poster)." }
-      - { label: "Video (opcional)", name: "video", widget: "file", required: false, hint: "MP4 corto para la tienda. En el libro 3D se muestra la imagen." }
+      - { label: "Orden", name: "weight", widget: "number", required: false, hint: "Números bajos van primero." }
+      - { label: "Imagen", name: "image", widget: "image", hint: "Usá JPG o PNG (sin HEIC)." }
       - label: "Categoría"
         name: "category"
         widget: "select"
-        options: ["Tatuaje Curado", "Tatuaje Fresco", "Pinturas", "Dibujos", "Diseños", "Calcomanías", "Remeras"]
+        options: ["Tatuaje Curado", "Tatuaje Fresco", "Pinturas", "Dibujos"]
+        hint: "Los diseños del libro se administran en la pestaña Libro."
       - { label: "Etiquetas", name: "tags", widget: "list", required: false, hint: "Ej: Línea fina, Floral, Negro y gris. Se muestran en la galería." }
       - { label: "Descripción o Notas", name: "body", widget: "markdown", required: false }
-      - { label: "Disponible en Tienda", name: "for_sale", widget: "boolean", default: false, required: false }
-      - { label: "Precio", name: "price", widget: "string", required: false, hint: "Ej: AR$ 45.000" }
-      - { label: "Enlace de Pago", name: "buy_url", widget: "string", required: false, hint: "URL de Mercado Pago u otro checkout" }
-      - { label: "Vendido", name: "sold", widget: "boolean", default: false, required: false }
 
-  # Editor de la Tienda
+  # Tienda: todos los productos (diseños del libro + mercancía). Misma carpeta que el Libro.
   - name: "store"
     label: "Tienda"
+    icon: "storefront"
     folder: "content/store"
     format: "yaml-frontmatter"
     extension: "md"
@@ -104,7 +130,10 @@ collections:
       - label: "Categoría"
         name: "category"
         widget: "select"
-        options: ["Tatuaje Curado", "Tatuaje Fresco", "Pinturas", "Dibujos", "Diseños", "Calcomanías", "Remeras"]
+        default: "Calcomanías"
+        options: ["Diseños", "Tatuaje Curado", "Tatuaje Fresco", "Pinturas", "Dibujos", "Calcomanías", "Remeras"]
+        hint: "Diseños = páginas del libro (se editan también en la pestaña Libro). Calcomanías, Remeras, etc. son productos sueltos."
+      - { label: "Disponible en Tienda", name: "for_sale", widget: "boolean", default: true, required: false }
       - { label: "Precio", name: "price", widget: "string", required: false, hint: "Ej: AR$ 45.000" }
       - { label: "Enlace de Pago", name: "buy_url", widget: "string", required: false, hint: "URL de Mercado Pago u otro checkout" }
       - { label: "Vendido", name: "sold", widget: "boolean", default: false, required: false }

@@ -624,6 +624,13 @@ h1, h2, h3, h4, .brand-font {
   background: var(--bg-secondary);
   border-top: 1px solid var(--border-color);
   border-bottom: 1px solid var(--border-color);
+  scroll-margin-top: 6rem;
+}
+
+/* Highlighted store card reached from the book */
+.store-item.is-targeted {
+  border-color: var(--accent-gold);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 0 2px var(--accent-gold), 0 0 24px var(--accent-gold-glow);
 }
 
 .store-pills {
@@ -1300,6 +1307,36 @@ h1, h2, h3, h4, .brand-font {
   background: transparent;
   mix-blend-mode: normal;
   filter: none;
+}
+
+/* Subtle "Ver en tienda" button on each book page (only for for_sale designs) */
+.book-leaf-storelink {
+  position: absolute;
+  z-index: 10;
+  bottom: 4%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.45rem 1.1rem;
+  border: 1px solid var(--accent-gold);
+  border-radius: 30px;
+  background: rgba(5, 3, 0, 0.55);
+  color: var(--accent-gold);
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.book-leaf-storelink:hover,
+.book-leaf-storelink:focus-visible {
+  opacity: 1;
+  background: var(--accent-gold);
+  color: var(--bg-primary);
 }
 
 #book-controls {

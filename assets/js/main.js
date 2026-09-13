@@ -549,6 +549,52 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // --- Book page "Ver en tienda": scroll to the matching store card & highlight ---
+  const openStoreItemAt = (slug) => {
+    if (!slug) return;
+    const card = document.querySelector(`#store-track .gallery-item[data-slug="${slug}"]`);
+    if (!card) return;
+
+    const tienda = document.getElementById('tienda');
+    if (tienda) tienda.scrollIntoView({ behavior: smoothBehavior, block: 'start' });
+
+    const category = card.getAttribute('data-category');
+    let matched = false;
+    document.querySelectorAll('#store-filters .filter-btn').forEach(btn => {
+      if (!matched && btn.getAttribute('data-filter') === category) {
+        btn.click();
+        matched = true;
+      }
+    });
+    if (!matched) {
+      const allBtn = document.querySelector('#store-filters .filter-btn[data-filter="all"]');
+      if (allBtn) allBtn.click();
+    }
+
+    setTimeout(() => {
+      card.scrollIntoView({ behavior: smoothBehavior, block: 'nearest', inline: 'center' });
+      card.classList.add('is-targeted');
+      setTimeout(() => card.classList.remove('is-targeted'), 2600);
+    }, 420);
+  };
+
+  document.querySelectorAll('.book-leaf-storelink').forEach(btn => {
+    const slug = btn.getAttribute('data-store-slug');
+    if (!slug) return;
+    const blockPageFlip = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+    };
+    btn.addEventListener('touchstart', (e) => e.stopPropagation(), { passive: true });
+    btn.addEventListener('mousedown', blockPageFlip);
+    btn.addEventListener('pointerdown', blockPageFlip);
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      openStoreItemAt(slug);
+    });
+  });
+
   // --- Gallery card videos: autoplay near the viewport, pause when off-screen ---
   const cardVideos = document.querySelectorAll('.gallery-img-wrap video.gallery-video');
   if (prefersReducedMotion) {

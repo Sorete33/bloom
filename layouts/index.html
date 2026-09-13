@@ -60,7 +60,7 @@
 <section class="portfolio-section" id="gallery">
   <div class="container">
     <h2 class="section-title script">Obras Seleccionadas</h2>
-    <p class="section-subtitle">Tatuajes, Diseños &amp; Pinturas</p>
+    <p class="section-subtitle">Tatuajes, Pinturas &amp; Dibujos</p>
 
     <!-- Category Filter Tabs -->
     <div class="filter-tabs">
@@ -69,13 +69,12 @@
       <button class="filter-btn" data-filter="Tatuaje Fresco">Tatuajes Frescos</button>
       <button class="filter-btn" data-filter="Pinturas">Pinturas</button>
       <button class="filter-btn" data-filter="Dibujos">Dibujos</button>
-      <button class="filter-btn" data-filter="Diseños">Diseños</button>
     </div>
 
     <!-- Gallery Strip -->
     <div class="gallery-wrap">
       <div class="gallery-track" id="gallery-track" tabindex="0" aria-label="Galería de obras">
-        {{ $works := where .Site.RegularPages "Section" "portfolio" }}
+        {{ $works := where (where .Site.RegularPages "Section" "portfolio") ".Params.category" "ne" "Diseños" }}
         {{ range $work := $works }}
         {{ $isAsset := hasPrefix $work.Params.image "/assets/" }}
         {{ $titleScript := partial "uses-script-font.html" $work.Title }}
@@ -85,9 +84,8 @@
         <div class="gallery-item" data-category="{{ $work.Params.category }}" data-title="{{ $work.Title }}" data-title-script="{{ $titleScript }}"
           data-image="{{ $lightboxWebp }}"{{ if $isAsset }} data-image-avif="{{ $lightboxAvif }}"{{ end }}
           {{ if $videoUrl }}data-video="{{ $videoUrl }}" data-video-poster="{{ $lightboxWebp }}"{{ end }}
-          data-for-sale="{{ if $work.Params.for_sale }}true{{ end }}" tabindex="0">
+          tabindex="0">
           <div class="gallery-img-wrap">
-            {{ if $work.Params.for_sale }}<span class="sale-ribbon">{{ if eq $work.Params.category "Diseños" }}Disponible{{ else }}En Venta{{ end }}</span>{{ end }}
             {{ partial "gallery-media.html" (dict "site" $.Site "title" $work.Title "image" $work.Params.image "video" $work.Params.video "fill" "720x960") }}
             <div class="gallery-overlay">
               <span class="category-tag">{{ $work.Params.category }}</span>
@@ -114,9 +112,7 @@
 </section>
 
 <!-- Store Section -->
-{{ $storeItems := where .Site.RegularPages "Section" "store" }}
-{{ $saleWorks := where (where .Site.RegularPages "Section" "portfolio") ".Params.for_sale" true }}
-{{ $allStore := union $storeItems $saleWorks }}
+{{ $allStore := where (where .Site.RegularPages "Section" "store") ".Params.for_sale" true }}
 {{ $storeCategories := slice }}
 {{ range $allStore }}{{ with .Params.category }}{{ $storeCategories = $storeCategories | append . }}{{ end }}{{ end }}
 {{ $storeCategories = uniq $storeCategories }}
@@ -144,6 +140,7 @@
         {{ $lightboxAvif := partial "img-src.html" (dict "path" .Params.image "site" $.Site "resize" "1600x" "format" "avif") }}
         {{ $videoUrl := "" }}{{ with .Params.video }}{{ $videoUrl = partial "video-url.html" (dict "path" . "site" $.Site) }}{{ end }}
         <div class="gallery-item store-item" data-category="{{ .Params.category }}"
+          data-slug="{{ .File.ContentBaseName }}"
           data-title="{{ .Title }}" data-title-script="{{ $titleScript }}"
           data-image="{{ $lightboxWebp }}"{{ if $isAsset }} data-image-avif="{{ $lightboxAvif }}"{{ end }}
           {{ if $videoUrl }}data-video="{{ $videoUrl }}" data-video-poster="{{ $lightboxWebp }}"{{ end }}
