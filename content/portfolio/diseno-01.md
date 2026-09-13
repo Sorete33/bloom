@@ -1,5 +1,6 @@
 ---
 title: "Pajarito"
+weight: 18
 image: "/assets/images/diseños/IMG_20210425_103922.jpg"
 category: "Diseños"
 for_sale: true

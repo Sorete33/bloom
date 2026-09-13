@@ -473,6 +473,7 @@ document.addEventListener('DOMContentLoaded', () => {
     onOpen: openLightbox,
   });
 
+  // --- Instantiate store strip ---
   initGalleryStrip({
     track: document.getElementById('store-track'),
     prevBtn: document.getElementById('store-prev'),
@@ -482,6 +483,71 @@ document.addEventListener('DOMContentLoaded', () => {
     filters: document.querySelectorAll('#store-filters .filter-btn'),
     onOpen: openLightbox,
   });
+
+  // --- 3D Flipbook (StPageFlip) ---
+  const flipbookEl = document.getElementById('flipbook');
+  const canUseFlipbook = flipbookEl && typeof St !== 'undefined' && St.PageFlip && !prefersReducedMotion;
+
+  const bookCounter = document.getElementById('book-counter');
+  const bookProgressFill = document.getElementById('book-progress-fill');
+  const bookPrev = document.getElementById('book-prev');
+  const bookNext = document.getElementById('book-next');
+
+  if (flipbookEl && !canUseFlipbook) {
+    flipbookEl.classList.add('flipbook-static');
+    const controls = document.getElementById('book-controls');
+    if (controls) controls.hidden = true;
+  }
+
+  if (canUseFlipbook) {
+    const pageFlip = new St.PageFlip(flipbookEl, {
+      width: 450,
+      height: 600,
+      size: 'stretch',
+      minWidth: 300,
+      maxWidth: 700,
+      minHeight: 400,
+      maxHeight: 950,
+      showCover: true,
+      maxShadowOpacity: 0.8,
+      usePortrait: true,
+      mobileScrollSupport: true,
+      flippingTime: 900,
+      drawShadow: true,
+    });
+
+    const bookPages = Array.from(flipbookEl.querySelectorAll('.book-page'));
+    pageFlip.loadFromHTML(bookPages);
+
+    const updateBookProgress = () => {
+      const current = pageFlip.getCurrentPageIndex();
+      const total = pageFlip.getPageCount();
+      if (bookCounter) bookCounter.textContent = `${current + 1} / ${total}`;
+      if (bookProgressFill) {
+        bookProgressFill.style.width = total > 1 ? `${(current / (total - 1)) * 100}%` : '0%';
+      }
+    };
+
+    pageFlip.on('init', updateBookProgress);
+    pageFlip.on('flip', updateBookProgress);
+    pageFlip.on('changeOrientation', updateBookProgress);
+
+    if (bookPrev) bookPrev.addEventListener('click', () => pageFlip.flipPrev('top'));
+    if (bookNext) bookNext.addEventListener('click', () => pageFlip.flipNext('top'));
+
+    document.addEventListener('keydown', (e) => {
+      if (!flipbookEl || !lightboxModal || lightboxModal.classList.contains('active')) return;
+      const tag = e.target && e.target.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'A' || tag === 'BUTTON') return;
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        pageFlip.flipNext('top');
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        pageFlip.flipPrev('top');
+      }
+    });
+  }
 
   // --- Gallery card videos: autoplay near the viewport, pause when off-screen ---
   const cardVideos = document.querySelectorAll('.gallery-img-wrap video.gallery-video');

@@ -46,6 +46,16 @@
   </div>
 </section>
 
+<!-- Portfolio Section: 3D Interactive Sketchbook (solo diseños) -->
+<section class="portfolio-section" id="libro">
+  <div class="container">
+    <h2 class="section-title script">Diseños del Libro</h2>
+    <p class="section-subtitle">Diseños disponibles en el libro — pasá las páginas</p>
+
+    {{ partial "flipbook.html" . }}
+  </div>
+</section>
+
 <!-- Portfolio Gallery Section -->
 <section class="portfolio-section" id="gallery">
   <div class="container">
@@ -82,6 +92,11 @@
             <div class="gallery-overlay">
               <span class="category-tag">{{ $work.Params.category }}</span>
               <h3 class="item-title{{ if $titleScript }} script{{ end }}">{{ $work.Title }}</h3>
+              <div class="item-tags">
+                {{ range $work.Params.tags }}
+                <span>#{{ . }}</span>
+                {{ end }}
+              </div>
             </div>
           </div>
         </div>

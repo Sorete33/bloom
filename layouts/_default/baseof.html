@@ -36,6 +36,7 @@
     <div class="container">
       <a href="{{ .Site.BaseURL }}" class="logo"><img class="logo-img" src="{{ partial "asset-url.html" (dict "path" "/uploads/inbloomlogoblanco.png" "site" .Site) }}" alt="In Bloom"></a>
       <ul class="nav-links" id="nav-links">
+        <li><a href="#libro">Libro</a></li>
         <li><a href="#gallery">Obras</a></li>
         <li><a href="#tienda">Tienda</a></li>
         <li><a href="#bio">Sobre mí</a></li>
@@ -74,8 +75,10 @@
     </svg>
   </button>
 
-  <!-- Main Client Script -->
-  {{ $js := resources.Get "js/main.js" | resources.Minify | resources.Fingerprint }}
+  <!-- Main Client Script (page-flip vendor + site JS) -->
+  {{ $vendor := resources.Get "js/vendor/page-flip.browser.min.js" }}
+  {{ $main := resources.Get "js/main.js" }}
+  {{ $js := slice $vendor $main | resources.Concat "js/bundle.js" | resources.Minify | resources.Fingerprint }}
   <script src="{{ $js.Permalink }}" defer></script>
 </body>
 
