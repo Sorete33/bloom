@@ -16,7 +16,7 @@
   --border-color: rgba(255, 204, 0, 0.15);
   --border-hover: rgba(255, 204, 0, 0.5);
   
-  --font-display: 'Cantebriggia', 'Cormorant Garamond', Georgia, serif;
+  --font-display: 'Chomsky', 'Cormorant Garamond', Georgia, serif;
   --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   
@@ -1309,34 +1309,42 @@ h1, h2, h3, h4, .brand-font {
   filter: none;
 }
 
-/* Subtle "Ver en tienda" button on each book page (only for for_sale designs) */
+/* Ribbon bookmark "Ver en tienda" on each book page (only for for_sale designs) */
 .book-leaf-storelink {
   position: absolute;
+  top: 0;
+  left: 4%;
+  right: auto;
   z-index: 10;
-  bottom: 4%;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 0.45rem 1.1rem;
-  border: 1px solid var(--accent-gold);
-  border-radius: 30px;
-  background: rgba(5, 3, 0, 0.55);
+  width: 38px;
+  padding: 14px 4px 24px 4px;
+  border: none;
+  background: linear-gradient(to right, #1a1a1a, #333333, #1a1a1a);
   color: var(--accent-gold);
-  font-family: var(--font-sans);
-  font-size: 0.72rem;
-  font-weight: 500;
+  font-family: 'Georgia', serif;
+  font-size: 0.62rem;
+  font-weight: 600;
   letter-spacing: 0.18em;
+  line-height: 1.35;
+  text-align: center;
   text-transform: uppercase;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 92%, 0 100%);
   cursor: pointer;
-  opacity: 0.7;
-  transition: var(--transition);
-  white-space: nowrap;
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.stf__item.--left .book-leaf-storelink {
+  left: auto;
+  right: 4%;
 }
 
 .book-leaf-storelink:hover,
 .book-leaf-storelink:focus-visible {
   opacity: 1;
-  background: var(--accent-gold);
-  color: var(--bg-primary);
 }
 
 #book-controls {
