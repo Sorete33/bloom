@@ -1,6 +1,6 @@
 ---
 weight: 5
-title: Childs 1
+title: Childs I
 page_type: soft
 image: /assets/images/diseños/3202773137842133130_3202773131986809671.webp
 category: Diseños
