@@ -1,5 +1,5 @@
 ---
-weight: 18
+weight: 17
 title: Diseño XVII
 image: /assets/images/diseños/3342780080042724826_3342779431569738689-poster.webp
 video: /assets/images/diseños/3342780080042724826_3342779431569738689.mp4
