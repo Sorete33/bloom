@@ -1,7 +1,8 @@
 ---
-title: "Obra de Arte IV"
-weight: 13
-image: "/assets/images/pinturas/20190610_233620~2.jpg"
-category: "Pinturas"
+weight: 12
+title: Obra de Arte IV
+image: /assets/images/pinturas/20190610_233620~2.jpg
+category: Pinturas
 ---
+
 Composición en bellas artes.

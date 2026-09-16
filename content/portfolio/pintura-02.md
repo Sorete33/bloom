@@ -1,10 +1,11 @@
 ---
+weight: 10
 title: sativa
-weight: 11
 image: /assets/images/pinturas/20190608_000813~3.jpg
 category: Pinturas
-price: ''
 buy_url: ''
+price: ''
 ---
+
 
 Obra plástica original de autor.
