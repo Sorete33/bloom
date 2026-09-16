@@ -1,5 +1,5 @@
 ---
-title: Pack x5 calcomanias.
+title: Pack x5 Calcomanias.
 image: /assets/tienda/stickers.webp
 category: Calcomanías
 for_sale: true
