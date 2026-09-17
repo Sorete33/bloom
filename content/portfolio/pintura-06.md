@@ -1,8 +1,8 @@
 ---
 weight: 14
-title: Obra de Arte VI
+title: Cover para Mercado Chino
 image: /assets/images/pinturas/3.png
 category: Pinturas
 ---
 
-Obra visual original.
+Técnica mixta
