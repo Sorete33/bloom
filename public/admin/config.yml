@@ -75,18 +75,12 @@ collections:
     fields:
       - { label: "Título del Diseño", name: "title", widget: "string", hint: "Se muestra debajo del libro y en la tarjeta de la tienda." }
       - { label: "Orden en el libro", name: "weight", widget: "number", required: false, hint: "Arrastrá las páginas en la lista para reordenarlas. Números bajos van primero." }
-      - label: "Tipo de Hoja"
-        name: "page_type"
-        widget: "select"
-        default: "soft"
-        required: false
-        options: ["soft", "hard"]
-        hint: "soft = hoja de papel. hard = cartón/tapa. La primera y la última hoja siempre son tapa."
+      - { label: "Tipo de Hoja", name: "page_type", widget: "hidden", default: "soft" }
       - { label: "Imagen", name: "image", widget: "image", hint: "Cada imagen agregada acá es una página del libro y, automáticamente, un artículo en la Tienda (Diseños). Usá JPG o PNG (sin HEIC)." }
       - { label: "Video (opcional)", name: "video", widget: "file", required: false, hint: "MP4 corto que se reproduce en la tienda. En el libro 3D se muestra la imagen." }
       - { label: "Categoría", name: "category", widget: "hidden", default: "Diseños" }
       - { label: "Disponible en Tienda", name: "for_sale", widget: "boolean", default: true, required: false, hint: "Activado por defecto: la página sale a la venta en la sección Diseños. Desactivá si no se vende." }
-      - { label: "Precio", name: "price", widget: "string", required: false, hint: "Ej: AR$ 45.000" }
+      - { label: "Precio", name: "price", widget: "number", value_type: "int", min: 0, required: false, hint: "Precio en pesos, solo números. Ej: 200000 se muestra como ARS$200.000" }
       - { label: "Enlace de Pago", name: "buy_url", widget: "string", required: false, hint: "URL de Mercado Pago u otro checkout" }
       - { label: "Vendido", name: "sold", widget: "boolean", default: false, required: false }
       - { label: "Descripción", name: "body", widget: "markdown", required: false }
@@ -134,7 +128,7 @@ collections:
         options: ["Diseños", "Tatuaje Curado", "Tatuaje Fresco", "Pinturas", "Dibujos", "Calcomanías", "Remeras"]
         hint: "Diseños = páginas del libro (se editan también en la pestaña Libro). Calcomanías, Remeras, etc. son productos sueltos."
       - { label: "Disponible en Tienda", name: "for_sale", widget: "boolean", default: true, required: false }
-      - { label: "Precio", name: "price", widget: "string", required: false, hint: "Ej: AR$ 45.000" }
+      - { label: "Precio", name: "price", widget: "number", value_type: "int", min: 0, required: false, hint: "Precio en pesos, solo números. Ej: 200000 se muestra como ARS$200.000" }
       - { label: "Enlace de Pago", name: "buy_url", widget: "string", required: false, hint: "URL de Mercado Pago u otro checkout" }
       - { label: "Vendido", name: "sold", widget: "boolean", default: false, required: false }
       - { label: "Descripción", name: "body", widget: "markdown", required: false }

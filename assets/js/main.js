@@ -258,14 +258,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const lightboxImg = document.getElementById('lightbox-img');
   const lightboxVideo = document.getElementById('lightbox-video');
   const lightboxTitle = document.getElementById('lightbox-title');
-  const lightboxCategory = document.getElementById('lightbox-category');
   const lightboxClose = document.getElementById('lightbox-close');
   const lightboxPrev = document.getElementById('lightbox-prev');
   const lightboxNext = document.getElementById('lightbox-next');
   const lightboxStore = document.getElementById('lightbox-store');
   const lightboxPrice = document.getElementById('lightbox-price');
   const lightboxBuy = document.getElementById('lightbox-buy');
+  const lightboxBuyLabel = document.getElementById('lightbox-buy-label');
   const lightboxSold = document.getElementById('lightbox-sold');
+  const lightboxDescription = document.getElementById('lightbox-description');
   const lightboxStoreLink = document.getElementById('lightbox-store-link');
 
   let lightboxItems = [];
@@ -315,7 +316,17 @@ document.addEventListener('DOMContentLoaded', () => {
       lightboxTitle.textContent = title;
       lightboxTitle.classList.toggle('script', titleScript);
     }
-    if (lightboxCategory) lightboxCategory.textContent = category;
+
+    if (lightboxDescription) {
+      lightboxDescription.replaceChildren();
+      const descEl = item.querySelector('.item-description');
+      if (descEl) {
+        lightboxDescription.append(...Array.from(descEl.childNodes, n => n.cloneNode(true)));
+        lightboxDescription.hidden = false;
+      } else {
+        lightboxDescription.hidden = true;
+      }
+    }
 
     const forSale = item.getAttribute('data-for-sale') === 'true';
     const price = item.getAttribute('data-price');
@@ -330,8 +341,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (lightboxSold) lightboxSold.hidden = !(forSale && isStoreItem && sold);
     if (lightboxBuy) {
-      lightboxBuy.hidden = !(forSale && isStoreItem && buyUrl && !sold);
-      if (buyUrl) lightboxBuy.href = buyUrl;
+      lightboxBuy.hidden = !(forSale && isStoreItem && !sold);
+      lightboxBuy.href = buyUrl;
+    }
+    if (lightboxBuyLabel) {
+      lightboxBuyLabel.textContent = category === 'Diseños' ? 'Reservar' : 'Comprar';
     }
     if (lightboxStoreLink) {
       lightboxStoreLink.hidden = !(forSale && !isStoreItem);

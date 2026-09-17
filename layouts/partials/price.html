@@ -1,0 +1,7 @@
+{{- $raw := . | string -}}
+{{- $digits := "" -}}
+{{- range split $raw "" }}{{ if in "0123456789" . }}{{ $digits = printf "%s%s" $digits . }}{{ end }}{{ end -}}
+{{- if ne $digits "" -}}
+{{- $formatted := replace (lang.FormatNumber 0 (int $digits)) "," "." -}}
+ARS${{ $formatted -}}
+{{- end -}}

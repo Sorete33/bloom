@@ -26,7 +26,7 @@
     {{- $isAsset := hasPrefix $work.Params.image "/assets/" }}
     {{- $pageWebp := partial "img-src.html" (dict "path" $work.Params.image "site" $.Site "resize" "1000x") }}
     {{- $pageAvif := partial "img-src.html" (dict "path" $work.Params.image "site" $.Site "resize" "1000x" "format" "avif") }}
-    <div class="book-page book-leaf" data-density="{{ $work.Params.page_type | default "soft" }}" data-slug="{{ $work.File.ContentBaseName }}">
+    <div class="book-page book-leaf" data-density="soft" data-slug="{{ $work.File.ContentBaseName }}">
       <div class="book-leaf-inner">
         <div class="book-leaf-art">
           <picture>

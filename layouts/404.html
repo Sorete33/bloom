@@ -1,0 +1,12 @@
+{{ define "main" }}
+<div class="container" style="padding-top: 10rem; padding-bottom: 6rem; max-width: 800px; text-align: center;">
+  <p class="section-subtitle" style="text-align: center;">ERROR 404</p>
+  <h1 class="hero-title script" style="font-size: 3rem; margin: 1rem 0;">Página no encontrada</h1>
+  <p style="color: var(--text-secondary); font-size: 1.1rem; line-height: 1.8;">
+    El diseño que estás buscando ya no está disponible, fue vendido o la dirección cambió.
+  </p>
+  <div style="margin-top: 2.5rem;">
+    <a href="{{ .Site.BaseURL }}#tienda" class="btn btn-primary">&larr; Volver a la Tienda</a>
+  </div>
+</div>
+{{ end }}

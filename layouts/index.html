@@ -97,6 +97,7 @@
               </div>
             </div>
           </div>
+          {{ if .Content }}<div class="item-description" hidden>{{ .Content }}</div>{{ end }}
         </div>
         {{ end }}
       </div>
@@ -144,18 +145,18 @@
           data-title="{{ .Title }}" data-title-script="{{ $titleScript }}"
           data-image="{{ $lightboxWebp }}"{{ if $isAsset }} data-image-avif="{{ $lightboxAvif }}"{{ end }}
           {{ if $videoUrl }}data-video="{{ $videoUrl }}" data-video-poster="{{ $lightboxWebp }}"{{ end }}
-          data-for-sale="true" data-price="{{ .Params.price }}" data-buy-url="{{ .Params.buy_url }}" data-sold="{{ if .Params.sold }}true{{ end }}" tabindex="0">
+          data-for-sale="true" data-price="{{ partial "price.html" .Params.price }}" data-buy-url="{{ .Params.buy_url | default (printf "%s404.html" .Site.BaseURL) }}" data-sold="{{ if .Params.sold }}true{{ end }}" tabindex="0">
           <div class="gallery-img-wrap">
             {{ partial "gallery-media.html" (dict "site" $.Site "title" .Title "image" .Params.image "video" .Params.video "fill" "720x960") }}
             <div class="gallery-overlay">
               <div class="store-pills">
                 {{ if .Params.sold }}<span class="sold-tag">Vendido</span>{{ end }}
-                {{ with .Params.price }}<span class="gallery-store-tag">{{ . }}</span>{{ end }}
               </div>
               <h3 class="item-title{{ if $titleScript }} script{{ end }}">{{ .Title }}</h3>
               {{ with .Params.category }}<span class="category-tag">{{ . }}</span>{{ end }}
             </div>
           </div>
+          {{ if .Content }}<div class="item-description" hidden>{{ .Content }}</div>{{ end }}
         </div>
         {{ end }}
       </div>
@@ -265,17 +266,14 @@
       <video id="lightbox-video" class="lightbox-media-video" muted loop playsinline controls hidden></video>
     </div>
     <div class="lightbox-details">
-      <span class="category-tag" id="lightbox-category">Categoría</span>
-      <div class="lightbox-heading">
-        <h2 class="item-title" id="lightbox-title" style="font-size: 2rem; margin: 0.5rem 0 1rem;">Título de la Obra
-        </h2>
-        <div class="lightbox-store" id="lightbox-store" hidden>
-          <span class="store-price" id="lightbox-price"></span>
-          <a class="btn btn-primary" id="lightbox-buy" href="#" target="_blank" rel="noopener">Comprar</a>
-          <a class="lightbox-store-link" id="lightbox-store-link" href="#tienda">Ver en tienda</a>
-          <span class="sold-badge" id="lightbox-sold" hidden>Vendido</span>
-        </div>
+      <h2 class="item-title" id="lightbox-title" style="font-size: 2rem; margin: 0 0 1rem;">Título de la Obra</h2>
+      <div class="lightbox-store" id="lightbox-store" hidden>
+        <span class="store-price" id="lightbox-price"></span>
+        <a class="btn btn-primary" id="lightbox-buy" href="#" target="_blank" rel="noopener"><span id="lightbox-buy-label">Reservar</span></a>
+        <a class="lightbox-store-link" id="lightbox-store-link" href="#tienda">Ver en tienda</a>
+        <span class="sold-badge" id="lightbox-sold" hidden>Vendido</span>
       </div>
+      <div class="lightbox-description" id="lightbox-description" hidden></div>
     </div>
   </div>
 </div>
