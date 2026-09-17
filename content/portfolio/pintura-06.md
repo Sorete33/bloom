@@ -5,4 +5,4 @@ image: /assets/images/pinturas/3.png
 category: Pinturas
 ---
 
-Técnica mixta
+Técnica mixta.
