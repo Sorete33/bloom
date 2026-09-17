@@ -1,6 +1,6 @@
 ---
 weight: 6
-title: Óscar
+title: Oscar
 image: /assets/images/tatu/3609319549196765312-poster.webp
 category: Tatuaje Fresco
 video: /assets/images/tatu/3609319549196765312.mp4
