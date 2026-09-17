@@ -1,8 +1,8 @@
 ---
 weight: 16
-title: Obra de Arte VIII
+title: Smoke
 image: /assets/images/pinturas/pintu1.webp
 category: Pinturas
 ---
 
-Obra pictórica de autor.
+Acrilico
