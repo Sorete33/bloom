@@ -9,4 +9,3 @@ buy_url: ''
 ---
 
 20 x 25 cm
-Diseño de autor exclusivo.
