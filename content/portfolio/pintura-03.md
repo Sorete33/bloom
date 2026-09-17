@@ -1,8 +1,9 @@
 ---
-weight: 11
+weight: 10
 title: Acuarela
 image: /assets/images/pinturas/20190610_233440~2.jpg
 category: Pinturas
 ---
+
 
 Pieza artística original.

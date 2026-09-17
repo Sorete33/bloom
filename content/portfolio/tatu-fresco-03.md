@@ -1,7 +1,8 @@
 ---
-title: "Tatuaje Fresco III"
-weight: 3
-image: "/assets/images/tatu/2855606331905435183_2855606327149084445.webp"
-category: "Tatuaje Fresco"
+weight: 2
+title: Tatuaje Fresco III
+image: /assets/images/tatu/2855606331905435183_2855606327149084445.webp
+category: Tatuaje Fresco
 ---
+
 Tatuaje recién terminado en estudio.

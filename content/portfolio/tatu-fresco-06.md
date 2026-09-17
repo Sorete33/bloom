@@ -1,5 +1,5 @@
 ---
-weight: 6
+weight: 5
 title: Oscar
 image: /assets/images/tatu/3609319549196765312-poster.webp
 category: Tatuaje Fresco
