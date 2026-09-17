@@ -1,5 +1,5 @@
 ---
-weight: 16
+weight: 15
 title: Smoke
 image: /assets/images/pinturas/pintu1.webp
 category: Pinturas
