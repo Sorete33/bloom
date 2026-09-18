@@ -88,7 +88,6 @@
           <div class="gallery-img-wrap">
             {{ partial "gallery-media.html" (dict "site" $.Site "title" $work.Title "image" $work.Params.image "video" $work.Params.video "fill" "720x960") }}
             <div class="gallery-overlay">
-              <span class="category-tag">{{ $work.Params.category }}</span>
               <h3 class="item-title{{ if $titleScript }} script{{ end }}">{{ $work.Title }}</h3>
               <div class="item-tags">
                 {{ range $work.Params.tags }}
@@ -153,7 +152,6 @@
                 {{ if .Params.sold }}<span class="sold-tag">Vendido</span>{{ end }}
               </div>
               <h3 class="item-title{{ if $titleScript }} script{{ end }}">{{ .Title }}</h3>
-              {{ with .Params.category }}<span class="category-tag">{{ . }}</span>{{ end }}
             </div>
           </div>
           {{ if .Content }}<div class="item-description" hidden>{{ .Content }}</div>{{ end }}
