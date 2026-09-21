@@ -125,8 +125,8 @@ collections:
         name: "category"
         widget: "select"
         default: "Calcomanías"
-        options: ["Diseños", "Tatuaje Curado", "Tatuaje Fresco", "Pinturas", "Dibujos", "Calcomanías", "Remeras"]
-        hint: "Diseños = páginas del libro (se editan también en la pestaña Libro). Calcomanías, Remeras, etc. son productos sueltos."
+        options: ["Diseños", "Tatuaje Curado", "Tatuaje Fresco", "Pinturas", "Dibujos", "Calcomanías", "Remeras", "Prints"]
+        hint: "Diseños = páginas del libro (se editan también en la pestaña Libro). Calcomanías, Remeras, Prints, etc. son productos sueltos."
       - { label: "Disponible en Tienda", name: "for_sale", widget: "boolean", default: true, required: false }
       - { label: "Precio", name: "price", widget: "number", value_type: "int", min: 0, required: false, hint: "Precio en pesos, solo números. Ej: 200000 se muestra como ARS$200.000" }
       - { label: "Enlace de Pago", name: "buy_url", widget: "string", required: false, hint: "URL de Mercado Pago u otro checkout" }
