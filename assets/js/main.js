@@ -572,18 +572,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const tienda = document.getElementById('tienda');
     if (tienda) tienda.scrollIntoView({ behavior: smoothBehavior, block: 'start' });
 
-    const category = card.getAttribute('data-category');
-    let matched = false;
-    document.querySelectorAll('#store-filters .filter-btn').forEach(btn => {
-      if (!matched && btn.getAttribute('data-filter') === category) {
-        btn.click();
-        matched = true;
-      }
-    });
-    if (!matched) {
-      const allBtn = document.querySelector('#store-filters .filter-btn[data-filter="all"]');
-      if (allBtn) allBtn.click();
-    }
+    const allBtn = document.querySelector('#store-filters .filter-btn[data-filter="all"]');
+    if (allBtn) allBtn.click();
 
     setTimeout(() => {
       card.scrollIntoView({ behavior: smoothBehavior, block: 'nearest', inline: 'center' });
