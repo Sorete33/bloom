@@ -1,5 +1,5 @@
 ---
-title: Print 1
+title: Sala Biaus
 image: /assets/images/prints/reme-1.png
 category: Prints
 for_sale: true
