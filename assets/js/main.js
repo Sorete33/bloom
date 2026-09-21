@@ -2,18 +2,41 @@ document.addEventListener('DOMContentLoaded', () => {
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const smoothBehavior = prefersReducedMotion ? 'auto' : 'smooth';
 
-  // --- Randomize gallery/Tienda order on every load (Fisher–Yates) ---
-  const shuffleTrack = (track) => {
-    if (!track) return;
-    const items = Array.from(track.children);
-    for (let i = items.length - 1; i > 0; i--) {
+  // --- Interleave gallery/Tienda by category: one item per category per pass ---
+  const shuffleArray = (arr) => {
+    for (let i = arr.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [items[i], items[j]] = [items[j], items[i]];
+      [arr[i], arr[j]] = [arr[j], arr[i]];
     }
-    items.forEach(el => track.appendChild(el));
+    return arr;
   };
-  shuffleTrack(document.getElementById('gallery-track'));
-  shuffleTrack(document.getElementById('store-track'));
+
+  const interleaveByCategory = (track) => {
+    if (!track) return;
+    const items = shuffleArray(Array.from(track.querySelectorAll('.gallery-item')));
+    const buckets = new Map();
+    items.forEach(item => {
+      const cat = item.getAttribute('data-category') || 'all';
+      if (!buckets.has(cat)) buckets.set(cat, []);
+      buckets.get(cat).push(item);
+    });
+    const cats = shuffleArray(Array.from(buckets.keys()));
+    const ordered = [];
+    let placed = 0;
+    const total = items.length;
+    while (placed < total) {
+      for (const cat of cats) {
+        const bucket = buckets.get(cat);
+        if (bucket && bucket.length) {
+          ordered.push(bucket.shift());
+          placed++;
+        }
+      }
+    }
+    ordered.forEach(el => track.appendChild(el));
+  };
+  interleaveByCategory(document.getElementById('gallery-track'));
+  interleaveByCategory(document.getElementById('store-track'));
 
   // --- Mobile Nav Toggle ---
   const navToggle = document.getElementById('nav-toggle');
@@ -185,6 +208,8 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.classList.add('active');
 
         const filterValue = btn.getAttribute('data-filter');
+
+        if (filterValue === 'all') interleaveByCategory(track);
 
         track.querySelectorAll('.gallery-item').forEach(item => {
           if (itemMatchesFilter(item, filterValue)) {
