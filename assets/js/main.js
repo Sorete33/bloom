@@ -624,8 +624,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // --- Gallery card videos: autoplay near the viewport, pause when off-screen ---
-  const cardVideos = document.querySelectorAll('.gallery-img-wrap video.gallery-video');
+  // --- Card & book page videos: autoplay near the viewport, pause when off-screen ---
+  const cardVideos = document.querySelectorAll('.gallery-img-wrap video.gallery-video, .book-leaf video.book-video');
   if (prefersReducedMotion) {
     cardVideos.forEach(v => v.pause());
   } else if ('IntersectionObserver' in window) {

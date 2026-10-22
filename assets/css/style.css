@@ -1327,6 +1327,14 @@ h1, h2, h3, h4, .brand-font {
   justify-content: center;
 }
 
+.book-leaf-art video.book-video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 0;
+  background: transparent;
+}
+
 .book-leaf-art img {
   width: 100%;
   height: 100%;

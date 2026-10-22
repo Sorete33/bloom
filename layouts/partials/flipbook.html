@@ -26,13 +26,21 @@
     {{- $isAsset := hasPrefix $work.Params.image "/assets/" }}
     {{- $pageWebp := partial "img-src.html" (dict "path" $work.Params.image "site" $.Site "resize" "1000x") }}
     {{- $pageAvif := partial "img-src.html" (dict "path" $work.Params.image "site" $.Site "resize" "1000x" "format" "avif") }}
+    {{- $videoUrl := "" }}
+    {{- if $work.Params.video }}
+    {{- $videoUrl = partial "video-url.html" (dict "path" $work.Params.video "site" $.Site) }}
+    {{- end }}
     <div class="book-page book-leaf" data-density="soft" data-slug="{{ $work.File.ContentBaseName }}">
       <div class="book-leaf-inner">
         <div class="book-leaf-art">
+          {{ if $videoUrl }}
+          <video class="book-video" src="{{ $videoUrl }}" poster="{{ $pageWebp }}" muted loop playsinline preload="metadata"></video>
+          {{ else }}
           <picture>
             {{ if $isAsset }}<source srcset="{{ $pageAvif }}" type="image/avif">{{ end }}
             <img src="{{ $pageWebp }}" alt="" width="720" height="960" loading="lazy" decoding="async">
           </picture>
+          {{ end }}
         </div>
         {{ if $work.Params.for_sale }}
         <button type="button" class="book-leaf-storelink" data-store-slug="{{ $work.File.ContentBaseName }}" aria-label="Ver {{ $work.Title }} en la tienda">
