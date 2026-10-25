@@ -1181,10 +1181,7 @@ h1, h2, h3, h4, .brand-font {
   inset: 0;
   overflow: hidden;
   border-radius: 6px;
-  background:
-    radial-gradient(ellipse at 50% 30%, rgba(218, 174, 0, 0.10) 0%, transparent 55%),
-    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.025) 0 2px, transparent 2px 7px),
-    linear-gradient(160deg, #4a2c14 0%, #1d1006 55%, #2a1708 100%);
+  background: #000000;
   box-shadow:
     inset 0 0 40px rgba(0, 0, 0, 0.55),
     inset -8px 0 18px rgba(0, 0, 0, 0.6),
@@ -1240,10 +1237,7 @@ h1, h2, h3, h4, .brand-font {
   justify-content: center;
   align-items: center;
   display: flex;
-  background:
-    radial-gradient(ellipse at center, rgba(218, 174, 0, 0.08) 0%, transparent 60%),
-    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.02) 0 2px, transparent 2px 7px),
-    linear-gradient(200deg, #3b2410 0%, #170c03 60%, #241409 100%);
+  background: #000000;
 }
 
 .book-back-picture {
