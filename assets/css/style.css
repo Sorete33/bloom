@@ -1246,7 +1246,21 @@ h1, h2, h3, h4, .brand-font {
     linear-gradient(200deg, #3b2410 0%, #170c03 60%, #241409 100%);
 }
 
+.book-back-picture {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.book-back-picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .book-back-logo {
+  position: relative;
+  z-index: 1;
   width: 65%;
   max-width: 240px;
   height: auto;

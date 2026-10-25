@@ -54,6 +54,13 @@
     <!-- Back cover (hard) -->
     <div class="book-page book-back-cover" data-density="hard" data-cover="true">
       <div class="book-back-inner">
+        {{- $backCoverPath := "/assets/images/back-cover.webp" }}
+        {{- $backCoverWebp := partial "img-src.html" (dict "path" $backCoverPath "site" .Site "resize" "1000x") }}
+        {{- $backCoverAvif := partial "img-src.html" (dict "path" $backCoverPath "site" .Site "resize" "1000x" "format" "avif") }}
+        <picture class="book-back-picture">
+          {{ if hasPrefix $backCoverPath "/assets/" }}<source srcset="{{ $backCoverAvif }}" type="image/avif">{{ end }}
+          <img src="{{ $backCoverWebp }}" alt="In Bloom" decoding="async">
+        </picture>
         <img class="book-back-logo" src="{{ partial "asset-url.html" (dict "path" "/uploads/inbloomlogoblanco.png" "site" .Site) }}" alt="In Bloom" loading="lazy" decoding="async">
       </div>
     </div>
